@@ -25,7 +25,7 @@ public sealed class NavMeshAgentMoveToClickPoint : MonoBehaviour
             return;
         }
         RaycastHit hit;
-        if (!Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 100))
+        if (!Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit))
         {
             return;
         }
