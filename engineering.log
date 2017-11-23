@@ -1,0 +1,6 @@
+
+Thu, Nov 23, 2017  1:14:25 PM
+
+Assets/Scripts/NavigationTilemap.cs(16,24): error CS0103: The name `GetComponent' does not exist in the current context
+public sealed class NavigationTilemap
+		m_Tilemap = (Tilemap)GetComponent(typeof(Tilemap));
