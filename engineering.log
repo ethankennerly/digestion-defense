@@ -4,3 +4,8 @@ Thu, Nov 23, 2017  1:14:25 PM
 Assets/Scripts/NavigationTilemap.cs(16,24): error CS0103: The name `GetComponent' does not exist in the current context
 public sealed class NavigationTilemap
 		m_Tilemap = (Tilemap)GetComponent(typeof(Tilemap));
+
+
+Thu, Nov 23, 2017  1:34:22 PM
+Assets/Scripts/NavTilemapController.cs(58,60): error CS0246: The type or namespace name `Vector3Int' could not be found. Are you missing `UnityEngine' using directive?
+		Tile.ColliderType collider = tilemap.GetColliderType(new Vector3Int(x, y, 0));

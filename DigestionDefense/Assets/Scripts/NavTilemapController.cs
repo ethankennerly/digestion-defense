@@ -2,18 +2,33 @@ using SettlersEngine;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-[RequireComponent(typeof(Tilemap))]
-public sealed class NavigationTilemap : MonoBehaviour
+public sealed class NavTilemapController
 {
 	private Tilemap m_Tilemap;
+
+	public Tilemap tilemap
+	{
+		get
+		{
+			return m_Tilemap;
+		}
+		set
+		{
+			if (m_Tilemap == value)
+			{
+				return;
+			}
+			m_Tilemap = value;
+			Setup();
+		}
+	}
 
 	private SpatialAStar<MyPathNode, object> m_Solver;
 
 	private MyPathNode[,] m_Grid;
 
-	private void Start()
+	private void Setup()
 	{
-		m_Tilemap = (Tilemap)GetComponent(typeof(Tilemap));
 		m_Grid = ParseGrid(m_Tilemap);
 		m_Solver = new SpatialAStar<MyPathNode, object>(m_Grid);
 	}
