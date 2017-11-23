@@ -9,3 +9,37 @@ public sealed class NavigationTilemap
 Thu, Nov 23, 2017  1:34:22 PM
 Assets/Scripts/NavTilemapController.cs(58,60): error CS0246: The type or namespace name `Vector3Int' could not be found. Are you missing `UnityEngine' using directive?
 		Tile.ColliderType collider = tilemap.GetColliderType(new Vector3Int(x, y, 0));
+
+
+Thu, Nov 23, 2017  2:14:58 PM
+Assets/Scripts/ClickPoint.cs(3,39): error CS1525: Unexpected symbol `out'
+    public static bool Raycast(Vector3 out point)
+
+
+Thu, Nov 23, 2017  2:15:55 PM
+Assets/Scripts/ClickPoint.cs(3,36): error CS0246: The type or namespace name `Vector3' could not be found. Are you missing `UnityEngine' using directive?
+
+
+Thu, Nov 23, 2017  2:17:29 PM
+Assets/Scripts/NavTilemapAgent.cs(34,35): error CS1061: Type `NavTilemapController' does not contain a definition for `WorldToCell' and no extension method `WorldToCell' of type `NavTilemapController' could be found. Are you missing an assembly reference?
+ 
+(Filename: Assets/Scripts/NavTilemapAgent.cs Line: 34)
+		Vector3Int cell = m_NavTilemap.WorldToCell(destinationInWorld);
+
+Assets/Scripts/NavTilemapAgent.cs(50,4): error CS0103: The name `n_NavTilemap' does not exist in the current context
+ 
+(Filename: Assets/Scripts/NavTilemapAgent.cs Line: 50)
+			n_NavTilemap = value;
+
+Assets/Scripts/NavTilemapAgent.cs(64,34): error CS1061: Type `NavTilemapController' does not contain a definition for `WorldToCell' and no extension method `WorldToCell' of type `NavTilemapController' could be found. Are you missing an assembly reference?
+ 
+(Filename: Assets/Scripts/NavTilemapAgent.cs Line: 64)
+
+Assets/Scripts/NavTilemapAgent.cs(74,52): error CS0103: The name `m_Grid' does not exist in the current context
+ 
+(Filename: Assets/Scripts/NavTilemapAgent.cs Line: 74)
+			m_Solver = new SpatialAStar<MyPathNode, object>(m_Grid);
+
+Assets/Scripts/NavTilemapAgent.cs(88,28): error CS1061: Type `System.Collections.Generic.IEnumerable<MyPathNode>' does not contain a definition for `Count' and no extension method `Count' of type `System.Collections.Generic.IEnumerable<MyPathNode>' could be found. Are you missing `System.Linq' using directive?
+ 
+(Filename: Assets/Scripts/NavTilemapAgent.cs Line: 88)

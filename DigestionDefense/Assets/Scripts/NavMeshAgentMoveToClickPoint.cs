@@ -8,6 +8,8 @@ public sealed class NavMeshAgentMoveToClickPoint : MonoBehaviour
 {
     private NavMeshAgent m_Agent;
 
+    private Vector3 m_ClickPoint;
+
     private void Start()
     {
         m_Agent = GetComponent<NavMeshAgent>();
@@ -15,20 +17,10 @@ public sealed class NavMeshAgentMoveToClickPoint : MonoBehaviour
 
     private void Update()
     {
-        UpdateSetDestination();
-    }
-
-    private void UpdateSetDestination()
-    {
-        if (!Input.GetMouseButtonDown(0))
-        {
-            return;
-        }
-        RaycastHit hit;
-        if (!Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit))
-        {
-            return;
-        }
-        m_Agent.destination = hit.point;
+        if (!ClickPoint.Raycast(out m_ClickPoint))
+	{
+		return;
+	}
+	m_Agent.destination = m_ClickPoint;
     }
 }

@@ -1,4 +1,3 @@
-using SettlersEngine;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -23,14 +22,19 @@ public sealed class NavTilemapController
 		}
 	}
 
-	private SpatialAStar<MyPathNode, object> m_Solver;
-
 	private MyPathNode[,] m_Grid;
+
+	public MyPathNode[,] grid
+	{
+		get
+		{
+			return m_Grid;
+		}
+	}
 
 	private void Setup()
 	{
 		m_Grid = ParseGrid(m_Tilemap);
-		m_Solver = new SpatialAStar<MyPathNode, object>(m_Grid);
 	}
 
 	private MyPathNode[,] ParseGrid(Tilemap tilemap)
