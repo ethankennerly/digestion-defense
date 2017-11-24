@@ -32,6 +32,8 @@ public sealed class NavTilemapController
 		}
 	}
 
+	private bool m_IsVerbose = true;
+
 	// Offsets from minimum cell bounds, which might be less than zero.
 	// Clamps within bounds.  Otherwise the cell is off the grid.
 	public Vector2Int WorldToGrid(Vector3 positionInWorld)
@@ -52,35 +54,41 @@ public sealed class NavTilemapController
 		return position;
 	}
 
+	private Vector3Int GridToCell(int x, int y)
+	{
+		BoundsInt bounds = m_Tilemap.cellBounds;
+		Vector3Int cell = new Vector3Int(x - bounds.xMin, y - bounds.yMin, 0);
+		return cell;
+	}
+
 	private void Setup()
 	{
 		m_Grid = ParseGrid(m_Tilemap);
 	}
 
-	private MyPathNode[,] ParseGrid(Tilemap tilemap)
+	private MyPathNode[,] ParseGrid(Tilemap wallTilemap)
 	{
-		int width = tilemap.size.x;
-		int height = tilemap.size.y;
-		MyPathNode[,] grid = new MyPathNode[tilemap.size.x, tilemap.size.y];
+		int width = wallTilemap.size.x;
+		int height = wallTilemap.size.y;
+		MyPathNode[,] grid = new MyPathNode[width, height];
 		for (int x = 0; x < width; ++x)
 		{
 			for (int y = 0; y < height; ++y)
 			{
-				bool isWall = IsCollider(tilemap, x, y);
+				bool isWall = wallTilemap.HasTile(GridToCell(x, y));
 				grid[x, y] = new MyPathNode()
 				{
 					IsWall = isWall,
 					X = x,
 					Y = y,
 				};
+				if (m_IsVerbose && isWall)
+				{
+					Debug.Log("NavTilemapController.ParseGrid: ("
+						+ x + ", " + y + ") is a wall.");
+				}
 			}
 		}
 		return grid;
-	}
-
-	private bool IsCollider(Tilemap tilemap, int x, int y)
-	{
-		Tile.ColliderType collider = tilemap.GetColliderType(new Vector3Int(x, y, 0));
-		return collider != Tile.ColliderType.None;
 	}
 }

@@ -738,3 +738,39 @@ Thu, Nov 23, 2017  5:15:24 PM
 		if (path == null)
 			(Vector2)m_CurrentCell,
 			(Vector2)m_DestinationCell,
+
+Thu, Nov 23, 2017  5:22:09 PM
+Assets/Scripts/NavTilemapController.cs(76,9): error CS0103: The name `m_IsVerbose' does not exist in the current context
+ 
+(Filename: Assets/Scripts/NavTilemapController.cs Line: 76)
+
+Thu, Nov 23, 2017  5:44:20 PM
+		Vector3Int cell = new Vector3Int(x - bounds.xMin, y - bounds.xMax, 0);
+		Tile.ColliderType collider = tilemap.GetColliderType(new Vector3Int(x, y, 0));
+
+
+Thu, Nov 23, 2017  5:47:31 PM
+	private bool IsCollider(Tilemap tilemap, int x, int y)
+	{
+		BoundsInt bounds = tilemap.cellBounds;
+		Vector3Int cell = new Vector3Int(x - bounds.xMin, y - bounds.yMin, 0);
+		Tile.ColliderType collider = tilemap.GetColliderType(cell);
+		return collider != Tile.ColliderType.None;
+	}
+
+Thu, Nov 23, 2017  5:50:01 PM
+Assets/Scripts/NavTilemapController.cs(83,15): error CS0161: `NavTilemapController.HasTile(UnityEngine.Tilemaps.Tilemap, int, int)': not all code paths return a value
+ 
+(Filename: Assets/Scripts/NavTilemapController.cs Line: 83)
+
+	private bool HasTile(Tilemap tilemap, int x, int y)
+	{
+		BoundsInt bounds = tilemap.cellBounds;
+		Vector3Int cell = new Vector3Int(x - bounds.xMin, y - bounds.yMin, 0);
+		bool hasTile = tilemap.HasTile(cell);
+		if (m_IsVerbose && hasTile)
+		{
+			Debug.Log("NavTilemapController.HasTile: ("
+				+ x + ", " + y + ")");
+		}
+	}

@@ -73,7 +73,7 @@ public sealed class NavTilemapAgent
 
 	private float m_StepDuration = 0.25f;
 
-	private bool m_IsVerbose = true;
+	private bool m_IsVerbose = false;
 
 	private void SetCurrentCell(Vector3 positionInWorld)
 	{
