@@ -803,3 +803,63 @@ Assets/Scripts/NavTilemapController.cs(73,19): error CS1501: No overload for met
  
 (Filename: Assets/Scripts/NavTilemapController.cs Line: 73)
 	private Vector2 GridToWorld2D(Vector2Int cell)
+
+
+Thu, Nov 23, 2017  6:56:43 PM
+Assets/Scripts/NavTilemapController.cs(6,15): error CS0246: The type or namespace name `Action' could not be found. Are you missing `System' using directive?
+ 
+(Filename: Assets/Scripts/NavTilemapController.cs Line: 6)
+using UnityEngine;
+using UnityEngine.Tilemaps;
+
+public sealed class NavTilemapController
+{
+	public event Action<Vector2> passableCreated;
+
+
+Thu, Nov 23, 2017  6:59:18 PM
+Assets/Scripts/NavTilemapController.cs(107,20): error CS0103: The name `onPassableCreated' does not exist in the current context
+ 
+(Filename: Assets/Scripts/NavTilemapController.cs Line: 107)
+	public event Action<Vector2> passableCreated;
+
+Assets/Scripts/NavTilemapController.cs(111,5): error CS0103: The name `onPassableCreated' does not exist in the current context
+ 
+(Filename: Assets/Scripts/NavTilemapController.cs Line: 111)
+
+Assets/Scripts/NavTilemapView.cs(36,16): error CS1061: Type `NavTilemapController' does not contain a definition for `onPassableCreated' and no extension method `onPassableCreated' of type `NavTilemapController' could be found. Are you missing an assembly reference?
+ 
+(Filename: Assets/Scripts/NavTilemapView.cs Line: 36)
+
+Assets/Scripts/NavTilemapView.cs(45,16): error CS1061: Type `NavTilemapController' does not contain a definition for `onPassableCreated' and no extension method `onPassableCreated' of type `NavTilemapController' could be found. Are you missing an assembly reference?
+ 
+(Filename: Assets/Scripts/NavTilemapView.cs Line: 45)
+
+Assets/Scripts/NavTilemapView.cs(57,41): error CS1502: The best overloaded method match for `UnityEngine.Object.Instantiate(UnityEngine.Object, UnityEngine.Transform)' has some invalid arguments
+ 
+(Filename: Assets/Scripts/NavTilemapView.cs Line: 57)
+		GameObject passableNode = (GameObject)Instantiate(passableVisualization, position);
+
+Assets/Scripts/NavTilemapView.cs(57,76): error CS1503: Argument `#2' cannot convert `UnityEngine.Vector3' expression to type `UnityEngine.Transform'
+ 
+(Filename: Assets/Scripts/NavTilemapView.cs Line: 57)
+
+Thu, Nov 23, 2017  7:02:53 PM
+		Vector3 position = transform.position;
+		position.x = worldPoint.x;
+		position.y = worldPoint.y;
+		GameObject passableNode = (GameObject)Instantiate(passableVisualization, transform, true);
+
+Thu, Nov 23, 2017  7:04:48 PM
+Assets/Scripts/NavTilemapView.cs(58,16): error CS1061: Type `UnityEngine.GameObject' does not contain a definition for `position' and no extension method `position' of type `UnityEngine.GameObject' could be found. Are you missing an assembly reference?
+ 
+(Filename: Assets/Scripts/NavTilemapView.cs Line: 58)
+		passableNode.position = position;
+
+
+Thu, Nov 23, 2017  7:06:18 PM
+				if (!isWall || onPassableCreated == null)
+				{
+					continue;
+				}
+				onPassableCreated(GridToWorld2D(x, y));

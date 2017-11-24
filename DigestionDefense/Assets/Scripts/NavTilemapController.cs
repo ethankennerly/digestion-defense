@@ -1,8 +1,11 @@
+using System;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
 public sealed class NavTilemapController
 {
+	public event Action<Vector2> onPassableCreated;
+
 	private Tilemap m_Tilemap;
 
 	public Tilemap tilemap
@@ -32,7 +35,7 @@ public sealed class NavTilemapController
 		}
 	}
 
-	private bool m_IsVerbose = true;
+	private bool m_IsVerbose = false;
 
 	// Offsets from minimum cell bounds, which might be less than zero.
 	// Clamps within bounds.  Otherwise the cell is off the grid.
@@ -46,11 +49,15 @@ public sealed class NavTilemapController
 		return cell;
 	}
 
+	// Returns center of cell in grid.
 	public Vector3 GridToWorld(Vector2Int cell)
 	{
 		BoundsInt bounds = m_Tilemap.cellBounds;
 		Vector3Int cell3 = new Vector3Int(cell.x + bounds.xMin, cell.y + bounds.yMin, 0);
 		Vector3 position = m_Tilemap.CellToWorld(cell3);
+		Vector3 cellSize = m_Tilemap.layoutGrid.cellSize;
+		position.x += 0.5f * cellSize.x;
+		position.y += 0.5f * cellSize.y;
 		return position;
 	}
 
@@ -101,6 +108,11 @@ public sealed class NavTilemapController
 					Debug.Log("NavTilemapController.ParseGrid: ("
 						+ x + ", " + y + ") is a wall.");
 				}
+				if (isWall || onPassableCreated == null)
+				{
+					continue;
+				}
+				onPassableCreated(GridToWorld2D(x, y));
 			}
 		}
 		return grid;
