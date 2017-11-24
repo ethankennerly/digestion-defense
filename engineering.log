@@ -774,3 +774,32 @@ Assets/Scripts/NavTilemapController.cs(83,15): error CS0161: `NavTilemapControll
 				+ x + ", " + y + ")");
 		}
 	}
+
+Thu, Nov 23, 2017  6:18:44 PM
+				bool isWall = wallTilemap.HasTile(GridToCell(x, y));
+
+
+Thu, Nov 23, 2017  6:26:00 PM
+Assets/Scripts/NavTilemapController.cs(73,33): error CS0103: The name `x' does not exist in the current context
+ 
+(Filename: Assets/Scripts/NavTilemapController.cs Line: 73)
+
+Assets/Scripts/NavTilemapController.cs(73,36): error CS0103: The name `y' does not exist in the current context
+ 
+(Filename: Assets/Scripts/NavTilemapController.cs Line: 73)
+
+Assets/Scripts/NavTilemapController.cs(73,19): error CS1501: No overload for method `GridToWorld2D' takes `2' arguments
+ 
+(Filename: Assets/Scripts/NavTilemapController.cs Line: 73)
+
+	private bool IsCollision(int gridX, int gridY)
+	{
+		Vector2 point = GridToWorld2D(x, y);
+
+
+Thu, Nov 23, 2017  6:26:39 PM
+
+Assets/Scripts/NavTilemapController.cs(73,19): error CS1501: No overload for method `GridToWorld2D' takes `2' arguments
+ 
+(Filename: Assets/Scripts/NavTilemapController.cs Line: 73)
+	private Vector2 GridToWorld2D(Vector2Int cell)

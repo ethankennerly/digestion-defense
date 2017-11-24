@@ -54,11 +54,25 @@ public sealed class NavTilemapController
 		return position;
 	}
 
-	private Vector3Int GridToCell(int x, int y)
+	private Vector2 GridToWorld2D(int gridX, int gridY)
+	{
+		Vector2Int cell = new Vector2Int(gridX, gridY);
+		Vector3 position = GridToWorld(cell);
+		Vector2 position2D = new Vector2(position.x, position.y);
+		return position2D;
+	}
+
+	private Vector3Int GridToCell(int gridX, int gridY)
 	{
 		BoundsInt bounds = m_Tilemap.cellBounds;
-		Vector3Int cell = new Vector3Int(x - bounds.xMin, y - bounds.yMin, 0);
+		Vector3Int cell = new Vector3Int(gridX - bounds.xMin, gridY - bounds.yMin, 0);
 		return cell;
+	}
+
+	private bool IsCollision(int gridX, int gridY)
+	{
+		Vector2 point = GridToWorld2D(gridX, gridY);
+		return Physics2D.OverlapPoint(point) != null;
 	}
 
 	private void Setup()
@@ -75,7 +89,7 @@ public sealed class NavTilemapController
 		{
 			for (int y = 0; y < height; ++y)
 			{
-				bool isWall = wallTilemap.HasTile(GridToCell(x, y));
+				bool isWall = IsCollision(x, y);
 				grid[x, y] = new MyPathNode()
 				{
 					IsWall = isWall,
