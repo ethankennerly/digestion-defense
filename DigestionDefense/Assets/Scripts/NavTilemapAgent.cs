@@ -4,8 +4,29 @@ using SettlersEngine;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
+[Serializable]
 public sealed class NavTilemapAgent
 {
+	[SerializeField]
+	private bool m_AllowsDiagonals = true;
+
+	public bool allowsDiagonals
+	{
+		get
+		{
+			return m_AllowsDiagonals;
+		}
+		set
+		{
+			m_AllowsDiagonals = value;
+			if (m_Solver == null)
+			{
+				return;
+			}
+			CreateSolver();
+		}
+	}
+
 	private Vector3 m_Destination;
 
 	public Vector3 destination
@@ -105,11 +126,17 @@ public sealed class NavTilemapAgent
 		FindPath();
 	}
 
+	private void CreateSolver()
+	{
+		m_Solver = new SpatialAStar<MyPathNode, object>(m_Nav.grid);
+		m_Solver.allowsDiagonals = m_AllowsDiagonals;
+	}
+
 	private void FindPath()
 	{
 		if (m_Solver == null)
 		{
-			m_Solver = new SpatialAStar<MyPathNode, object>(m_Nav.grid);
+			CreateSolver();
 		}
 		m_Path = m_Solver.Search(
 			(Vector2)m_CurrentCell,

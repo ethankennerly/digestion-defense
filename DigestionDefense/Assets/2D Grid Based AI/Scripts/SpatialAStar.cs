@@ -55,6 +55,8 @@ namespace SettlersEngine
 		public TPathNode[,] SearchSpace { get; private set; }
 		public int Width { get; private set; }
 		public int Height { get; private set; }
+
+		public bool allowsDiagonals { get; set; }
 		
 		protected class PathNode : IPathNode<TUserContext>, IComparer<PathNode>, IIndexedObject
 		{
@@ -154,12 +156,16 @@ namespace SettlersEngine
 				return new LinkedList<TPathNode>(new TPathNode[] { startNode.UserContext });
 
 
-			//UP, DOWN, LEFT, RIGHT
-			PathNode[] neighborNodes = new PathNode[4];
+			PathNode[] neighborNodes;
+			if (allowsDiagonals)
+			{
+				neighborNodes = new PathNode[8];
+			}
+			else
+			{
+				neighborNodes = new PathNode[4];
+			}
 
-			//FOR DIAGONAL
-
-			//PathNode[] neighborNodes = new PathNode[8];
 			
 			m_ClosedSet.Clear();
 			m_OpenSet.Clear();
@@ -290,18 +296,6 @@ namespace SettlersEngine
 			int x = inAround.X;
 			int y = inAround.Y;
 
-
-			//DIAGONAL
-
-			/*if ((x > 0) && (y > 0))
-				inNeighbors[0] = m_SearchSpace[x - 1, y - 1];
-			else
-				inNeighbors[0] = null;
-
-			*/
-
-			
-			
 			if (x > 0)
 				inNeighbors[0] = m_SearchSpace[x - 1, y];
 			else
@@ -321,36 +315,25 @@ namespace SettlersEngine
 				inNeighbors[3] = m_SearchSpace[x, y + 1];
 			else
 				inNeighbors[3] = null;
-
-
-
-		
-
-		
-
-
-			/*make
-			if ((x < Width - 1) && (y > 0))
-				inNeighbors[2] = m_SearchSpace[x + 1, y - 1];
-			else
-				inNeighbors[2] = null;
-
-			*/
-		
-
-			/*
-			if ((x > 0) && (y < Height - 1))
-				inNeighbors[5] = m_SearchSpace[x - 1, y + 1];
-			else
-				inNeighbors[5] = null;
-			*/
-
-			/*
-			if ((x < Width - 1) && (y < Height - 1))
-				inNeighbors[7] = m_SearchSpace[x + 1, y + 1];
-			else
-				inNeighbors[7] = null;
-				*/
+			if (allowsDiagonals)
+			{
+				if ((x > 0) && (y > 0))
+					inNeighbors[4] = m_SearchSpace[x - 1, y - 1];
+				else
+					inNeighbors[4] = null;
+				if ((x < Width - 1) && (y > 0))
+					inNeighbors[5] = m_SearchSpace[x + 1, y - 1];
+				else
+					inNeighbors[5] = null;
+				if ((x > 0) && (y < Height - 1))
+					inNeighbors[6] = m_SearchSpace[x - 1, y + 1];
+				else
+					inNeighbors[6] = null;
+				if ((x < Width - 1) && (y < Height - 1))
+					inNeighbors[7] = m_SearchSpace[x + 1, y + 1];
+				else
+					inNeighbors[7] = null;
+			}
 		}
 		
 		private class OpenCloseMap

@@ -18,6 +18,7 @@ public sealed class NavTilemapAgentClickPoint : MonoBehaviour
 		}
 	}
 
+	[SerializeField]
 	private NavTilemapAgent m_Agent = new NavTilemapAgent();
 
 	private Vector3 m_ClickPoint;
