@@ -91,8 +91,9 @@ public sealed class NavTilemapAgent
 	private IEnumerable<MyPathNode> m_Path;
 
 	private float m_TweenTime = 0.0f;
-
 	private float m_StepDuration = 0.25f;
+	private Vector3 m_PreviousStep;
+	private Vector3 m_NextStep;
 
 	private bool m_IsVerbose = false;
 
@@ -130,6 +131,8 @@ public sealed class NavTilemapAgent
 	{
 		m_Solver = new SpatialAStar<MyPathNode, object>(m_Nav.grid);
 		m_Solver.allowsDiagonals = m_AllowsDiagonals;
+		m_PreviousStep = position;
+		m_NextStep = position;
 	}
 
 	private void FindPath()
@@ -142,11 +145,15 @@ public sealed class NavTilemapAgent
 			(Vector2)m_CurrentCell,
 			(Vector2)m_DestinationCell,
 			null);
+		if (m_Path == null)
+		{
+			return;
+		}
+		SetNextStep();
 		if (m_IsVerbose)
 		{
 			Debug.Log("NavTilemapAgent.FindPath: From "
-				+ m_CurrentCell + " to " + m_DestinationCell
-				+ " path " + m_Path);
+				+ m_CurrentCell + " to " + m_DestinationCell);
 		}
 	}
 
@@ -160,7 +167,7 @@ public sealed class NavTilemapAgent
 		{
 			return;
 		}
-		Step();
+		FindPath();
 	}
 
 	private bool TweenStep(float deltaTime)
@@ -169,6 +176,11 @@ public sealed class NavTilemapAgent
 		{
 			return false;
 		}
+		if (deltaTime <= 0.0f)
+		{
+			return false;
+		}
+		position = Vector3.Lerp(m_PreviousStep, m_NextStep, m_TweenTime / m_StepDuration);
 		m_TweenTime += deltaTime;
 		if (m_TweenTime < m_StepDuration)
 		{
@@ -178,13 +190,8 @@ public sealed class NavTilemapAgent
 		return true;
 	}
 
-	private void Step()
+	private void SetNextStep()
 	{
-		FindPath();
-		if (m_Path == null)
-		{
-			return;
-		}
 		int index = 0;
 		MyPathNode nextNode = null;
 		// XXX It would be more efficient if path were a list or an array rather than IEnumerable.
@@ -199,10 +206,12 @@ public sealed class NavTilemapAgent
 		}
 		if (nextNode == null)
 		{
+			position = m_NextStep;
+			m_Path = null;
 			return;
 		}
-		m_CurrentCell.x = nextNode.X;
-		m_CurrentCell.y = nextNode.Y;
-		position = m_Nav.GridToWorld(m_CurrentCell);
+		Vector2Int cell = new Vector2Int(nextNode.X, nextNode.Y);
+		m_PreviousStep = m_NextStep;
+		m_NextStep = m_Nav.GridToWorld(cell);
 	}
 }

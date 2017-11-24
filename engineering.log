@@ -863,3 +863,47 @@ Thu, Nov 23, 2017  7:06:18 PM
 					continue;
 				}
 				onPassableCreated(GridToWorld2D(x, y));
+
+Thu, Nov 23, 2017  8:37:35 PM
+Assets/Scripts/NavTilemapAgent.cs(203,11): error CS0037: Cannot convert null to `UnityEngine.Vector3' because it is a value type
+ 
+(Filename: Assets/Scripts/NavTilemapAgent.cs Line: 203)
+
+Assets/Scripts/NavTilemapAgent.cs(219,4): error CS0126: An object of a type convertible to `UnityEngine.Vector3' is required for the return statement
+ 
+(Filename: Assets/Scripts/NavTilemapAgent.cs Line: 219)
+
+
+Thu, Nov 23, 2017  8:42:08 PM
+Assets/Scripts/NavTilemapAgent.cs(61,8): warning CS0472: The result of comparing value type `UnityEngine.Vector3' with null is always `false'
+ 
+(Filename: Assets/Scripts/NavTilemapAgent.cs Line: 61)
+	public Vector3 position
+	{
+		get
+		{
+			return m_Position;
+		}
+		set
+		{
+			if (m_Position == value)
+			{
+				return;
+			}
+			if (value == null)
+			{
+				return;
+			}
+
+Assets/Scripts/NavTilemapAgent.cs(63,5): warning CS0162: Unreachable code detected
+ 
+(Filename: Assets/Scripts/NavTilemapAgent.cs Line: 63)
+
+
+Assets/Scripts/NavTilemapAgent.cs(212,4): error CS0126: An object of a type convertible to `UnityEngine.Vector3' is required for the return statement
+ 
+(Filename: Assets/Scripts/NavTilemapAgent.cs Line: 212)
+		if (nextNode == null)
+		{
+			return;
+		}
