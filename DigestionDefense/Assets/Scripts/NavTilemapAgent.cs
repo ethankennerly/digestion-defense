@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using SettlersEngine;
 using UnityEngine;
@@ -20,6 +21,8 @@ public sealed class NavTilemapAgent
 		}
 	}
 
+	public event Action<Vector3> onPositionChanged;
+
 	private Vector3 m_Position;
 
 	public Vector3 position
@@ -30,8 +33,17 @@ public sealed class NavTilemapAgent
 		}
 		set
 		{
+			if (m_Position == value)
+			{
+				return;
+			}
 			m_Position = value;
 			SetCurrentCell(value);
+			if (onPositionChanged == null)
+			{
+				return;
+			}
+			onPositionChanged(value);
 		}
 	}
 
@@ -55,7 +67,11 @@ public sealed class NavTilemapAgent
 
 	private SpatialAStar<MyPathNode, object> m_Solver;
 
-	private IEnumerable<MyPathNode> path;
+	private IEnumerable<MyPathNode> m_Path;
+
+	private float m_TweenTime = 0.0f;
+
+	private float m_StepDuration = 0.25f;
 
 	private bool m_IsVerbose = true;
 
@@ -95,15 +111,16 @@ public sealed class NavTilemapAgent
 		{
 			m_Solver = new SpatialAStar<MyPathNode, object>(m_Nav.grid);
 		}
-		if (m_IsVerbose)
-		{
-			Debug.Log("NavTilemapAgent.FindPath: From "
-				+ m_CurrentCell + " to " + m_DestinationCell);
-		}
-		IEnumerable<MyPathNode> path = m_Solver.Search(
+		m_Path = m_Solver.Search(
 			(Vector2)m_CurrentCell,
 			(Vector2)m_DestinationCell,
 			null);
+		if (m_IsVerbose)
+		{
+			Debug.Log("NavTilemapAgent.FindPath: From "
+				+ m_CurrentCell + " to " + m_DestinationCell
+				+ " path " + m_Path);
+		}
 	}
 
 	public void Update(float deltaTime)
@@ -112,9 +129,53 @@ public sealed class NavTilemapAgent
 		{
 			return;
 		}
-		if (path == null)
+		if (!TweenStep(deltaTime))
 		{
 			return;
 		}
+		Step();
+	}
+
+	private bool TweenStep(float deltaTime)
+	{
+		if (m_Path == null)
+		{
+			return false;
+		}
+		m_TweenTime += deltaTime;
+		if (m_TweenTime < m_StepDuration)
+		{
+			return false;
+		}
+		m_TweenTime -= m_StepDuration;
+		return true;
+	}
+
+	private void Step()
+	{
+		FindPath();
+		if (m_Path == null)
+		{
+			return;
+		}
+		int index = 0;
+		MyPathNode nextNode = null;
+		// XXX It would be more efficient if path were a list or an array rather than IEnumerable.
+		foreach (MyPathNode node in m_Path)
+		{
+			if (index == 1)
+			{
+				nextNode = node;
+				break;
+			}
+			++index;
+		}
+		if (nextNode == null)
+		{
+			return;
+		}
+		m_CurrentCell.x = nextNode.X;
+		m_CurrentCell.y = nextNode.Y;
+		position = m_Nav.GridToWorld(m_CurrentCell);
 	}
 }

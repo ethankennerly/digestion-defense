@@ -627,3 +627,114 @@ IndexOutOfRangeException: Array index is out of range.
 		Vector2Int max = new Vector2Int(bounds.xMax, bounds.yMax);
 		Vector2Int cell = new Vector2Int(cell3.x - min.x, cell3.y - min.y);
 		cell.Clamp(min, max);
+
+
+Thu, Nov 23, 2017  4:26:41 PM
+Assets/Scripts/NavTilemapAgent.cs(126,33): error CS1001: Unexpected symbol `)', expecting identifier
+ 
+(Filename: Assets/Scripts/NavTilemapAgent.cs Line: 126)
+	private bool TweenStep(deltaTime)
+
+
+Thu, Nov 23, 2017  4:34:13 PM
+
+Assets/Scripts/NavTilemapAgent.cs(166,22): error CS0029: Cannot implicitly convert type `UnityEngine.Vector2Int' to `UnityEngine.Vector3'
+ 
+(Filename: Assets/Scripts/NavTilemapAgent.cs Line: 166)
+
+Assets/Scripts/NavTilemapController.cs(52,10): error CS0029: Cannot implicitly convert type `UnityEngine.Vector3' to `UnityEngine.Vector2Int'
+ 
+(Filename: Assets/Scripts/NavTilemapController.cs Line: 52)
+
+	public Vector2Int GridToWorld(Vector2Int cell)
+
+
+Thu, Nov 23, 2017  4:42:04 PM
+Assets/Scripts/NavTilemapAgent.cs(23,15): error CS0246: The type or namespace name `Action' could not be found. Are you missing `System' using directive?
+ 
+(Filename: Assets/Scripts/NavTilemapAgent.cs Line: 23)
+	public event Action<Vector3> onPositionChanged;
+
+
+Thu, Nov 23, 2017  4:57:02 PM
+Assets/Scripts/ClickPoint.cs(6,31): error CS0708: `ClickPoint.onCollisionEnter': cannot declare instance members in a static class
+ 
+(Filename: Assets/Scripts/ClickPoint.cs Line: 6)
+
+Assets/Scripts/ClickPoint.cs(7,31): error CS0708: `ClickPoint.onClick': cannot declare instance members in a static class
+ 
+(Filename: Assets/Scripts/ClickPoint.cs Line: 7)
+
+public static class ClickPoint
+{
+	public event Action<Vector3> onCollisionEnter;
+	public event Action<Vector3> onClick;
+
+
+
+Thu, Nov 23, 2017  5:00:31 PM
+Assets/Scripts/ClickPoint.cs(50,3): error CS1502: The best overloaded method match for `ClickPoint.Raycast(out UnityEngine.Vector3)' has some invalid arguments
+ 
+(Filename: Assets/Scripts/ClickPoint.cs Line: 50)
+
+Assets/Scripts/ClickPoint.cs(50,11): error CS1620: Argument `#1' is missing `out' modifier
+ 
+(Filename: Assets/Scripts/ClickPoint.cs Line: 50)
+
+Assets/Scripts/ClickPoint.cs(51,3): error CS1502: The best overloaded method match for `ClickPoint.Screen(out UnityEngine.Vector3)' has some invalid arguments
+ 
+(Filename: Assets/Scripts/ClickPoint.cs Line: 51)
+
+Assets/Scripts/ClickPoint.cs(51,10): error CS1620: Argument `#1' is missing `out' modifier
+ 
+(Filename: Assets/Scripts/ClickPoint.cs Line: 51)
+
+Assets/Scripts/NavTilemapAgentClickPoint.cs(9,3): error CS0592: The attribute `UnityEngine.TooltipAttribute' is not valid on this declaration type. It is valid on `field' declarations only
+ 
+(Filename: Assets/Scripts/NavTilemapAgentClickPoint.cs Line: 9)
+
+
+Thu, Nov 23, 2017  5:01:46 PM
+
+Assets/Scripts/ClickPoint.cs(50,15): error CS0199: A static readonly field `ClickPoint.s_RaycastHit' cannot be passed ref or out (except in a static constructor)
+ 
+(Filename: Assets/Scripts/ClickPoint.cs Line: 50)
+
+Assets/Scripts/ClickPoint.cs(51,14): error CS0199: A static readonly field `ClickPoint.s_Click' cannot be passed ref or out (except in a static constructor)
+ 
+(Filename: Assets/Scripts/ClickPoint.cs Line: 51)
+
+Assets/Scripts/NavTilemapAgentClickPoint.cs(9,3): error CS0592: The attribute `UnityEngine.TooltipAttribute' is not valid on this declaration type. It is valid on `field' declarations only
+ 
+(Filename: Assets/Scripts/NavTilemapAgentClickPoint.cs Line: 9)
+
+Thu, Nov 23, 2017  5:09:50 PM
+Assets/Scripts/ClickPoint.cs(22,3): error CS0198: A static readonly field `ClickPoint.s_RaycastHit' cannot be assigned to (except in a static constructor or a variable initializer)
+ 
+(Filename: Assets/Scripts/ClickPoint.cs Line: 22)
+
+Assets/Scripts/ClickPoint.cs(32,3): error CS0198: A static readonly field `ClickPoint.s_Click' cannot be assigned to (except in a static constructor or a variable initializer)
+ 
+(Filename: Assets/Scripts/ClickPoint.cs Line: 32)
+
+	private static readonly Vector3 s_RaycastHit = new Vector3();
+
+Thu, Nov 23, 2017  5:13:11 PM
+Assets/Scripts/NavTilemapAgent.cs(122,6): error CS1525: Unexpected symbol ` path '
+ 
+(Filename: Assets/Scripts/NavTilemapAgent.cs Line: 122)
+			Debug.Log("NavTilemapAgent.FindPath: From "
+				+ m_CurrentCell + " to " + m_DestinationCell
+				" path " + path);
+
+
+Thu, Nov 23, 2017  5:15:24 PM
+	private IEnumerable<MyPathNode> path;
+	...
+		IEnumerable<MyPathNode> path = m_Solver.Search(
+		...
+	private bool TweenStep(float deltaTime)
+	{
+		if (path == null)
+			(Vector2)m_CurrentCell,
+			(Vector2)m_DestinationCell,

@@ -8,19 +8,24 @@ public sealed class NavMeshAgentMoveToClickPoint : MonoBehaviour
 {
     private NavMeshAgent m_Agent;
 
-    private Vector3 m_ClickPoint;
-
-    private void Start()
+    private void OnEnable()
     {
         m_Agent = GetComponent<NavMeshAgent>();
+	ClickPoint.onCollisionEnter += UpdateDestination;
+    }
+
+    private void OnDisable()
+    {
+	ClickPoint.onCollisionEnter -= UpdateDestination;
     }
 
     private void Update()
     {
-        if (!ClickPoint.Raycast(out m_ClickPoint))
-	{
-		return;
-	}
-	m_Agent.destination = m_ClickPoint;
+    	ClickPoint.Update();
+    }
+
+    private void UpdateDestination(Vector3 destination)
+    {
+	m_Agent.destination = destination;
     }
 }

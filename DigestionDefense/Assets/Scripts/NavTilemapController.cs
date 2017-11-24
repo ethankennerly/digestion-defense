@@ -44,6 +44,14 @@ public sealed class NavTilemapController
 		return cell;
 	}
 
+	public Vector3 GridToWorld(Vector2Int cell)
+	{
+		BoundsInt bounds = m_Tilemap.cellBounds;
+		Vector3Int cell3 = new Vector3Int(cell.x + bounds.xMin, cell.y + bounds.yMin, 0);
+		Vector3 position = m_Tilemap.CellToWorld(cell3);
+		return position;
+	}
+
 	private void Setup()
 	{
 		m_Grid = ParseGrid(m_Tilemap);

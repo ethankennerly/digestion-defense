@@ -22,24 +22,43 @@ public sealed class NavTilemapAgentClickPoint : MonoBehaviour
 
 	private Vector3 m_ClickPoint;
 
-	private void Start()
+	private void Setup()
 	{
+		if (m_Agent.nav != null)
+		{
+			return;
+		}
 		m_Agent.nav = m_NavTilemapView.controller;
 		m_Agent.position = transform.position;
 	}
 
+	private void OnEnable()
+	{
+		Setup();
+		UpdatePosition(m_Agent.position);
+		m_Agent.onPositionChanged += UpdatePosition;
+		ClickPoint.onClick += UpdateDestination;
+	}
+
+	private void OnDisable()
+	{
+		m_Agent.onPositionChanged -= UpdatePosition;
+		ClickPoint.onClick -= UpdateDestination;
+	}
+
 	private void Update()
 	{
-		UpdateDestination();
+		ClickPoint.Update();
 		m_Agent.Update(Time.deltaTime);
 	}
 
-	private void UpdateDestination()
+	private void UpdateDestination(Vector3 destination)
 	{
-		if (!ClickPoint.Screen(out m_ClickPoint))
-		{
-			return;
-		}
-		m_Agent.destination = m_ClickPoint;
+		m_Agent.destination = destination;
+	}
+
+	private void UpdatePosition(Vector3 position)
+	{
+		transform.position = position;
 	}
 }
