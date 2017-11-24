@@ -17,4 +17,15 @@ public static class ClickPoint
         point = hit.point;
 	return true;
     }
+
+    public static bool Screen(out Vector3 point)
+    {
+        point = default(Vector3);
+        if (!Input.GetMouseButtonDown(0))
+        {
+            return false;
+        }
+        point = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+	return true;
+    }
 }

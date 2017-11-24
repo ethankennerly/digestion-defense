@@ -43,3 +43,587 @@ Assets/Scripts/NavTilemapAgent.cs(74,52): error CS0103: The name `m_Grid' does n
 Assets/Scripts/NavTilemapAgent.cs(88,28): error CS1061: Type `System.Collections.Generic.IEnumerable<MyPathNode>' does not contain a definition for `Count' and no extension method `Count' of type `System.Collections.Generic.IEnumerable<MyPathNode>' could be found. Are you missing `System.Linq' using directive?
  
 (Filename: Assets/Scripts/NavTilemapAgent.cs Line: 88)
+
+
+Thu, Nov 23, 2017  2:50:20 PM
+Assets/Scripts/NavTileMapAgentClickPoint.cs(9,9): error CS0246: The type or namespace name `NavTileMapView' could not be found. Are you missing an assembly reference?
+	public NavTileMapView navTilemapView
+ 
+(Filename: Assets/Scripts/NavTileMapAgentClickPoint.cs Line: 9)
+
+
+
+Thu, Nov 23, 2017  2:57:05 PM
+Assets/Scripts/NavTileMapAgentClickPoint.cs(33,11): error CS0122: `NavTilemapAgent.Update(float)' is inaccessible due to its protection level
+ 
+(Filename: Assets/Scripts/NavTileMapAgentClickPoint.cs Line: 33)
+	private void Update(float deltaTime)
+
+
+Thu, Nov 23, 2017  2:57:54 PM
+The referenced script on this Behaviour (Game Object 'NavTilemapAgent') is missing!
+
+
+Thu, Nov 23, 2017  3:02:25 PM
+NullReferenceException: Object reference not set to an instance of an object
+NavTilemapAgentClickPoint.Start () (at Assets/Scripts/NavTilemapAgentClickPoint.cs:27)
+		m_Agent.nav = m_NavTilemapView.controller;
+
+
+Thu, Nov 23, 2017  3:08:50 PM
+Assets/Scripts/ClickPoint.cs(28,29): error CS1061: Type `UnityEngine.Camera' does not contain a definition for `ScreenPointToWorldPoint' and no extension method `ScreenPointToWorldPoint' of type `UnityEngine.Camera' could be found. Are you missing an assembly reference?
+ 
+(Filename: Assets/Scripts/ClickPoint.cs Line: 28)
+        point = Camera.main.ScreenPointToWorldPoint(Input.mousePosition);
+
+
+
+Thu, Nov 23, 2017  3:11:31 PM
+IndexOutOfRangeException: Array index is out of range.
+SettlersEngine.SpatialAStar`2[MyPathNode,System.Object].Search (Vector2 inStartNode, Vector2 inEndNode, System.Object inUserContext) (at Assets/2D Grid Based AI/Scripts/SpatialAStar.cs:151)
+NavTilemapAgent.FindPath () (at Assets/Scripts/NavTilemapAgent.cs:83)
+NavTilemapAgent.SetPath (Vector3 destinationInWorld) (at Assets/Scripts/NavTilemapAgent.cs:69)
+NavTilemapAgent.set_destination (Vector3 value) (at Assets/Scripts/NavTilemapAgent.cs:19)
+NavTilemapAgentClickPoint.UpdateDestination () (at Assets/Scripts/NavTilemapAgentClickPoint.cs:42)
+NavTilemapAgentClickPoint.Update () (at Assets/Scripts/NavTilemapAgentClickPoint.cs:32)
+
+NavTilemapAgent.FindPath: From (0, 0) to (-4, -3)
+UnityEngine.Debug:Log(Object)
+NavTilemapAgent:FindPath() (at Assets/Scripts/NavTilemapAgent.cs:80)
+
+
+Thu, Nov 23, 2017  3:16:20 PM
+NullReferenceException: Object reference not set to an instance of an object
+NavTilemapAgent.set_position (Vector3 value) (at Assets/Scripts/NavTilemapAgent.cs:34)
+NavTilemapAgentClickPoint.Start () (at Assets/Scripts/NavTilemapAgentClickPoint.cs:28)
+
+
+Thu, Nov 23, 2017  3:20:17 PM
+NavTilemapAgent.FindPath: From (-7.7, -3.5, 0.0) to (-2.9, -0.8, -100.0)
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+NavTilemapAgent:FindPath(Vector3) (at Assets\Scripts\NavTilemapAgent.cs:77)
+NavTilemapAgent:set_destination(Vector3) (at Assets\Scripts\NavTilemapAgent.cs:19)
+NavTilemapAgentClickPoint:UpdateDestination() (at Assets\Scripts\NavTilemapAgentClickPoint.cs:43)
+NavTilemapAgentClickPoint:Update() (at Assets\Scripts\NavTilemapAgentClickPoint.cs:33)
+ 
+(Filename: Assets/Scripts/NavTilemapAgent.cs Line: 77)
+
+NavTilemapAgent.FindPath: From (-8, -4) to (-3, -1)
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+NavTilemapAgent:FindPath() (at Assets\Scripts\NavTilemapAgent.cs:95)
+NavTilemapAgent:FindPath(Vector3) (at Assets\Scripts\NavTilemapAgent.cs:84)
+NavTilemapAgent:set_destination(Vector3) (at Assets\Scripts\NavTilemapAgent.cs:19)
+NavTilemapAgentClickPoint:UpdateDestination() (at Assets\Scripts\NavTilemapAgentClickPoint.cs:43)
+NavTilemapAgentClickPoint:Update() (at Assets\Scripts\NavTilemapAgentClickPoint.cs:33)
+ 
+(Filename: Assets/Scripts/NavTilemapAgent.cs Line: 95)
+
+IndexOutOfRangeException: Array index is out of range.
+  at SettlersEngine.SpatialAStar`2[MyPathNode,System.Object].Search (Vector2 inStartNode, Vector2 inEndNode, System.Object inUserContext) [0x00001] in C:\Users\Ethan\workspace\digestion-defense\DigestionDefense\Assets\2D Grid Based AI\Scripts\SpatialAStar.cs:150 
+  at NavTilemapAgent.FindPath () [0x0008a] in C:\Users\Ethan\workspace\digestion-defense\DigestionDefense\Assets\Scripts\NavTilemapAgent.cs:98 
+  at NavTilemapAgent.FindPath (Vector3 destinationInWorld) [0x00088] in C:\Users\Ethan\workspace\digestion-defense\DigestionDefense\Assets\Scripts\NavTilemapAgent.cs:84 
+  at NavTilemapAgent.set_destination (Vector3 value) [0x0000a] in C:\Users\Ethan\workspace\digestion-defense\DigestionDefense\Assets\Scripts\NavTilemapAgent.cs:19 
+  at NavTilemapAgentClickPoint.UpdateDestination () [0x00023] in C:\Users\Ethan\workspace\digestion-defense\DigestionDefense\Assets\Scripts\NavTilemapAgentClickPoint.cs:43 
+  at NavTilemapAgentClickPoint.Update () [0x00002] in C:\Users\Ethan\workspace\digestion-defense\DigestionDefense\Assets\Scripts\NavTilemapAgentClickPoint.cs:33 
+ 
+(Filename: Assets/2D Grid Based AI/Scripts/SpatialAStar.cs Line: 150)
+
+
+Thu, Nov 23, 2017  3:31:45 PM
+Assets/2D Grid Based AI/Scripts/EnemyAStar.cs(108,27): warning CS0219: The variable `path' is assigned but its value is never used
+ 
+(Filename: Assets/2D Grid Based AI/Scripts/EnemyAStar.cs Line: 108)
+
+Assets/2D Grid Based AI/Scripts/GameManager.cs(86,38): warning CS0618: `UnityEngine.Application.loadedLevel' is obsolete: `Use SceneManager to determine what scenes have been loaded'
+ 
+(Filename: Assets/2D Grid Based AI/Scripts/GameManager.cs Line: 86)
+
+Assets/2D Grid Based AI/Scripts/GameManager.cs(86,16): warning CS0618: `UnityEngine.Application.LoadLevel(int)' is obsolete: `Use SceneManager.LoadScene'
+ 
+(Filename: Assets/2D Grid Based AI/Scripts/GameManager.cs Line: 86)
+
+Assets/Scripts/NavTilemapAgent.cs(87,3): error CS0103: The name `SetDestionationCell' does not exist in the current context
+ 
+(Filename: Assets/Scripts/NavTilemapAgent.cs Line: 87)
+
+Assets/Scripts/NavTilemapController.cs(38,43): error CS0030: Cannot convert type `UnityEngine.Vector3Int' to `UnityEngine.Vector2Int'
+ 
+(Filename: Assets/Scripts/NavTilemapController.cs Line: 38)
+
+Assets/Scripts/NavTilemapController.cs(39,41): error CS0029: Cannot implicitly convert type `UnityEngine.Vector3Int' to `UnityEngine.Vector2Int'
+ 
+(Filename: Assets/Scripts/NavTilemapController.cs Line: 39)
+
+
+Thu, Nov 23, 2017  3:33:43 PM
+Assets/2D Grid Based AI/Scripts/GameManager.cs(86,38): warning CS0618: `UnityEngine.Application.loadedLevel' is obsolete: `Use SceneManager to determine what scenes have been loaded'
+ 
+(Filename: Assets/2D Grid Based AI/Scripts/GameManager.cs Line: 86)
+
+Assets/2D Grid Based AI/Scripts/GameManager.cs(86,16): warning CS0618: `UnityEngine.Application.LoadLevel(int)' is obsolete: `Use SceneManager.LoadScene'
+ 
+(Filename: Assets/2D Grid Based AI/Scripts/GameManager.cs Line: 86)
+
+Assets/Scripts/NavTilemapAgent.cs(87,3): error CS0103: The name `SetDestionationCell' does not exist in the current context
+ 
+(Filename: Assets/Scripts/NavTilemapAgent.cs Line: 87)
+
+Assets/Scripts/NavTilemapController.cs(38,43): error CS0030: Cannot convert type `UnityEngine.Vector3Int' to `UnityEngine.Vector2Int'
+ 
+(Filename: Assets/Scripts/NavTilemapController.cs Line: 38)
+
+Assets/Scripts/NavTilemapController.cs(39,41): error CS0029: Cannot implicitly convert type `UnityEngine.Vector3Int' to `UnityEngine.Vector2Int'
+ 
+(Filename: Assets/Scripts/NavTilemapController.cs Line: 39)
+
+Load scene 'Temp/__Backupscenes/0.backup' time: 0.331851 ms 
+Unloading 13 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 68.4 MB.
+System memory in use after: 68.6 MB.
+
+Unloading 20 unused Assets to reduce memory usage. Loaded Objects now: 3210.
+Total: 5.893128 ms (FindLiveObjects: 0.280888 ms CreateObjectMapping: 0.040691 ms MarkObjects: 5.538363 ms  DeleteObjects: 0.031209 ms)
+
+Setting up 2 worker threads for Enlighten.
+  Thread -> id: 1a54 -> priority: 1 
+  Thread -> id: a58 -> priority: 1 
+Refresh: detecting if any assets need to be imported or removed ... 
+Hashing assets ... 0.001 seconds
+  file open: 0.000 seconds (4 files)
+  file read: 0.000 seconds (0.004 MB)
+  hash: 0.000 seconds
+----- Compute hash(es) for 2 asset(s).
+
+Refresh: elapses 0.045533 seconds
+Updating Assets/Scripts/NavTilemapController.cs - GUID: 182f981a891409847a7cdb96877d303c...
+ done. [Time: 10.827839 ms] 
+Updating Assets/Scripts/NavTilemapAgent.cs - GUID: e275f842c485b3541a29097f07a5860d...
+ done. [Time: 13.679391 ms] 
+Refreshing native plugins compatible for Editor in 2.68 ms, found 4 plugins.
+Preloading 2 native plugins for Editor in 0.15 ms.
+
+----- Total AssetImport time: 0.315356s, AssetImport time: 0.052342s, Asset hashing: 0.000976s [3.8 KB, 3.800815 mb/s]
+
+- Starting compile Library/ScriptAssemblies/Assembly-CSharp.dll
+
+-----Compiler Commandline Arguments:
+Filename: "C:\Program Files\Unity_2017.2\Editor\Data\MonoBleedingEdge\bin\mono.exe"
+Arguments: "C:\Program Files\Unity_2017.2\Editor\Data\MonoBleedingEdge\lib\mono\4.5\mcs.exe"  @Temp/UnityTempFile-a231d4ea3943aac46b0c15ddd2679a07
+index: 84
+Responsefile: Temp/UnityTempFile-a231d4ea3943aac46b0c15ddd2679a07 Contents: 
+-debug
+-target:library
+-nowarn:0169
+-langversion:4
+-out:Temp/Assembly-CSharp.dll
+-unsafe
+-r:"C:/Program Files/Unity_2017.2/Editor/Data/Managed/UnityEditor.dll"
+-r:"C:/Program Files/Unity_2017.2/Editor/Data/Managed/UnityEngine/UnityEngine.dll"
+-r:"C:/Program Files/Unity_2017.2/Editor/Data/Managed/UnityEngine/UnityEngine.CoreModule.dll"
+-r:"C:/Program Files/Unity_2017.2/Editor/Data/Managed/UnityEngine/UnityEngine.AccessibilityModule.dll"
+-r:"C:/Program Files/Unity_2017.2/Editor/Data/Managed/UnityEngine/UnityEngine.ParticleSystemModule.dll"
+-r:"C:/Program Files/Unity_2017.2/Editor/Data/Managed/UnityEngine/UnityEngine.PhysicsModule.dll"
+-r:"C:/Program Files/Unity_2017.2/Editor/Data/Managed/UnityEngine/UnityEngine.VehiclesModule.dll"
+-r:"C:/Program Files/Unity_2017.2/Editor/Data/Managed/UnityEngine/UnityEngine.ClothModule.dll"
+-r:"C:/Program Files/Unity_2017.2/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll"
+-r:"C:/Program Files/Unity_2017.2/Editor/Data/Managed/UnityEngine/UnityEngine.AnimationModule.dll"
+-r:"C:/Program Files/Unity_2017.2/Editor/Data/Managed/UnityEngine/UnityEngine.TextRenderingModule.dll"
+-r:"C:/Program Files/Unity_2017.2/Editor/Data/Managed/UnityEngine/UnityEngine.UIModule.dll"
+-r:"C:/Program Files/Unity_2017.2/Editor/Data/Managed/UnityEngine/UnityEngine.TerrainPhysicsModule.dll"
+-r:"C:/Program Files/Unity_2017.2/Editor/Data/Managed/UnityEngine/UnityEngine.IMGUIModule.dll"
+-r:"C:/Program Files/Unity_2017.2/Editor/Data/Managed/UnityEngine/UnityEngine.UnityWebRequestModule.dll"
+-r:"C:/Program Files/Unity_2017.2/Editor/Data/Managed/UnityEngine/UnityEngine.UnityWebRequestAudioModule.dll"
+-r:"C:/Program Files/Unity_2017.2/Editor/Data/Managed/UnityEngine/UnityEngine.UnityWebRequestTextureModule.dll"
+-r:"C:/Program Files/Unity_2017.2/Editor/Data/Managed/UnityEngine/UnityEngine.UnityWebRequestWWWModule.dll"
+-r:"C:/Program Files/Unity_2017.2/Editor/Data/Managed/UnityEngine/UnityEngine.ClusterInputModule.dll"
+-r:"C:/Program Files/Unity_2017.2/Editor/Data/Managed/UnityEngine/UnityEngine.ClusterRendererModule.dll"
+-r:"C:/Program Files/Unity_2017.2/Editor/Data/Managed/UnityEngine/UnityEngine.UNETModule.dll"
+-r:"C:/Program Files/Unity_2017.2/Editor/Data/Managed/UnityEngine/UnityEngine.DirectorModule.dll"
+-r:"C:/Program Files/Unity_2017.2/Editor/Data/Managed/UnityEngine/UnityEngine.UnityAnalyticsModule.dll"
+-r:"C:/Program Files/Unity_2017.2/Editor/Data/Managed/UnityEngine/UnityEngine.CrashReportingModule.dll"
+-r:"C:/Program Files/Unity_2017.2/Editor/Data/Managed/UnityEngine/UnityEngine.PerformanceReportingModule.dll"
+-r:"C:/Program Files/Unity_2017.2/Editor/Data/Managed/UnityEngine/UnityEngine.UnityConnectModule.dll"
+-r:"C:/Program Files/Unity_2017.2/Editor/Data/Managed/UnityEngine/UnityEngine.WebModule.dll"
+-r:"C:/Program Files/Unity_2017.2/Editor/Data/Managed/UnityEngine/UnityEngine.ARModule.dll"
+-r:"C:/Program Files/Unity_2017.2/Editor/Data/Managed/UnityEngine/UnityEngine.VRModule.dll"
+-r:"C:/Program Files/Unity_2017.2/Editor/Data/Managed/UnityEngine/UnityEngine.UIElementsModule.dll"
+-r:"C:/Program Files/Unity_2017.2/Editor/Data/Managed/UnityEngine/UnityEngine.StyleSheetsModule.dll"
+-r:"C:/Program Files/Unity_2017.2/Editor/Data/Managed/UnityEngine/UnityEngine.AudioModule.dll"
+-r:"C:/Program Files/Unity_2017.2/Editor/Data/Managed/UnityEngine/UnityEngine.GameCenterModule.dll"
+-r:"C:/Program Files/Unity_2017.2/Editor/Data/Managed/UnityEngine/UnityEngine.GridModule.dll"
+-r:"C:/Program Files/Unity_2017.2/Editor/Data/Managed/UnityEngine/UnityEngine.ImageConversionModule.dll"
+-r:"C:/Program Files/Unity_2017.2/Editor/Data/Managed/UnityEngine/UnityEngine.InputModule.dll"
+-r:"C:/Program Files/Unity_2017.2/Editor/Data/Managed/UnityEngine/UnityEngine.JSONSerializeModule.dll"
+-r:"C:/Program Files/Unity_2017.2/Editor/Data/Managed/UnityEngine/UnityEngine.ParticlesLegacyModule.dll"
+-r:"C:/Program Files/Unity_2017.2/Editor/Data/Managed/UnityEngine/UnityEngine.Physics2DModule.dll"
+-r:"C:/Program Files/Unity_2017.2/Editor/Data/Managed/UnityEngine/UnityEngine.ScreenCaptureModule.dll"
+-r:"C:/Program Files/Unity_2017.2/Editor/Data/Managed/UnityEngine/UnityEngine.SpriteMaskModule.dll"
+-r:"C:/Program Files/Unity_2017.2/Editor/Data/Managed/UnityEngine/UnityEngine.TerrainModule.dll"
+-r:"C:/Program Files/Unity_2017.2/Editor/Data/Managed/UnityEngine/UnityEngine.TilemapModule.dll"
+-r:"C:/Program Files/Unity_2017.2/Editor/Data/Managed/UnityEngine/UnityEngine.VideoModule.dll"
+-r:"C:/Program Files/Unity_2017.2/Editor/Data/Managed/UnityEngine/UnityEngine.WindModule.dll"
+-r:"C:/Program Files/Unity_2017.2/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll"
+-r:"C:/Program Files/Unity_2017.2/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll"
+-r:"C:/Program Files/Unity_2017.2/Editor/Data/UnityExtensions/Unity/TestRunner/UnityEngine.TestRunner.dll"
+-r:"C:/Program Files/Unity_2017.2/Editor/Data/UnityExtensions/Unity/TestRunner/net35/unity-custom/nunit.framework.dll"
+-r:"C:/Program Files/Unity_2017.2/Editor/Data/UnityExtensions/Unity/Timeline/RuntimeEditor/UnityEngine.Timeline.dll"
+-r:"C:/Program Files/Unity_2017.2/Editor/Data/UnityExtensions/Unity/UIAutomation/UnityEngine.UIAutomation.dll"
+-r:"C:/Program Files/Unity_2017.2/Editor/Data/UnityExtensions/Unity/UnityGoogleAudioSpatializer/RuntimeEditor/UnityEngine.GoogleAudioSpatializer.dll"
+-r:"C:/Program Files/Unity_2017.2/Editor/Data/UnityExtensions/Unity/UnityHoloLens/RuntimeEditor/UnityEngine.HoloLens.dll"
+-r:"C:/Program Files/Unity_2017.2/Editor/Data/UnityExtensions/Unity/UnitySpatialTracking/RuntimeEditor/UnityEngine.SpatialTracking.dll"
+-r:C:/Users/Ethan/AppData/LocalLow/Unity/cache/packages/packages.unity.com/com.unity.analytics@1.0.1/UnityEngine.Analytics.dll
+-r:C:/Users/Ethan/AppData/LocalLow/Unity/cache/packages/packages.unity.com/com.unity.purchasing@1.0.1/UnityEngine.Purchasing.dll
+-define:UNITY_5_3_OR_NEWER
+-define:UNITY_5_4_OR_NEWER
+-define:UNITY_5_5_OR_NEWER
+-define:UNITY_5_6_OR_NEWER
+-define:UNITY_2017_1_OR_NEWER
+-define:UNITY_2017_2_OR_NEWER
+-define:UNITY_2017_2_0
+-define:UNITY_2017_2
+-define:UNITY_2017
+-define:ENABLE_AUDIO
+-define:ENABLE_CACHING
+-define:ENABLE_CLOTH
+-define:ENABLE_DUCK_TYPING
+-define:ENABLE_GENERICS
+-define:ENABLE_PVR_GI
+-define:ENABLE_MICROPHONE
+-define:ENABLE_MULTIPLE_DISPLAYS
+-define:ENABLE_PHYSICS
+-define:ENABLE_SPRITERENDERER_FLIPPING
+-define:ENABLE_SPRITES
+-define:ENABLE_GRID
+-define:ENABLE_TILEMAP
+-define:ENABLE_TERRAIN
+-define:ENABLE_RAKNET
+-define:ENABLE_DIRECTOR
+-define:ENABLE_UNET
+-define:ENABLE_LZMA
+-define:ENABLE_UNITYEVENTS
+-define:ENABLE_WEBCAM
+-define:ENABLE_WWW
+-define:ENABLE_CLOUD_SERVICES_COLLAB
+-define:ENABLE_CLOUD_SERVICES_COLLAB_SOFTLOCKS
+-define:ENABLE_CLOUD_SERVICES_ADS
+-define:ENABLE_CLOUD_HUB
+-define:ENABLE_CLOUD_PROJECT_ID
+-define:ENABLE_CLOUD_SERVICES_USE_WEBREQUEST
+-define:ENABLE_CLOUD_SERVICES_UNET
+-define:ENABLE_CLOUD_SERVICES_BUILD
+-define:ENABLE_CLOUD_LICENSE
+-define:ENABLE_EDITOR_HUB
+-define:ENABLE_EDITOR_HUB_LICENSE
+-define:ENABLE_WEBSOCKET_CLIENT
+-define:ENABLE_DIRECTOR_AUDIO
+-define:ENABLE_TIMELINE
+-define:ENABLE_EDITOR_METRICS
+-define:ENABLE_EDITOR_METRICS_CACHING
+-define:ENABLE_NATIVE_ARRAY
+-define:ENABLE_SPRITE_MASKING
+-define:INCLUDE_DYNAMIC_GI
+-define:INCLUDE_GI
+-define:ENABLE_MONO_BDWGC
+-define:PLATFORM_SUPPORTS_MONO
+-define:RENDER_SOFTWARE_CURSOR
+-define:INCLUDE_PUBNUB
+-define:ENABLE_PLAYMODE_TESTS_RUNNER
+-define:ENABLE_VIDEO
+-define:ENABLE_RMGUI
+-define:ENABLE_PACKMAN
+-define:ENABLE_CUSTOM_RENDER_TEXTURE
+-define:ENABLE_STYLE_SHEETS
+-define:PLATFORM_STANDALONE_WIN
+-define:PLATFORM_STANDALONE
+-define:UNITY_STANDALONE_WIN
+-define:UNITY_STANDALONE
+-define:ENABLE_SUBSTANCE
+-define:ENABLE_RUNTIME_GI
+-define:ENABLE_MOVIES
+-define:ENABLE_NETWORK
+-define:ENABLE_CRUNCH_TEXTURE_COMPRESSION
+-define:ENABLE_UNITYWEBREQUEST
+-define:ENABLE_CLOUD_SERVICES
+-define:ENABLE_CLOUD_SERVICES_ANALYTICS
+-define:ENABLE_CLOUD_SERVICES_PURCHASING
+-define:ENABLE_CLOUD_SERVICES_CRASH_REPORTING
+-define:ENABLE_EVENT_QUEUE
+-define:ENABLE_CLUSTERINPUT
+-define:ENABLE_VR
+-define:ENABLE_AR
+-define:ENABLE_SPATIALTRACKING
+-define:ENABLE_WEBSOCKET_HOST
+-define:ENABLE_MONO
+-define:NET_2_0_SUBSET
+-define:ENABLE_PROFILER
+-define:DEBUG
+-define:TRACE
+-define:UNITY_ASSERTIONS
+-define:UNITY_EDITOR
+-define:UNITY_EDITOR_64
+-define:UNITY_EDITOR_WIN
+-define:ENABLE_NATIVE_ARRAY_CHECKS
+-define:UNITY_TEAM_LICENSE
+-define:ENABLE_VSTU
+"Assets/2D Grid Based AI/Scripts/EnemyAStar.cs"
+"Assets/2D Grid Based AI/Scripts/GameManager.cs"
+"Assets/2D Grid Based AI/Scripts/MyPathNode.cs"
+"Assets/2D Grid Based AI/Scripts/PriorityQueue.cs"
+"Assets/2D Grid Based AI/Scripts/SpatialAStar.cs"
+"Assets/2D Grid Based AI/Scripts/TurnToWall.cs"
+Assets/Scripts/ClickPoint.cs
+Assets/Scripts/NavMeshAgentMoveToClickPoint.cs
+Assets/Scripts/NavTilemapAgent.cs
+Assets/Scripts/NavTilemapAgentClickPoint.cs
+Assets/Scripts/NavTilemapController.cs
+Assets/Scripts/NavTilemapView.cs
+-r:"C:\Program Files\Unity_2017.2\Editor\Data\Mono\lib\mono\unity\System.Runtime.Serialization.dll"
+-r:"C:\Program Files\Unity_2017.2\Editor\Data\Mono\lib\mono\unity\System.Xml.Linq.dll"
+-r:"C:\Program Files\Unity_2017.2\Editor\Data\Mono\lib\mono\unity\UnityScript.dll"
+-r:"C:\Program Files\Unity_2017.2\Editor\Data\Mono\lib\mono\unity\UnityScript.Lang.dll"
+-r:"C:\Program Files\Unity_2017.2\Editor\Data\Mono\lib\mono\unity\Boo.Lang.dll"
+-sdk:unity
+
+-----CompilerOutput:-stdout--exitcode: 1--compilationhadfailure: True--outfile: Temp/Assembly-CSharp.dll
+Compilation failed: 2 error(s), 4 warnings
+-----CompilerOutput:-stderr----------
+Assets/2D Grid Based AI/Scripts/EnemyAStar.cs(108,27): warning CS0219: The variable `path' is assigned but its value is never used
+Assets/2D Grid Based AI/Scripts/GameManager.cs(86,38): warning CS0618: `UnityEngine.Application.loadedLevel' is obsolete: `Use SceneManager to determine what scenes have been loaded'
+Assets/2D Grid Based AI/Scripts/GameManager.cs(86,16): warning CS0618: `UnityEngine.Application.LoadLevel(int)' is obsolete: `Use SceneManager.LoadScene'
+Assets/Scripts/NavTilemapAgent.cs(103,27): warning CS0219: The variable `path' is assigned but its value is never used
+Assets/Scripts/NavTilemapController.cs(39,41): error CS0029: Cannot implicitly convert type `UnityEngine.Vector3Int' to `UnityEngine.Vector2Int'
+Assets/Scripts/NavTilemapController.cs(42,10): error CS0029: Cannot implicitly convert type `UnityEngine.Vector3Int' to `UnityEngine.Vector2Int'
+-----EndCompilerOutput---------------
+- Finished compile Library/ScriptAssemblies/Assembly-CSharp.dll
+Assets/2D Grid Based AI/Scripts/EnemyAStar.cs(108,27): warning CS0219: The variable `path' is assigned but its value is never used
+ 
+(Filename: Assets/2D Grid Based AI/Scripts/EnemyAStar.cs Line: 108)
+
+Assets/2D Grid Based AI/Scripts/GameManager.cs(86,38): warning CS0618: `UnityEngine.Application.loadedLevel' is obsolete: `Use SceneManager to determine what scenes have been loaded'
+ 
+(Filename: Assets/2D Grid Based AI/Scripts/GameManager.cs Line: 86)
+
+Assets/2D Grid Based AI/Scripts/GameManager.cs(86,16): warning CS0618: `UnityEngine.Application.LoadLevel(int)' is obsolete: `Use SceneManager.LoadScene'
+ 
+(Filename: Assets/2D Grid Based AI/Scripts/GameManager.cs Line: 86)
+
+		Vector2Int min = m_Tilemap.cellBounds.min;
+
+
+Thu, Nov 23, 2017  3:36:34 PM
+NavTilemapAgent.FindPath: From (-7.7, -3.5, 0.0) to (-2.7, 1.0, -100.0)
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+NavTilemapAgent:FindPathInWorld() (at Assets\Scripts\NavTilemapAgent.cs:84)
+NavTilemapAgent:set_destination(Vector3) (at Assets\Scripts\NavTilemapAgent.cs:19)
+NavTilemapAgentClickPoint:UpdateDestination() (at Assets\Scripts\NavTilemapAgentClickPoint.cs:43)
+NavTilemapAgentClickPoint:Update() (at Assets\Scripts\NavTilemapAgentClickPoint.cs:33)
+ 
+(Filename: Assets/Scripts/NavTilemapAgent.cs Line: 84)
+
+NavTilemapAgent.FindPath: From (-2, 7) to (3, 12)
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+NavTilemapAgent:FindPath() (at Assets\Scripts\NavTilemapAgent.cs:100)
+NavTilemapAgent:FindPathInWorld() (at Assets\Scripts\NavTilemapAgent.cs:89)
+NavTilemapAgent:set_destination(Vector3) (at Assets\Scripts\NavTilemapAgent.cs:19)
+NavTilemapAgentClickPoint:UpdateDestination() (at Assets\Scripts\NavTilemapAgentClickPoint.cs:43)
+NavTilemapAgentClickPoint:Update() (at Assets\Scripts\NavTilemapAgentClickPoint.cs:33)
+ 
+(Filename: Assets/Scripts/NavTilemapAgent.cs Line: 100)
+
+IndexOutOfRangeException: Array index is out of range.
+  at SettlersEngine.SpatialAStar`2[MyPathNode,System.Object].Search (Vector2 inStartNode, Vector2 inEndNode, System.Object inUserContext) [0x00001] in C:\Users\Ethan\workspace\digestion-defense\DigestionDefense\Assets\2D Grid Based AI\Scripts\SpatialAStar.cs:150 
+  at NavTilemapAgent.FindPath () [0x0008a] in C:\Users\Ethan\workspace\digestion-defense\DigestionDefense\Assets\Scripts\NavTilemapAgent.cs:103 
+  at NavTilemapAgent.FindPathInWorld () [0x00063] in C:\Users\Ethan\workspace\digestion-defense\DigestionDefense\Assets\Scripts\NavTilemapAgent.cs:89 
+  at NavTilemapAgent.set_destination (Vector3 value) [0x00009] in C:\Users\Ethan\workspace\digestion-defense\DigestionDefense\Assets\Scripts\NavTilemapAgent.cs:19 
+  at NavTilemapAgentClickPoint.UpdateDestination () [0x00023] in C:\Users\Ethan\workspace\digestion-defense\DigestionDefense\Assets\Scripts\NavTilemapAgentClickPoint.cs:43 
+  at NavTilemapAgentClickPoint.Update () [0x00002] in C:\Users\Ethan\workspace\digestion-defense\DigestionDefense\Assets\Scripts\NavTilemapAgentClickPoint.cs:33 
+ 
+(Filename: Assets/2D Grid Based AI/Scripts/SpatialAStar.cs Line: 150)
+
+
+Thu, Nov 23, 2017  3:38:04 PM
+NavTilemapAgent.FindPath: From (-7.7, -3.5, 0.0) to (-2.9, -1.0, -100.0)
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+NavTilemapAgent:FindPathInWorld() (at Assets\Scripts\NavTilemapAgent.cs:84)
+NavTilemapAgent:set_destination(Vector3) (at Assets\Scripts\NavTilemapAgent.cs:19)
+NavTilemapAgentClickPoint:UpdateDestination() (at Assets\Scripts\NavTilemapAgentClickPoint.cs:43)
+NavTilemapAgentClickPoint:Update() (at Assets\Scripts\NavTilemapAgentClickPoint.cs:33)
+ 
+(Filename: Assets/Scripts/NavTilemapAgent.cs Line: 84)
+
+NavTilemapAgent.FindPath: From (-2, 7) to (3, 9)
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+NavTilemapAgent:FindPath() (at Assets\Scripts\NavTilemapAgent.cs:100)
+NavTilemapAgent:FindPathInWorld() (at Assets\Scripts\NavTilemapAgent.cs:89)
+NavTilemapAgent:set_destination(Vector3) (at Assets\Scripts\NavTilemapAgent.cs:19)
+NavTilemapAgentClickPoint:UpdateDestination() (at Assets\Scripts\NavTilemapAgentClickPoint.cs:43)
+NavTilemapAgentClickPoint:Update() (at Assets\Scripts\NavTilemapAgentClickPoint.cs:33)
+ 
+(Filename: Assets/Scripts/NavTilemapAgent.cs Line: 100)
+
+IndexOutOfRangeException: Array index is out of range.
+  at SettlersEngine.SpatialAStar`2[MyPathNode,System.Object].Search (Vector2 inStartNode, Vector2 inEndNode, System.Object inUserContext) [0x00001] in C:\Users\Ethan\workspace\digestion-defense\DigestionDefense\Assets\2D Grid Based AI\Scripts\SpatialAStar.cs:150 
+  at NavTilemapAgent.FindPath () [0x0008a] in C:\Users\Ethan\workspace\digestion-defense\DigestionDefense\Assets\Scripts\NavTilemapAgent.cs:103 
+  at NavTilemapAgent.FindPathInWorld () [0x00063] in C:\Users\Ethan\workspace\digestion-defense\DigestionDefense\Assets\Scripts\NavTilemapAgent.cs:89 
+  at NavTilemapAgent.set_destination (Vector3 value) [0x00009] in C:\Users\Ethan\workspace\digestion-defense\DigestionDefense\Assets\Scripts\NavTilemapAgent.cs:19 
+  at NavTilemapAgentClickPoint.UpdateDestination () [0x00023] in C:\Users\Ethan\workspace\digestion-defense\DigestionDefense\Assets\Scripts\NavTilemapAgentClickPoint.cs:43 
+  at NavTilemapAgentClickPoint.Update () [0x00002] in C:\Users\Ethan\workspace\digestion-defense\DigestionDefense\Assets\Scripts\NavTilemapAgentClickPoint.cs:33 
+ 
+(Filename: Assets/2D Grid Based AI/Scripts/SpatialAStar.cs Line: 150)
+
+Thu, Nov 23, 2017  3:47:06 PM
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+NavTilemapAgent:FindPathInWorld() (at Assets\Scripts\NavTilemapAgent.cs:84)
+NavTilemapAgent:set_destination(Vector3) (at Assets\Scripts\NavTilemapAgent.cs:19)
+NavTilemapAgentClickPoint:UpdateDestination() (at Assets\Scripts\NavTilemapAgentClickPoint.cs:43)
+NavTilemapAgentClickPoint:Update() (at Assets\Scripts\NavTilemapAgentClickPoint.cs:33)
+ 
+(Filename: Assets/Scripts/NavTilemapAgent.cs Line: 84)
+
+NavTilemapController.WorldToGrid: cell (-4, -1, 0) bounds min (-6, -11, 0) bounds position (-6, -11, 0) bounds center (-3.0, -1.5, 0.5) bounds x min -6 bounds y min -11 origin (-6, -11, 0) size (6, 19, 1)
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+NavTilemapController:WorldToGrid(Vector3) (at Assets\Scripts\NavTilemapController.cs:44)
+NavTilemapAgent:SetDestinationCell(Vector3) (at Assets\Scripts\NavTilemapAgent.cs:77)
+NavTilemapAgent:FindPathInWorld() (at Assets\Scripts\NavTilemapAgent.cs:87)
+NavTilemapAgent:set_destination(Vector3) (at Assets\Scripts\NavTilemapAgent.cs:19)
+NavTilemapAgentClickPoint:UpdateDestination() (at Assets\Scripts\NavTilemapAgentClickPoint.cs:43)
+NavTilemapAgentClickPoint:Update() (at Assets\Scripts\NavTilemapAgentClickPoint.cs:33)
+ 
+(Filename: Assets/Scripts/NavTilemapController.cs Line: 44)
+
+NavTilemapController.WorldToGrid: cell (-8, -4, 0) bounds min (-6, -11, 0) bounds position (-6, -11, 0) bounds center (-3.0, -1.5, 0.5) bounds x min -6 bounds y min -11 origin (-6, -11, 0) size (6, 19, 1)
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+NavTilemapController:WorldToGrid(Vector3) (at Assets\Scripts\NavTilemapController.cs:44)
+NavTilemapAgent:SetCurrentCell(Vector3) (at Assets\Scripts\NavTilemapAgent.cs:68)
+NavTilemapAgent:FindPathInWorld() (at Assets\Scripts\NavTilemapAgent.cs:88)
+NavTilemapAgent:set_destination(Vector3) (at Assets\Scripts\NavTilemapAgent.cs:19)
+NavTilemapAgentClickPoint:UpdateDestination() (at Assets\Scripts\NavTilemapAgentClickPoint.cs:43)
+NavTilemapAgentClickPoint:Update() (at Assets\Scripts\NavTilemapAgentClickPoint.cs:33)
+ 
+(Filename: Assets/Scripts/NavTilemapController.cs Line: 44)
+
+NavTilemapAgent.FindPath: From (-2, 7) to (2, 10)
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+NavTilemapAgent:FindPath() (at Assets\Scripts\NavTilemapAgent.cs:100)
+NavTilemapAgent:FindPathInWorld() (at Assets\Scripts\NavTilemapAgent.cs:89)
+NavTilemapAgent:set_destination(Vector3) (at Assets\Scripts\NavTilemapAgent.cs:19)
+NavTilemapAgentClickPoint:UpdateDestination() (at Assets\Scripts\NavTilemapAgentClickPoint.cs:43)
+NavTilemapAgentClickPoint:Update() (at Assets\Scripts\NavTilemapAgentClickPoint.cs:33)
+ 
+(Filename: Assets/Scripts/NavTilemapAgent.cs Line: 100)
+
+IndexOutOfRangeException: Array index is out of range.
+  at SettlersEngine.SpatialAStar`2[MyPathNode,System.Object].Search (Vector2 inStartNode, Vector2 inEndNode, System.Object inUserContext) [0x00001] in C:\Users\Ethan\workspace\digestion-defense\DigestionDefense\Assets\2D Grid Based AI\Scripts\SpatialAStar.cs:150 
+  at NavTilemapAgent.FindPath () [0x0008a] in C:\Users\Ethan\workspace\digestion-defense\DigestionDefense\Assets\Scripts\NavTilemapAgent.cs:103 
+  at NavTilemapAgent.FindPathInWorld () [0x00063] in C:\Users\Ethan\workspace\digestion-defense\DigestionDefense\Assets\Scripts\NavTilemapAgent.cs:89 
+  at NavTilemapAgent.set_destination (Vector3 value) [0x00009] in C:\Users\Ethan\workspace\digestion-defense\DigestionDefense\Assets\Scripts\NavTilemapAgent.cs:19 
+  at NavTilemapAgentClickPoint.UpdateDestination () [0x00023] in C:\Users\Ethan\workspace\digestion-defense\DigestionDefense\Assets\Scripts\NavTilemapAgentClickPoint.cs:43 
+  at NavTilemapAgentClickPoint.Update () [0x00002] in C:\Users\Ethan\workspace\digestion-defense\DigestionDefense\Assets\Scripts\NavTilemapAgentClickPoint.cs:33 
+ 
+(Filename: Assets/2D Grid Based AI/Scripts/SpatialAStar.cs Line: 150)
+
+Thu, Nov 23, 2017  3:58:28 PM
+
+Assets/Scripts/NavTilemapController.cs(41,14): error CS0103: The name `cellBounds' does not exist in the current context
+ 
+(Filename: Assets/Scripts/NavTilemapController.cs Line: 41)
+
+Assets/Scripts/NavTilemapController.cs(42,14): error CS0103: The name `cellBounds' does not exist in the current context
+ 
+(Filename: Assets/Scripts/NavTilemapController.cs Line: 42)
+
+Assets/Scripts/NavTilemapController.cs(43,14): error CS0103: The name `cellBounds' does not exist in the current context
+ 
+(Filename: Assets/Scripts/NavTilemapController.cs Line: 43)
+
+Assets/Scripts/NavTilemapController.cs(44,14): error CS0103: The name `cellBounds' does not exist in the current context
+ 
+(Filename: Assets/Scripts/NavTilemapController.cs Line: 44)
+
+Assets/Scripts/NavTilemapController.cs(47,46): error CS0103: The name `min3' does not exist in the current context
+ 
+(Filename: Assets/Scripts/NavTilemapController.cs Line: 47)
+
+Assets/Scripts/NavTilemapController.cs(47,64): error CS0103: The name `min3' does not exist in the current context
+ 
+(Filename: Assets/Scripts/NavTilemapController.cs Line: 47)
+
+		BoundsInt bounds = m_Tilemap.cellBounds;
+		int xMin = cellBounds.xMin;
+		int xMax = cellBounds.xMax;
+		int yMin = cellBounds.yMin;
+		int yMax = cellBounds.yMax;
+
+
+Thu, Nov 23, 2017  4:00:43 PM
+NavTilemapAgent.FindPath: From (-7.7, -3.5, 0.0) to (-3.0, 0.0, -100.0)
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+NavTilemapAgent:FindPathInWorld() (at Assets\Scripts\NavTilemapAgent.cs:84)
+NavTilemapAgent:set_destination(Vector3) (at Assets\Scripts\NavTilemapAgent.cs:19)
+NavTilemapAgentClickPoint:UpdateDestination() (at Assets\Scripts\NavTilemapAgentClickPoint.cs:43)
+NavTilemapAgentClickPoint:Update() (at Assets\Scripts\NavTilemapAgentClickPoint.cs:33)
+ 
+(Filename: Assets/Scripts/NavTilemapAgent.cs Line: 84)
+
+NavTilemapAgent.FindPath: From (-2, 7) to (0, 8)
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+NavTilemapAgent:FindPath() (at Assets\Scripts\NavTilemapAgent.cs:100)
+NavTilemapAgent:FindPathInWorld() (at Assets\Scripts\NavTilemapAgent.cs:89)
+NavTilemapAgent:set_destination(Vector3) (at Assets\Scripts\NavTilemapAgent.cs:19)
+NavTilemapAgentClickPoint:UpdateDestination() (at Assets\Scripts\NavTilemapAgentClickPoint.cs:43)
+NavTilemapAgentClickPoint:Update() (at Assets\Scripts\NavTilemapAgentClickPoint.cs:33)
+ 
+(Filename: Assets/Scripts/NavTilemapAgent.cs Line: 100)
+
+IndexOutOfRangeException: Array index is out of range.
+  at SettlersEngine.SpatialAStar`2[MyPathNode,System.Object].Search (Vector2 inStartNode, Vector2 inEndNode, System.Object inUserContext) [0x00001] in C:\Users\Ethan\workspace\digestion-defense\DigestionDefense\Assets\2D Grid Based AI\Scripts\SpatialAStar.cs:150 
+  at NavTilemapAgent.FindPath () [0x0008a] in C:\Users\Ethan\workspace\digestion-defense\DigestionDefense\Assets\Scripts\NavTilemapAgent.cs:103 
+  at NavTilemapAgent.FindPathInWorld () [0x00063] in C:\Users\Ethan\workspace\digestion-defense\DigestionDefense\Assets\Scripts\NavTilemapAgent.cs:89 
+  at NavTilemapAgent.set_destination (Vector3 value) [0x00009] in C:\Users\Ethan\workspace\digestion-defense\DigestionDefense\Assets\Scripts\NavTilemapAgent.cs:19 
+  at NavTilemapAgentClickPoint.UpdateDestination () [0x00023] in C:\Users\Ethan\workspace\digestion-defense\DigestionDefense\Assets\Scripts\NavTilemapAgentClickPoint.cs:43 
+  at NavTilemapAgentClickPoint.Update () [0x00002] in C:\Users\Ethan\workspace\digestion-defense\DigestionDefense\Assets\Scripts\NavTilemapAgentClickPoint.cs:33 
+ 
+(Filename: Assets/2D Grid Based AI/Scripts/SpatialAStar.cs Line: 150)
+
+		Vector3Int cell3 = m_Tilemap.WorldToCell(positionInWorld);
+		BoundsInt bounds = m_Tilemap.cellBounds;
+		Vector2Int min = new Vector2Int(bounds.xMin, bounds.yMin);
+		Vector2Int max = new Vector2Int(bounds.xMax, bounds.yMax);
+		Vector2Int cell = new Vector2Int(cell3.x - min.x, cell3.y - min.y);
+		cell.Clamp(min, max);

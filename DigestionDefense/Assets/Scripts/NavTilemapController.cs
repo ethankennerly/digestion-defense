@@ -32,6 +32,18 @@ public sealed class NavTilemapController
 		}
 	}
 
+	// Offsets from minimum cell bounds, which might be less than zero.
+	// Clamps within bounds.  Otherwise the cell is off the grid.
+	public Vector2Int WorldToGrid(Vector3 positionInWorld)
+	{
+		Vector3Int cell3 = m_Tilemap.WorldToCell(positionInWorld);
+		BoundsInt bounds = m_Tilemap.cellBounds;
+		Vector2Int size = new Vector2Int(bounds.size.x - 1, bounds.size.y - 1);
+		Vector2Int cell = new Vector2Int(cell3.x - bounds.xMin, cell3.y - bounds.yMin);
+		cell.Clamp(Vector2Int.zero, size);
+		return cell;
+	}
+
 	private void Setup()
 	{
 		m_Grid = ParseGrid(m_Tilemap);

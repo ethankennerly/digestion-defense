@@ -16,7 +16,7 @@ public sealed class NavTilemapAgent
 		set
 		{
 			m_Destination = value;
-			SetPath(value);
+			FindPathInWorld();
 		}
 	}
 
@@ -31,9 +31,7 @@ public sealed class NavTilemapAgent
 		set
 		{
 			m_Position = value;
-			Vector3Int cell = m_Nav.tilemap.WorldToCell(value);
-			m_CurrentCell.x = cell.x;
-			m_CurrentCell.y = cell.y;
+			SetCurrentCell(value);
 		}
 	}
 
@@ -59,11 +57,35 @@ public sealed class NavTilemapAgent
 
 	private IEnumerable<MyPathNode> path;
 
-	private void SetPath(Vector3 destinationInWorld)
+	private bool m_IsVerbose = true;
+
+	private void SetCurrentCell(Vector3 positionInWorld)
 	{
-		Vector3Int cell = m_Nav.tilemap.WorldToCell(destinationInWorld);
-		m_DestinationCell.x = cell.x;
-		m_DestinationCell.y = cell.y;
+		if (m_Nav == null || m_Nav.tilemap == null)
+		{
+			return;
+		}
+		m_CurrentCell = m_Nav.WorldToGrid(positionInWorld);
+	}
+
+	private void SetDestinationCell(Vector3 destinationInWorld)
+	{
+		if (m_Nav == null || m_Nav.tilemap == null)
+		{
+			return;
+		}
+		m_DestinationCell = m_Nav.WorldToGrid(destinationInWorld);
+	}
+
+	private void FindPathInWorld()
+	{
+		if (m_IsVerbose)
+		{
+			Debug.Log("NavTilemapAgent.FindPath: From "
+				+ m_Position + " to " + m_Destination);
+		}
+		SetDestinationCell(m_Destination);
+		SetCurrentCell(m_Position);
 		FindPath();
 	}
 
@@ -73,13 +95,18 @@ public sealed class NavTilemapAgent
 		{
 			m_Solver = new SpatialAStar<MyPathNode, object>(m_Nav.grid);
 		}
+		if (m_IsVerbose)
+		{
+			Debug.Log("NavTilemapAgent.FindPath: From "
+				+ m_CurrentCell + " to " + m_DestinationCell);
+		}
 		IEnumerable<MyPathNode> path = m_Solver.Search(
 			(Vector2)m_CurrentCell,
 			(Vector2)m_DestinationCell,
 			null);
 	}
 
-	private void UpdatePosition(float deltaTime)
+	public void Update(float deltaTime)
 	{
 		if (deltaTime <= 0.0f)
 		{
@@ -89,6 +116,5 @@ public sealed class NavTilemapAgent
 		{
 			return;
 		}
-		// TODO
 	}
 }
