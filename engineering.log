@@ -907,3 +907,23 @@ Assets/Scripts/NavTilemapAgent.cs(212,4): error CS0126: An object of a type conv
 		{
 			return;
 		}
+
+
+Sun, Nov 26, 2017  4:23:42 PM
+Assets/Sources/Logic/Input/Systems/ClickPointInputSystem.cs(12,52): error CS0117: `InputMatcher' does not contain a definition for `Input'
+ 
+(Filename: Assets/Sources/Logic/Input/Systems/ClickPointInputSystem.cs Line: 12)
+        m_Inputs = m_Context.GetGroup(InputMatcher.Input);
+
+Assets/Sources/Logic/Input/Systems/ClickPointInputSystem.cs(34,15): error CS1061: Type `InputEntity' does not contain a definition for `AddInput' and no extension method `AddInput' of type `InputEntity' could be found. Are you missing `UnityEngine.Playables' using directive?
+ 
+(Filename: Assets/Sources/Logic/Input/Systems/ClickPointInputSystem.cs Line: 34)
+        m_Context.CreateEntity()
+             .AddInput((int)position.x, (int)position.y);
+
+Cause:
+
+After a component is created, Entitas code needs regeneration before it can be referenced.
+
+If it is referenced first, then a compiler error exists, and code cannot be regenerated.
+
