@@ -927,3 +927,10 @@ After a component is created, Entitas code needs regeneration before it can be r
 
 If it is referenced first, then a compiler error exists, and code cannot be regenerated.
 
+
+Sun, Nov 26, 2017  4:44:45 PM
+Assets/Scripts/GameController.cs(15,22): error CS0246: The type or namespace name `ClickPointInputSystems' could not be found. Are you missing an assembly reference?
+ 
+(Filename: Assets/Scripts/GameController.cs Line: 15)
+
+Cause:  Copy and paste oversight.
