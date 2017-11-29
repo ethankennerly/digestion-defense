@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using SettlersEngine;
 using UnityEngine;
-using UnityEngine.Tilemaps;
 
 [Serializable]
 public sealed class NavTilemapAgent
@@ -29,6 +28,7 @@ public sealed class NavTilemapAgent
 
 	private Vector3 m_Destination;
 
+    // Does not interrupt a tween of a step.
 	public Vector3 destination
 	{
 		get
@@ -38,6 +38,11 @@ public sealed class NavTilemapAgent
 		set
 		{
 			m_Destination = value;
+            SetDestinationCell(m_Destination);
+            if (m_Path != null)
+            {
+                return;
+            }
 			FindPathInWorld();
 		}
 	}
@@ -122,7 +127,6 @@ public sealed class NavTilemapAgent
 			Debug.Log("NavTilemapAgent.FindPath: From "
 				+ m_Position + " to " + m_Destination);
 		}
-		SetDestinationCell(m_Destination);
 		SetCurrentCell(m_Position);
 		FindPath();
 	}

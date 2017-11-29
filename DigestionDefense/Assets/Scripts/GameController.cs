@@ -9,7 +9,7 @@ public sealed class GameController : MonoBehaviour
     {
         // get a reference to the contexts
         var contexts = Contexts.sharedInstance;
-        
+
         // create the systems by creating individual features
         m_Systems = new Feature("Systems")
             .Add(new ClickPointInputSystem(contexts));

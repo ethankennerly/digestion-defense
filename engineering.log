@@ -934,3 +934,97 @@ Assets/Scripts/GameController.cs(15,22): error CS0246: The type or namespace nam
 (Filename: Assets/Scripts/GameController.cs Line: 15)
 
 Cause:  Copy and paste oversight.
+
+
+Sun, Nov 26, 2017  6:06:48 PM
+Assets/Scripts/NavTilemapAgent.cs(11,3): error CS0246: The type or namespace name `SerializeField' could not be found. Are you missing `UnityEngine' using directive?
+ 
+(Filename: Assets/Scripts/NavTilemapAgent.cs Line: 11)
+
+Assets/Scripts/NavTilemapAgent.cs(123,4): error CS0103: The name `Debug' does not exist in the current context
+ 
+(Filename: Assets/Scripts/NavTilemapAgent.cs Line: 123)
+
+Assets/Scripts/NavTilemapAgent.cs(146,5): error CS0246: The type or namespace name `Vector2' could not be found. Are you missing `UnityEngine' using directive?
+ 
+(Filename: Assets/Scripts/NavTilemapAgent.cs Line: 146)
+
+Assets/Scripts/NavTilemapAgent.cs(147,5): error CS0246: The type or namespace name `Vector2' could not be found. Are you missing `UnityEngine' using directive?
+ 
+(Filename: Assets/Scripts/NavTilemapAgent.cs Line: 147)
+
+Assets/Scripts/NavTilemapAgent.cs(156,4): error CS0103: The name `Debug' does not exist in the current context
+ 
+(Filename: Assets/Scripts/NavTilemapAgent.cs Line: 156)
+
+using Vector3 = UnityEngine.Vector3;
+using Vector2Int = UnityEngine.Vector2Int;
+// using UnityEngine.Tilemaps;
+
+Cause:  Didn't inspect every use for a dependency.
+
+
+Sun, Nov 26, 2017  6:27:44 PM
+Assets/Scripts/NavTilemapAgent.cs(40,42): error CS1061: Type `System.Collections.Generic.IEnumerable<MyPathNode>' does not contain a definition for `Count' and no extension method `Count' of type `System.Collections.Generic.IEnumerable<MyPathNode>' could be found. Are you missing `System.Linq' using directive?
+ 
+(Filename: Assets/Scripts/NavTilemapAgent.cs Line: 40)
+	private IEnumerable<MyPathNode> m_Path;
+    ...
+            if (m_Path != null && m_Path.Count > 2)
+
+Cause: Forgot path was an enumerable, and did not inspect usage or reference definition.
+
+
+Tue, Nov 28, 2017 10:03:52 PM
+Assets/Scripts/SerialComponent/SerialComponentList.cs(5,9): error CS0246: The type or namespace name `List' could not be found. Are you missing `System.Collections.Generic' or `Boo.Lang' using directive?
+ 
+(Filename: Assets/Scripts/SerialComponent/SerialComponentList.cs Line: 5)
+
+Cause: Forgot to use System.Collections.Generic.
+
+
+Tue, Nov 28, 2017 10:05:16 PM
+Assets/Scripts/SerialComponent/SerialComponentList.cs(1,7): error CS0246: The type or namespace name `Systems' could not be found. Are you missing `Entitas' using directive?
+ 
+(Filename: Assets/Scripts/SerialComponent/SerialComponentList.cs Line: 1)
+
+Assets/Scripts/SerialComponent/SerialComponentList.cs(6,9): error CS0246: The type or namespace name `List' could not be found. Are you missing `System.Collections.Generic' or `Boo.Lang' using directive?
+ 
+(Filename: Assets/Scripts/SerialComponent/SerialComponentList.cs Line: 6)
+    using Systems.Collections.Generic;
+
+Cause: Did not spellcheck.
+
+
+Tue, Nov 28, 2017 10:07:27 PM
+using Entitas;
+
+public class SerialComponent : IComponent
+{
+}
+
+Cause:  Did not make serializable.
+
+
+Tue, Nov 28, 2017 10:08:38 PM
+public sealed class SerialComponentList : MonoBehaviour
+{
+        List<SerialComponent> components;
+}
+
+Cause: Did not make public.
+
+
+Tue, Nov 28, 2017 10:14:51 PM
+Assets/Scripts/SerialComponent/SerialComponent.cs(5,32): error CS0246: The type or namespace name `MonoBehaviour' could not be found. Are you missing `UnityEngine' using directive?
+ 
+(Filename: Assets/Scripts/SerialComponent/SerialComponent.cs Line: 5)
+
+Cause: Forgot to use UnityEngine;
+
+Tue, Nov 28, 2017 10:29:14 PM
+Assets/Scripts/SerialComponent/GridPositionBehaviour.cs(6,45): error CS0246: The type or namespace name `MonoBehaviour' could not be found. Are you missing `UnityEngine' using directive?
+ 
+(Filename: Assets/Scripts/SerialComponent/GridPositionBehaviour.cs Line: 6)
+
+Cause: Forgot to use UnityEngine;

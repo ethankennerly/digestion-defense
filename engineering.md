@@ -1,3 +1,32 @@
+# Architecture
+
+Options:
+- Entity-Component-System
+- Model-View-Controller
+- Entity-Component
+
+## Entity-Component-System
+
+Entitas
+
+### Navigation
+
+1. Click point input system updates click point and publishes click position in the world.
+1. Tilemap position system reacts to click position by setting selected destination to that grid cell.
+1. Nav tilemap agent system reacts to selected destination by asking each spatial A-star to find a path for each selected nav agent.
+1. Nav tilemap agent system takes a step on the path.
+1. Tween position system reacts to step for each entity with a tween position component and adds tween progress component.
+1. When tween progress component is removed, nav tilemap agent system reacts by finding a path.
+
+## Model-View-Controller
+
+### Navigation
+
+1. Nav tilemap agent updates click point and asks nav tilemap controller to convert to grid cell destination.
+1. Nav tilemap agent asks spatial A-star to find a path.
+1. Nav tilemap agent tweens to next step.
+1. After each step, nav tilemap agent finds a path to its current destination.
+
 # Navigation
 
 Options:
