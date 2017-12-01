@@ -1028,3 +1028,19 @@ Assets/Scripts/SerialComponent/GridPositionBehaviour.cs(6,45): error CS0246: The
 (Filename: Assets/Scripts/SerialComponent/GridPositionBehaviour.cs Line: 6)
 
 Cause: Forgot to use UnityEngine;
+
+
+Fri, Dec  1, 2017  8:41:01 AM
+Assets/Scripts/ClickPoint.cs(69,23): error CS0103: The name `x_Click' does not exist in the current context
+ 
+(Filename: Assets/Scripts/ClickPoint.cs Line: 69)
+
+Assets/Scripts/ClickPoint.cs(69,34): error CS0103: The name `x_Click' does not exist in the current context
+ 
+(Filename: Assets/Scripts/ClickPoint.cs Line: 69)
+        if (onClickXY != null)
+        {
+            onClickXY(x_Click.x, x_Click.y);
+        }
+
+Cause: Accidentally replaced s_ with x_ when replacing .x property.

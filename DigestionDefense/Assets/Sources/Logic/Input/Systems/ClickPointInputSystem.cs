@@ -1,7 +1,6 @@
 using Entitas;
-using Vector3 = UnityEngine.Vector3;
 
-public sealed class ClickPointInputSystem : ICleanupSystem
+public sealed class ClickPointInputSystem : IInitializeSystem, ICleanupSystem, ITearDownSystem
 {
     private readonly InputContext m_Context;
     private readonly IGroup<InputEntity> m_Inputs;
@@ -10,28 +9,32 @@ public sealed class ClickPointInputSystem : ICleanupSystem
     {
         m_Context = contexts.input;
         m_Inputs = m_Context.GetGroup(InputMatcher.Input);
+    }
+
+    public void Initialize()
+    {
         AddListeners();
     }
 
-    ~ClickPointInputSystem()
+    public void TearDown()
     {
         RemoveListeners();
     }
 
     private void AddListeners()
     {
-        ClickPoint.onClick += AddInput;
+        ClickPoint.onClickXY += AddInput;
     }
 
     private void RemoveListeners()
     {
-        ClickPoint.onClick -= AddInput;
+        ClickPoint.onClickXY -= AddInput;
     }
 
-    private void AddInput(Vector3 position)
+    private void AddInput(float worldX, float worldY)
     {
         m_Context.CreateEntity()
-            .AddInput((int)position.x, (int)position.y);
+            .AddInput((int)worldX, (int)worldY);
     }
 
     public void Cleanup()

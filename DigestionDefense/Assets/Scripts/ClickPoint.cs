@@ -4,6 +4,7 @@ using UnityEngine;
 public static class ClickPoint
 {
 	public static event Action<Vector3> onClick;
+	public static event Action<float, float> onClickXY;
 	public static event Action<Vector3> onCollisionEnter;
 	public static event Action<Vector2> onCollisionEnter2D;
 
@@ -63,6 +64,10 @@ public static class ClickPoint
 		{
 			onClick(s_Click);
 		}
+        if (onClickXY != null)
+        {
+            onClickXY(s_Click.x, s_Click.y);
+        }
 		if (s_IsVerbose)
 		{
 			Debug.Log("ClickPoint.Screen: " + s_Click);
