@@ -8,21 +8,15 @@
 //------------------------------------------------------------------------------
 public static class GameComponentsLookup {
 
-    public const int GridPositionBehaviour = 0;
-    public const int GridPosition = 1;
-    public const int Serial = 2;
 
-    public const int TotalComponents = 3;
+
+    public const int TotalComponents = 0;
 
     public static readonly string[] componentNames = {
-        "GridPositionBehaviour",
-        "GridPosition",
-        "Serial"
+
     };
 
     public static readonly System.Type[] componentTypes = {
-        typeof(GridPositionBehaviour),
-        typeof(GridPositionComponent),
-        typeof(SerialComponent)
+
     };
 }

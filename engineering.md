@@ -158,7 +158,8 @@ Status:
     - Filters
         - Max inventory item
             - Component
-            - ID (or any)
+                - String for simple serialization.
+            - ID internal to component (or any)
             - Quantity
     - Occupants
         - Quantity
