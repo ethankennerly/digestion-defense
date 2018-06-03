@@ -2,8 +2,8 @@ using UnityEngine;
 
 public sealed class ClickPointView : MonoBehaviour
 {
-	private void Update()
-	{
-		ClickPoint.Update();
-	}
+    private void Update()
+    {
+        ClickPoint.Update();
+    }
 }
