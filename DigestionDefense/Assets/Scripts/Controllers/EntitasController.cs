@@ -1,4 +1,5 @@
 using Entitas;
+using Finegamedesign.Entitas;
 using UnityEngine;
 
 public sealed class EntitasController : MonoBehaviour
@@ -7,6 +8,8 @@ public sealed class EntitasController : MonoBehaviour
 
     private void Awake()
     {
+        ContextUtils.Subscribe(true);
+
         // get a reference to the contexts
         var contexts = Contexts.sharedInstance;
 

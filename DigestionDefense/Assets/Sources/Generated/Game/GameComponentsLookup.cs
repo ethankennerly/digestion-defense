@@ -8,17 +8,20 @@
 //------------------------------------------------------------------------------
 public static class GameComponentsLookup {
 
-    public const int Receiver = 0;
-    public const int Selected = 1;
+    public const int Id = 0;
+    public const int Receiver = 1;
+    public const int Selected = 2;
 
-    public const int TotalComponents = 2;
+    public const int TotalComponents = 3;
 
     public static readonly string[] componentNames = {
+        "Id",
         "Receiver",
         "Selected"
     };
 
     public static readonly System.Type[] componentTypes = {
+        typeof(IdComponent),
         typeof(ReceiverComponent),
         typeof(SelectedComponent)
     };

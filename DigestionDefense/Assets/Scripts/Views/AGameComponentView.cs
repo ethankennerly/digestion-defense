@@ -66,10 +66,7 @@ namespace Finegamedesign.Entitas
                 clone = m_Component;
             }
             int componentIndex = Array.IndexOf(GameComponentsLookup.componentTypes, typeof(TComponent));
-            m_Entity.ReplaceComponent(
-                componentIndex,
-                clone
-            );
+            m_Entity.ReplaceComponent(componentIndex, clone);
         }
     }
 }

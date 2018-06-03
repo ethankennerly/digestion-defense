@@ -155,12 +155,8 @@ Status:
     - Parent entity IDs
     - Children entity IDs
 - [x] Receiver (similar to what a Petri Net calls a Place)
-    - Filter max component counts
-        - Component count
-            - Component
-                - String for simple and stable serialization.
-            - Sub-component ID (or any)
-            - count
+    - Filter component names
+        - String for simple and stable serialization.
     - Occupant
         - Entity ID
 - [ ] Transmitter (similar to what a Petri Net calls a Transition)

@@ -53,18 +53,38 @@ public sealed class ClickSelectedController : MonoBehaviour
             return;
 
         GameEntity selectedEntity = m_Context.CreateEntity();
-        Occupy(entity.receiver, selectedEntity);
+        selectedEntity.isSelected = true;
+        ReplaceReceiver(entity, selectedEntity);
     }
 
-    // TODO
+    /// <returns>
+    /// If receiver is empty and accepts a component of the given name.
+    /// </returns>
     private static bool FilterReceiver(ReceiverComponent receiver, string componentName)
     {
+        if (receiver.occupantId >= 0)
+            return false;
+
+        string[] filterNames = receiver.filterComponentNames;
+        if (filterNames == null)
+            return false;
+
+        foreach (string filterName in filterNames)
+        {
+            if (filterName != componentName)
+                continue;
+
+            return true;
+        }
+
         return false;
-        // receiver.filterMaxComponents
     }
 
-    // TODO
-    private static void Occupy(ReceiverComponent receiver, GameEntity occupant)
+    private static void ReplaceReceiver(GameEntity receiver, GameEntity occupant)
     {
+        receiver.ReplaceReceiver(
+            receiver.receiver.filterComponentNames,
+            occupant.id.value
+        );
     }
 }

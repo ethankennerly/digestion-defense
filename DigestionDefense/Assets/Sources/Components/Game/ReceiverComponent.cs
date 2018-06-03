@@ -1,10 +1,11 @@
 using Entitas;
+using Finegamedesign.Entitas;
 using System;
 
 [Game]
 [Serializable]
 public sealed class ReceiverComponent : ACloneable, IComponent
 {
-    public ComponentCount[] filterMaxComponents = new ComponentCount[0];
-    public int occupantId;
+    public string[] filterComponentNames = new string[0];
+    public int occupantId = -1;
 }

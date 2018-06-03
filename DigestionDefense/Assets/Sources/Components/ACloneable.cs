@@ -1,9 +1,12 @@
 using System;
 
-public abstract class ACloneable : ICloneable
+namespace Finegamedesign.Entitas
 {
-    public virtual object Clone()
+    public abstract class ACloneable : ICloneable
     {
-        return MemberwiseClone();
+        public virtual object Clone()
+        {
+            return MemberwiseClone();
+        }
     }
 }

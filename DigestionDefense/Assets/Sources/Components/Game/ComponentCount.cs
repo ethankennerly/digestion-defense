@@ -1,9 +1,10 @@
 using System;
 
-[Serializable]
-public struct ComponentCount
+namespace Finegamedesign.Entitas
 {
-    public string componentName;
-    public int subComponentId;
-    public int count;
+    [Serializable]
+    public struct ComponentId
+    {
+        public string name;
+    }
 }
