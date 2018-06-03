@@ -1,0 +1,3 @@
+[submodule "DigestionDefense/Assets/UnityToykit"]
+	path = DigestionDefense/Assets/UnityToykit
+	url = git@github.com:ethankennerly/UnityToykit.git

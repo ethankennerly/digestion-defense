@@ -1,3 +1,4 @@
+using Finegamedesign.Utils;
 using System;
 using UnityEngine;
 
@@ -38,18 +39,18 @@ public sealed class NavTilemapAgentClickPoint : MonoBehaviour
         Setup();
         UpdatePosition(m_Agent.position);
         m_Agent.onPositionChanged += UpdatePosition;
-        ClickPoint.onClick += UpdateDestination;
+        ClickSystem.instance.onWorld += UpdateDestination;
     }
 
     private void OnDisable()
     {
         m_Agent.onPositionChanged -= UpdatePosition;
-        ClickPoint.onClick -= UpdateDestination;
+        ClickSystem.instance.onWorld -= UpdateDestination;
     }
 
     private void Update()
     {
-        ClickPoint.Update();
+        ClickSystem.instance.Update();
         m_Agent.Update(Time.deltaTime);
     }
 

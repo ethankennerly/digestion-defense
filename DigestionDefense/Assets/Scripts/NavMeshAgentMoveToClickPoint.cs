@@ -1,3 +1,4 @@
+using Finegamedesign.Utils;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -11,17 +12,17 @@ public sealed class NavMeshAgentMoveToClickPoint : MonoBehaviour
     private void OnEnable()
     {
         m_Agent = GetComponent<NavMeshAgent>();
-        ClickPoint.onCollisionEnter += UpdateDestination;
+        ClickSystem.instance.onCollisionPoint += UpdateDestination;
     }
 
     private void OnDisable()
     {
-        ClickPoint.onCollisionEnter -= UpdateDestination;
+        ClickSystem.instance.onCollisionPoint -= UpdateDestination;
     }
 
     private void Update()
     {
-        ClickPoint.Update();
+        ClickSystem.instance.Update();
     }
 
     private void UpdateDestination(Vector3 destination)
