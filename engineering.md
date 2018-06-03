@@ -155,14 +155,14 @@ Status:
     - Parent entity IDs
     - Children entity IDs
 - Receiver (similar to what a Petri Net calls a Place)
-    - Filters
-        - Max inventory item
+    - Filter max component counts
+        - Component count
             - Component
-                - String for simple serialization.
-            - ID internal to component (or any)
-            - Quantity
-    - Occupants
-        - Quantity
+                - String for simple and stable serialization.
+            - Sub-component ID (or any)
+            - count
+    - Occupant
+        - Entity ID
 - Transmitter (similar to what a Petri Net calls a Transition)
     - Receiver inputs
         - Inhibitor or not
