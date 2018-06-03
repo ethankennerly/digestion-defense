@@ -1,7 +1,7 @@
 using Entitas;
 using UnityEngine;
 
-public sealed class GameController : MonoBehaviour
+public sealed class EntitasController : MonoBehaviour
 {
     private Systems m_Systems;
 
