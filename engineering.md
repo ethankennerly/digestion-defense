@@ -107,8 +107,8 @@ Status:
 
 1. [ ] Three food deployment receivers.
 1. [ ] Three foods transmit:  Grape, Cod, Oil.
-1. [ ] Player taps collider of selection receiver in node hierarchy containing grape.
-1. [ ] Transmitter transforms selection and grape to transmit grape to connected entrance that receives food.
+1. [ ] Player taps collider of selected receiver in node hierarchy containing grape.
+1. [ ] Transmitter transforms selected and grape to transmit grape to connected entrance that receives food.
 1. [ ] Food receiver at end of tunnel has trigger region covering all caves.
 1. [ ] Nav agent in grape finds path to end of tunnel, and begins moving.
 1. [ ] Grape moves in trigger region of white teeth.
@@ -144,17 +144,17 @@ Status:
 
 ## Components
 
-- Timer
+- [ ] Timer
     - Rate
     - Min
     - Max
     - Remove remaining
-- Time remaining
+- [ ] Time remaining
     - Value
-- Tree node (of a composition in a what graph theorists call a Tree)
+- [ ] Tree node (of a composition in a what graph theorists call a Tree)
     - Parent entity IDs
     - Children entity IDs
-- Receiver (similar to what a Petri Net calls a Place)
+- [x] Receiver (similar to what a Petri Net calls a Place)
     - Filter max component counts
         - Component count
             - Component
@@ -163,20 +163,20 @@ Status:
             - count
     - Occupant
         - Entity ID
-- Transmitter (similar to what a Petri Net calls a Transition)
+- [ ] Transmitter (similar to what a Petri Net calls a Transition)
     - Receiver inputs
         - Inhibitor or not
         - Null represents what a Machination calls a Source.
     - Receiver outputs
         - Null represents what a Machination calls a Drain.
-- Selection
+- [x] Selected
 
 Navigation components:
-- nav agent
+- [ ] nav agent
     - nav agent targets
         - nearest receiver in trigger region
-- Nav grid
-- trigger region
+- [ ] Nav grid
+- [ ] trigger region
 
 
 ## Reference: Machinations by Joris Dormans

@@ -5,7 +5,7 @@ public sealed class EntitasController : MonoBehaviour
 {
     private Systems m_Systems;
 
-    private void Start()
+    private void Awake()
     {
         // get a reference to the contexts
         var contexts = Contexts.sharedInstance;

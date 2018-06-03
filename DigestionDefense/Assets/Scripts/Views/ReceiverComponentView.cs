@@ -1,4 +1,4 @@
 namespace Finegamedesign.Entitas
 {
-    public sealed class ReceiverComponentView : AComponentView<ReceiverComponent> {}
+    public sealed class ReceiverComponentView : AGameComponentView<ReceiverComponent> {}
 }
