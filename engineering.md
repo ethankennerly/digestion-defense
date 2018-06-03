@@ -94,3 +94,122 @@ Since it's built-in, I'll use 2017.2 tilemap.
 <https://www.youtube.com/watch?v=70sLhuE1sbc>
 
 
+# Example Flow
+
+Breakdown of screenplay in [design.md](design.md)
+
+Status:
+- [ ] Todo
+- [-] In-progress
+- [x] Done
+- Context
+---
+
+1. [ ] Three food deployment receivers.
+1. [ ] Three foods transmit:  Grape, Cod, Oil.
+1. [ ] Player taps collider of selection receiver in node hierarchy containing grape.
+1. [ ] Transmitter transforms selection and grape to transmit grape to connected entrance that receives food.
+1. [ ] Food receiver at end of tunnel has trigger region covering all caves.
+1. [ ] Nav agent in grape finds path to end of tunnel, and begins moving.
+1. [ ] Grape moves in trigger region of white teeth.
+1. [ ] Bottom white teeth change to closing.
+1. [ ] Bottom white closing teeth find path to receiver in top white teeth.
+1. [ ] White teeth contact grape. They transmit negative health to grape.
+1. [ ] Bottom white teeth change to opening.
+1. [ ] Bottom white opening teeth find path to receiver below.
+1. [ ] Grape has a receiver for negative health and the health is depleted.
+1. [ ] Health is destroyed.
+1. [ ] Health was inhibiting Pair of white hexagon transmitter.
+1. [ ] Pair of white hexagon transmitter transmits.
+1. [ ] Pair of white hexagon is a food.
+1. [ ] Food receiver in tree that had received the destroyed grape receives food.
+1. [ ] Nav agent in pair of white hexagon finds path to end of tunnel.
+    - For path finding simplicity, small pair fits into one cell of the nav grid.
+1. [ ] Pair of white hexagon flow out of purple cave.
+1. [ ] Nav agent in pair of white hexagon finds path to end of tunnel.
+1. [ ] Pair of white hexagon flow out of purple cave.
+1. [ ] In white cave, pair of white hexagonal concavities detect pair of white hexagon in visible range.
+1. [ ] Concavities target pair of white hexagon.
+1. [ ] Concavities attract nav agent in pair of white hexagon.
+1. [ ] Pair of white hexagons finds path to concavities.
+1. [ ] Concavities convert pair of white hexagons into two separate white hexagons.
+1. [ ] White hexagons find path to end of tunnel.
+1. [ ] White hexagon hole detect white hexagon.
+1. [ ] White hexagon hole attract nav agent of white hexagon.
+1. [ ] White hexagon contacts white hexagon hole.
+1. [ ] White hexagon hole receives white hexagon and transmits white fuel.
+1. [ ] White fuel receiver accepts white fuel.
+1. [ ] White fuel receiver transmits some red fuel.
+1. [ ] red fuel receiver increases.
+
+## Components
+
+- Timer
+    - Rate
+    - Min
+    - Max
+    - Remove remaining
+- Time remaining
+    - Value
+- Tree node (of a composition in a what graph theorists call a Tree)
+    - Parent entity IDs
+    - Children entity IDs
+- Receiver (similar to what a Petri Net calls a Place)
+    - Filters
+        - Max inventory item
+            - Component
+            - ID (or any)
+            - Quantity
+    - Occupants
+        - Quantity
+- Transmitter (similar to what a Petri Net calls a Transition)
+    - Receiver inputs
+        - Inhibitor or not
+        - Null represents what a Machination calls a Source.
+    - Receiver outputs
+        - Null represents what a Machination calls a Drain.
+- Selection
+
+Navigation components:
+- nav agent
+    - nav agent targets
+        - nearest receiver in trigger region
+- Nav grid
+- trigger region
+
+
+## Reference: Machinations by Joris Dormans
+
+Node types:
+- Pool
+- Label modifier
+- Node modifier
+- Gate
+- Trigger
+- Activator
+- Source
+- Drain
+- Converter
+- Trader
+
+## Reference: Petri Net
+
+- Place
+- Arc
+- Inhibitor arc
+- Transition
+- Token
+
+Examples:
+<https://www.techfak.uni-bielefeld.de/~mchen/BioPNML/Intro/pnfaq.html>
+
+Pathway Analysis in Metabolic Databases via Differential Metabolic Display (DMD)
+Robert Küffner, Ralf Zimmer and Thomas Lengauer
+<http://www.bioinfo.de/isb/gcb99/talks/kueffner/main.html>
+
+Transmitter and Receiver as a PetriNet
+
+    ( )A -----> | -----> ( )A
+    Transmitter      Receiver
+
+When an A-token is delivered to the first place, it transitions to the second place.
