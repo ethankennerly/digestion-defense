@@ -12,20 +12,23 @@ public static class GameComponentsLookup {
     public const int Id = 1;
     public const int Receiver = 2;
     public const int Selected = 3;
+    public const int Transmitter = 4;
 
-    public const int TotalComponents = 4;
+    public const int TotalComponents = 5;
 
     public static readonly string[] componentNames = {
         "Consumable",
         "Id",
         "Receiver",
-        "Selected"
+        "Selected",
+        "Transmitter"
     };
 
     public static readonly System.Type[] componentTypes = {
         typeof(ConsumableComponent),
         typeof(IdComponent),
         typeof(ReceiverComponent),
-        typeof(SelectedComponent)
+        typeof(SelectedComponent),
+        typeof(TransmitterComponent)
     };
 }

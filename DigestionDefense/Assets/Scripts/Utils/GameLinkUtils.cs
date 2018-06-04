@@ -53,5 +53,47 @@ namespace Finegamedesign.Entitas
             var context = Contexts.sharedInstance.game;
             return (GameEntity)linkedObject.Link(context.CreateEntity(), context).entity;
         }
+
+        /// <summary>
+        /// Links previous entity if still linked.
+        /// Otherwise, creates a new entity and links it.
+        /// </summary>
+        ///
+        /// <returns>
+        /// Entity ID of each linked object.
+        /// -1 if the object was destroyed.
+        /// </returns>
+        public static int TryLinkId(GameObject linkedObject)
+        {
+            GameEntity entity = TryLink(linkedObject);
+            if (entity == null)
+                return -1;
+
+            return entity.id.value;
+        }
+
+        /// <summary>
+        /// Links previous entity if still linked.
+        /// Otherwise, creates a new entity and links it.
+        /// </summary>
+        ///
+        /// <returns>
+        /// Entity ID of each linked object.
+        /// -1 if the object was destroyed.
+        /// </returns>
+        public static int[] TryLinkIds(GameObject[] linkedObjects)
+        {
+            if (linkedObjects == null)
+                return null;
+
+            int numObjects = linkedObjects.Length;
+            int[] entityIds = new int[numObjects];
+            for (int index = 0; index < numObjects; ++index)
+            {
+                entityIds[index] = TryLinkId(linkedObjects[index]);
+            }
+
+            return entityIds;
+        }
     }
 }

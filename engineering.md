@@ -144,6 +144,22 @@ Status:
 
 ## Components
 
+- [x] Receiver (similar to what a Petri Net calls a Place)
+    - Filter component names
+        - String for simple and stable serialization.
+    - Occupant
+        - Entity ID
+- [ ] Transmitter (similar to what a Petri Net calls a Transition)
+    - Input IDs
+        - Input is a receiver with an occupant.
+    - Output IDs
+        - Available output is a receiver without an occupant.
+- [ ] Transmitter inhibitor (similar to what a Petri Net calls a Transition)
+    - Inhibitor IDs
+        - Inhibitor is a receiver with an occupant.
+- [x] Selected
+- [x] Consumable
+    - name
 - [ ] Timer
     - Rate
     - Min
@@ -154,23 +170,6 @@ Status:
 - [ ] Tree node (of a composition in a what graph theorists call a Tree)
     - Parent entity IDs
     - Children entity IDs
-- [x] Receiver (similar to what a Petri Net calls a Place)
-    - Filter component names
-        - String for simple and stable serialization.
-    - Occupant
-        - Entity ID
-- [ ] Transmitter (similar to what a Petri Net calls a Transition)
-    - Activator IDs
-        - Activator is a receiver with an occupant.
-        - Empty represents what a Machination calls a Source.
-    - Inhibitor IDs
-        - Inhibitor is a receiver with an occupant.
-    - Output IDs
-        - Available output is a receiver without an occupant.
-        - Empty represents what a Machination calls a Drain.
-- [x] Selected
-- [ ] Consumable
-    - name
 
 Navigation components:
 - [ ] nav agent
