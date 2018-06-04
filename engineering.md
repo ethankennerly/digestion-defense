@@ -105,11 +105,11 @@ Status:
 - Context
 ---
 
-1. [ ] Three food deployment receivers.
-1. [ ] Three foods transmit:  Grape, Cod, Oil.
-1. [ ] Player taps collider of selected receiver in node hierarchy containing grape.
-1. [ ] Transmitter transforms selected and grape to transmit grape to connected entrance that receives food.
-1. [ ] Food receiver at end of tunnel has trigger region covering all caves.
+1. [ ] Three consumable deployment receivers.
+1. [ ] Three consumables transmit:  Grape, Cod, Oil.
+1. [x] Player taps collider of selected receiver in node hierarchy containing grape.
+1. [ ] Transmitter transforms selected and grape to transmit grape to connected entrance that receives consumable.
+1. [ ] consumable receiver at end of tunnel has trigger region covering all caves.
 1. [ ] Nav agent in grape finds path to end of tunnel, and begins moving.
 1. [ ] Grape moves in trigger region of white teeth.
 1. [ ] Bottom white teeth change to closing.
@@ -121,8 +121,8 @@ Status:
 1. [ ] Health is destroyed.
 1. [ ] Health was inhibiting Pair of white hexagon transmitter.
 1. [ ] Pair of white hexagon transmitter transmits.
-1. [ ] Pair of white hexagon is a food.
-1. [ ] Food receiver in tree that had received the destroyed grape receives food.
+1. [ ] Pair of white hexagon is a consumable.
+1. [ ] consumable receiver in tree that had received the destroyed grape receives consumable.
 1. [ ] Nav agent in pair of white hexagon finds path to end of tunnel.
     - For path finding simplicity, small pair fits into one cell of the nav grid.
 1. [ ] Pair of white hexagon flow out of purple cave.
@@ -160,12 +160,17 @@ Status:
     - Occupant
         - Entity ID
 - [ ] Transmitter (similar to what a Petri Net calls a Transition)
-    - Receiver inputs
-        - Inhibitor or not
-        - Null represents what a Machination calls a Source.
-    - Receiver outputs
-        - Null represents what a Machination calls a Drain.
+    - Activator IDs
+        - Activator is a receiver with an occupant.
+        - Empty represents what a Machination calls a Source.
+    - Inhibitor IDs
+        - Inhibitor is a receiver with an occupant.
+    - Output IDs
+        - Available output is a receiver without an occupant.
+        - Empty represents what a Machination calls a Drain.
 - [x] Selected
+- [ ] Consumable
+    - name
 
 Navigation components:
 - [ ] nav agent

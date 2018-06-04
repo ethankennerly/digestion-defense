@@ -15,9 +15,7 @@ namespace Finegamedesign.Entitas
 
         private void Start()
         {
-            TryLink();
-
-            ReplaceComponent();
+            Initialize();
         }
 
         private void OnDestroy()
@@ -25,21 +23,19 @@ namespace Finegamedesign.Entitas
             TryUnlink();
         }
 
+        protected virtual void Initialize()
+        {
+            TryLink();
+
+            ReplaceComponent();
+        }
+
         protected void TryLink()
         {
             if (m_Entity != null)
                 return;
 
-            var link = gameObject.GetEntityLink();
-            if (link != null)
-            {
-                m_Entity = (GameEntity)link.entity;
-                if (m_Entity != null)
-                    return;
-            }
-
-            var context = Contexts.sharedInstance.game;
-            m_Entity = (GameEntity)gameObject.Link(context.CreateEntity(), context).entity;
+            m_Entity = GameLinkUtils.TryLink(gameObject);
         }
 
         protected void TryUnlink()
