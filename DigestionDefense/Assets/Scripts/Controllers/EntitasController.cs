@@ -1,32 +1,34 @@
 using Entitas;
-using Finegamedesign.Entitas;
 using UnityEngine;
 
-public sealed class EntitasController : MonoBehaviour
+namespace Finegamedesign.Entitas
 {
-    private Systems m_Systems;
-
-    private void Awake()
+    public sealed class EntitasController : MonoBehaviour
     {
-        ContextUtils.Subscribe(true);
+        private Systems m_Systems;
 
-        // get a reference to the contexts
-        var contexts = Contexts.sharedInstance;
+        private void Awake()
+        {
+            ContextUtils.Subscribe(true);
 
-        // create the systems by creating individual features
-        m_Systems = new Feature("Systems")
-            .Add(new ClickPointInputSystem(contexts));
+            // get a reference to the contexts
+            var contexts = Contexts.sharedInstance;
 
-        // call Initialize() on all of the IInitializeSystems
-        m_Systems.Initialize();
-    }
+            // create the systems by creating individual features
+            m_Systems = new PetriGameSystems(contexts);
+                // .Add(new ClickPointInputSystem(contexts));
 
-    private void Update()
-    {
-        // call Execute() on all the IExecuteSystems and
-        // ReactiveSystems that were triggered last frame
-        m_Systems.Execute();
-        // call cleanup() on all the ICleanupSystems
-        m_Systems.Cleanup();
+            // call Initialize() on all of the IInitializeSystems
+            m_Systems.Initialize();
+        }
+
+        private void Update()
+        {
+            // call Execute() on all the IExecuteSystems and
+            // ReactiveSystems that were triggered last frame
+            m_Systems.Execute();
+            // call cleanup() on all the ICleanupSystems
+            m_Systems.Cleanup();
+        }
     }
 }
