@@ -28,7 +28,6 @@ public class EnemyAStar : MonoBehaviour {
 
 	public GameManager Game;
 	public MyPathNode nextNode;
-	bool gray = false;
 	public MyPathNode[,] grid;
 
 	
@@ -102,12 +101,6 @@ public class EnemyAStar : MonoBehaviour {
 		startGridPosition = new gridPosition(0,UnityEngine.Random.Range(0,Game.gridHeight-1));
 		endGridPosition = new gridPosition(Game.gridWidth-1,UnityEngine.Random.Range(0,Game.gridHeight-1));
 		initializePosition ();
-
-
-		MySolver<MyPathNode, System.Object> aStar = new MySolver<MyPathNode, System.Object>(Game.grid);
-		IEnumerable<MyPathNode> path = aStar.Search(new Vector2(startGridPosition.x, startGridPosition.y), new Vector2(endGridPosition.x, endGridPosition.y), null);
-
-
 
 		foreach(GameObject g in GameObject.FindGameObjectsWithTag("GridBox"))
 		{
