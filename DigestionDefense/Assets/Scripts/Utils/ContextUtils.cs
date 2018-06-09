@@ -5,9 +5,9 @@ namespace Finegamedesign.Entitas
 {
     public static class ContextUtils
     {
-        public static void Subscribe(bool isSubscribing)
+        public static void Subscribe(Contexts contexts, bool isSubscribing)
         {
-            Subscribe(typeof(IdComponent), ReplaceId, isSubscribing);
+            Subscribe(contexts, typeof(IdComponent), ReplaceId, isSubscribing);
         }
 
         private static void ReplaceId(IContext context, IEntity entity)
@@ -21,9 +21,8 @@ namespace Finegamedesign.Entitas
         /// Copied from:
         /// https://github.com/sschmid/Entitas-CSharp/wiki/FAQ#q-should-i-store-references-to-entities-inside-components
         /// </summary>
-        public static void Subscribe(Type componentType, ContextEntityChanged onEntityCreated, bool isSubscribing)
+        public static void Subscribe(Contexts contexts, Type componentType, ContextEntityChanged onEntityCreated, bool isSubscribing)
         {
-            Contexts contexts = Contexts.sharedInstance;
             foreach (var context in contexts.allContexts)
             {
                 Type[] types = context.contextInfo.componentTypes;

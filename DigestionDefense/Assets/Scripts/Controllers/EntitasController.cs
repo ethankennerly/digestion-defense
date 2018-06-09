@@ -9,10 +9,10 @@ namespace Finegamedesign.Entitas
 
         private void Awake()
         {
-            ContextUtils.Subscribe(true);
-
             // get a reference to the contexts
             var contexts = Contexts.sharedInstance;
+
+            ContextUtils.Subscribe(contexts, true);
 
             // create the systems by creating individual features
             m_Systems = new PetriGameSystems(contexts);
@@ -24,6 +24,9 @@ namespace Finegamedesign.Entitas
 
         private void Update()
         {
+            if (m_Systems == null)
+                return;
+
             // call Execute() on all the IExecuteSystems and
             // ReactiveSystems that were triggered last frame
             m_Systems.Execute();
