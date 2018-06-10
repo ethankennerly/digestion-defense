@@ -1277,7 +1277,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_FilterComponentNames:
-  - Consumable
+  - Receiver
   m_OccupantObject: {fileID: 0}
 --- !u!1001 &112423022
 Prefab:
@@ -1512,15 +1512,15 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 1520901128074434, guid: 6f09dbe139c6dce499bace85013ce9d8, type: 2}
-      propertyPath: m_Name
-      value: Card (1)
-      objectReference: {fileID: 0}
     - target: {fileID: 114573969489268260, guid: 6f09dbe139c6dce499bace85013ce9d8,
         type: 2}
       propertyPath: m_OutputObjects.Array.data[0]
       value: 
       objectReference: {fileID: 97217513}
+    - target: {fileID: 1520901128074434, guid: 6f09dbe139c6dce499bace85013ce9d8, type: 2}
+      propertyPath: m_Name
+      value: Card (1)
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6f09dbe139c6dce499bace85013ce9d8, type: 2}
   m_IsPrefabParent: 0

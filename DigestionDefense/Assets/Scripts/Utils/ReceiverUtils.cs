@@ -51,6 +51,7 @@ namespace Finegamedesign.Entitas
         #warning TODO: If candidate has one of the filter components.
         public static bool Filter(ReceiverComponent receiver, GameEntity candidate)
         {
+            DebugUtil.Assert(false, "ReceiverUtils.Filter: TODO: If candidate has one of the filter components.");
             return false;
         }
 
@@ -108,6 +109,7 @@ namespace Finegamedesign.Entitas
                 {
                     occupant = context.CreateEntity();
                     #warning TODO: Add component of first name in receiver filter.
+                    DebugUtil.Assert(false, "ReceiverUtils.OccupyIfEmpty: TODO: Add component of first name in receiver filter.");
                 }
 
                 ReplaceOccupant(receiver, occupant);
