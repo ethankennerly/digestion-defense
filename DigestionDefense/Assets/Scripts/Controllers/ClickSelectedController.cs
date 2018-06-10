@@ -11,12 +11,19 @@ namespace Finegamedesign.Entitas
         private Action<Collider2D> m_OnCollisionEnter2D;
 
         private string m_ComponentName = "Selected";
+        private int m_ComponentIndex = -1;
 
         private GameContext m_Context;
+
+        private void OnValidate()
+        {
+            SetComponentIndex();
+        }
 
         private void OnEnable()
         {
             m_Context = Contexts.sharedInstance.game;
+            SetComponentIndex();
 
             AddListener();
         }
@@ -24,6 +31,11 @@ namespace Finegamedesign.Entitas
         private void OnDisable()
         {
             RemoveListener();
+        }
+
+        private void SetComponentIndex()
+        {
+            m_ComponentIndex = ReceiverUtils.ToComponentIndex(m_ComponentName);
         }
 
         private void AddListener()
@@ -51,7 +63,7 @@ namespace Finegamedesign.Entitas
             if (!entity.hasReceiver)
                 return;
 
-            if (!ReceiverUtils.Filter(entity.receiver, m_ComponentName))
+            if (!ReceiverUtils.Filter(entity.receiver, m_ComponentIndex))
                 return;
 
             GameEntity selectedEntity = m_Context.CreateEntity();

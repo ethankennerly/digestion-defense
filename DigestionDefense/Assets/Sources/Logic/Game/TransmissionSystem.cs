@@ -30,8 +30,8 @@ namespace Finegamedesign.Entitas
         }
 
         /// <summary>
-        /// Does not filter receivers disconnected from transmitters,
-        /// because the linked transmitter is needed.
+        /// Does not filter receivers not linked to a transmitter,
+        /// because the receiver may be indirectly linked.
         /// </summary>
         protected override bool Filter(GameEntity entity)
         {

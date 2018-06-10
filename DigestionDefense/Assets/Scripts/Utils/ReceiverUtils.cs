@@ -27,6 +27,31 @@ namespace Finegamedesign.Entitas
         /// <returns>
         /// If receiver is empty and accepts a component of the given name.
         /// </returns>
+        public static bool Filter(ReceiverComponent receiver, int componentIndex)
+        {
+            DebugUtil.Assert(componentIndex >= 0 && componentIndex < GameComponentsLookup.componentNames.Length,
+                "ReceiverUtils.Filter: Expects component index " + componentIndex +
+                " is in range of game component names " +
+                DataUtil.ToString(GameComponentsLookup.componentNames));
+
+            if (!IsEmpty(receiver))
+                return false;
+
+            HashSet<int> filterIndexes = receiver.filterComponentIndexes;
+            if (filterIndexes == null)
+            {
+                DebugUtil.Assert(filterIndexes != null,
+                    "ReceiverUtils.Filter: Expects filter component indexes are defined on " + receiver +
+                    ". componentIndex='" + componentIndex + "'");
+                return false;
+            }
+
+            return filterIndexes.Contains(componentIndex);
+        }
+
+        /// <returns>
+        /// If receiver is empty and accepts a component of the given name.
+        /// </returns>
         public static bool Filter(ReceiverComponent receiver, string componentName)
         {
             if (!IsEmpty(receiver))
@@ -34,25 +59,54 @@ namespace Finegamedesign.Entitas
 
             HashSet<int> filterIndexes = receiver.filterComponentIndexes;
             if (filterIndexes == null)
+            {
+                DebugUtil.Assert(filterIndexes != null,
+                    "ReceiverUtils.Filter: Expects filter component indexes are defined on " + receiver +
+                    ". componentName='" + componentName + "'");
+                return false;
+            }
+
+            int componentIndex = ToComponentIndex(componentName);
+
+            return filterIndexes.Contains(componentIndex);
+        }
+
+        /// <remarks>
+        /// Iterating would scale better if filter names were an array instead of a hash set.
+        /// </remarks>
+        /// <returns>
+        /// If receiver is empty and candidate has any of the receiver's filter components.
+        /// </returns>
+        public static bool Filter(ReceiverComponent receiver, GameEntity candidate)
+        {
+            if (!IsEmpty(receiver))
                 return false;
 
+            HashSet<int> filterIndexes = receiver.filterComponentIndexes;
+            if (filterIndexes == null)
+            {
+                DebugUtil.Assert(filterIndexes != null,
+                    "ReceiverUtils.Filter: Expects filter component indexes are defined on " + receiver);
+                return false;
+            }
+
+            foreach (int filterIndex in filterIndexes)
+            {
+                if (candidate.HasComponent(filterIndex))
+                    return true;
+            }
+
+            return false;
+        }
+
+        public static int ToComponentIndex(string componentName)
+        {
             string[] componentNames = GameComponentsLookup.componentNames;
             int componentIndex = Array.IndexOf(componentNames, componentName);
             DebugUtil.Assert(componentIndex >= 0,
                 "ReceiverUtils.Filter: Expects component '" + componentName + "' in game component names " +
                 DataUtil.ToString(componentNames));
-
-            return filterIndexes.Contains(componentIndex);
-        }
-
-        /// <returns>
-        /// TODO: If candidate has one of the filter components.
-        /// </returns>
-        #warning TODO: If candidate has one of the filter components.
-        public static bool Filter(ReceiverComponent receiver, GameEntity candidate)
-        {
-            DebugUtil.Assert(false, "ReceiverUtils.Filter: TODO: If candidate has one of the filter components.");
-            return false;
+            return componentIndex;
         }
 
         public static void ReplaceOccupant(GameEntity receiver, GameEntity occupant)
@@ -107,9 +161,12 @@ namespace Finegamedesign.Entitas
 
                 if (occupant == null)
                 {
-                    occupant = context.CreateEntity();
-                    #warning TODO: Add component of first name in receiver filter.
-                    DebugUtil.Assert(false, "ReceiverUtils.OccupyIfEmpty: TODO: Add component of first name in receiver filter.");
+                    DebugUtil.Assert(false,
+                        "ReceiverUtils.OccupyIfEmpty: Expected some filter to match. " +
+                        " preferredIds=" + DataUtil.ToString(preferredIds) +
+                        " receiver=" + receiver
+                    );
+                    return;
                 }
 
                 ReplaceOccupant(receiver, occupant);

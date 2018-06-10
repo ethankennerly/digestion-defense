@@ -105,6 +105,13 @@ Status:
 - Context
 ---
 
+Designer flow:
+1. [ ] Select transmitter.
+1. [ ] Connect receiver.
+1. [ ] See debug line showing connection.  Deselect transmitter. Debug line disappears.
+1. [x] Select filter component names from dropdown list of components.
+
+Player flow:
 1. [ ] Three consumable deployment receivers.
 1. [ ] Three consumables transmit:  Grape, Cod, Oil.
 1. [x] Player taps collider of selected receiver in node hierarchy containing grape.
@@ -214,3 +221,5 @@ Transmitter and Receiver as a PetriNet
     Transmitter      Receiver
 
 When an A-token is delivered to the first place, it transitions to the second place.
+
+One way to represent receiver that cannot be occupied if already occupied, is for the receiver place to have an arc that inhibits the transition that the transmitter is pointing toward.
