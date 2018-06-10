@@ -3,12 +3,16 @@ using UnityEngine;
 namespace ProGM
 {
     public class ExampleBehaviour : MonoBehaviour {
-        // This will store the string value
+        public static string[] s_ContextNames = new string[]{ "Game", "Input" };
+
+        [Header("This will store the string value")]
         [StringInList("Cat", "Dog")] public string Animal;
-        // This will store the index of the array value
+        [Header("This will store the index of the array value")]
         [StringInList("John", "Jack", "Jim")] public int PersonID;
         
-        // Showing a list of loaded scenes
+        [Header("Method returns an array of loaded scenes")]
         [StringInList(typeof(PropertyDrawersHelper), "AllSceneNames")] public string SceneName;
+        [Header("Queries a public static array")]
+        [StringInList(typeof(ExampleBehaviour), "s_ContextNames")] public string ContextName;
     }
 }

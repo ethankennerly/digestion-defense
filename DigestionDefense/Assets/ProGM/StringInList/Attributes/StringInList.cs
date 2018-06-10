@@ -10,13 +10,22 @@ namespace ProGM
       List = list;
     }
   
-    public StringInList(Type type, string methodName) {
-      var method = type.GetMethod (methodName);
+    public StringInList(Type type, string methodOrFieldName) {
+      var method = type.GetMethod (methodOrFieldName);
       if (method != null) {
         List = method.Invoke (null, null) as string[];
-      } else {
-        Debug.LogError ("NO SUCH METHOD " + methodName + " FOR " + type);
+        return;
       }
+      var field = type.GetField(methodOrFieldName);
+      if (field != null) {
+        var value = field.GetValue(field);
+        if (value is string[]) {
+          List = (string[])value;
+        }
+        return;
+      }
+
+      Debug.LogError ("NO SUCH METHOD OR STRING ARRAY " + methodOrFieldName + " FOR " + type);
     }
   
     public string[] List {
