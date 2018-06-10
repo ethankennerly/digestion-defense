@@ -1276,10 +1276,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5aa2549a0d5dfd44296e5ef5226cf087, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Component:
-    filterComponentNames:
-    - Consumable
-    occupantId: -1
+  m_FilterComponentNames:
+  - Consumable
   m_OccupantObject: {fileID: 0}
 --- !u!1001 &112423022
 Prefab:

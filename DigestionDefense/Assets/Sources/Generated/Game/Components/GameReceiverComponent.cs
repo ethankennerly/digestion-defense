@@ -11,18 +11,18 @@ public partial class GameEntity {
     public ReceiverComponent receiver { get { return (ReceiverComponent)GetComponent(GameComponentsLookup.Receiver); } }
     public bool hasReceiver { get { return HasComponent(GameComponentsLookup.Receiver); } }
 
-    public void AddReceiver(string[] newFilterComponentNames, int newOccupantId) {
+    public void AddReceiver(System.Collections.Generic.HashSet<int> newFilterComponentIndexes, int newOccupantId) {
         var index = GameComponentsLookup.Receiver;
         var component = CreateComponent<ReceiverComponent>(index);
-        component.filterComponentNames = newFilterComponentNames;
+        component.filterComponentIndexes = newFilterComponentIndexes;
         component.occupantId = newOccupantId;
         AddComponent(index, component);
     }
 
-    public void ReplaceReceiver(string[] newFilterComponentNames, int newOccupantId) {
+    public void ReplaceReceiver(System.Collections.Generic.HashSet<int> newFilterComponentIndexes, int newOccupantId) {
         var index = GameComponentsLookup.Receiver;
         var component = CreateComponent<ReceiverComponent>(index);
-        component.filterComponentNames = newFilterComponentNames;
+        component.filterComponentIndexes = newFilterComponentIndexes;
         component.occupantId = newOccupantId;
         ReplaceComponent(index, component);
     }

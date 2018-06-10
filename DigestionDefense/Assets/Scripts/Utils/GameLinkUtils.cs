@@ -29,7 +29,7 @@ namespace Finegamedesign.Entitas
             if (entityObject == null)
                 return -1;
 
-            GameEntity entity = GameLinkUtils.GetEntity(entityObject);
+            GameEntity entity = GetEntity(entityObject);
             if (entity == null)
                 return -1;
 

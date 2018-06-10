@@ -1,3 +1,7 @@
+using Finegamedesign.Utils;
+using System;
+using System.Collections.Generic;
+
 namespace Finegamedesign.Entitas
 {
     public static class ReceiverUtils
@@ -28,21 +32,22 @@ namespace Finegamedesign.Entitas
             if (!IsEmpty(receiver))
                 return false;
 
-            string[] filterNames = receiver.filterComponentNames;
-            if (filterNames == null)
+            HashSet<int> filterIndexes = receiver.filterComponentIndexes;
+            if (filterIndexes == null)
                 return false;
 
-            foreach (string filterName in filterNames)
-            {
-                if (filterName != componentName)
-                    continue;
+            string[] componentNames = GameComponentsLookup.componentNames;
+            int componentIndex = Array.IndexOf(componentNames, componentName);
+            DebugUtil.Assert(componentIndex >= 0,
+                "ReceiverUtils.Filter: Expects component '" + componentName + "' in game component names " +
+                DataUtil.ToString(componentNames));
 
-                return true;
-            }
-
-            return false;
+            return filterIndexes.Contains(componentIndex);
         }
 
+        /// <returns>
+        /// TODO: If candidate has one of the filter components.
+        /// </returns>
         #warning TODO: If candidate has one of the filter components.
         public static bool Filter(ReceiverComponent receiver, GameEntity candidate)
         {
@@ -52,7 +57,7 @@ namespace Finegamedesign.Entitas
         public static void ReplaceOccupant(GameEntity receiver, GameEntity occupant)
         {
             receiver.ReplaceReceiver(
-                receiver.receiver.filterComponentNames,
+                receiver.receiver.filterComponentIndexes,
                 occupant.id.value
             );
         }
@@ -60,7 +65,7 @@ namespace Finegamedesign.Entitas
         public static void SetEmpty(GameEntity receiver)
         {
             receiver.ReplaceReceiver(
-                receiver.receiver.filterComponentNames,
+                receiver.receiver.filterComponentIndexes,
                 kEmpty
             );
         }
