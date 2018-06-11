@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Finegamedesign.Entitas
 {
-    public sealed class ReceiverComponentView : AGameComponentView<ReceiverComponent>
+    public sealed class ReceiverComponentView : AGameComponentView<ReceiverComponent>, IReceiverListener
     {
         [Header("If not null, overwrites component indexes.")]
         [Tooltip("The order of indexes are unstable, so uses a string. Then caches to index for performance.")]
@@ -18,6 +18,10 @@ namespace Finegamedesign.Entitas
         [SerializeField]
         private GameObject m_OccupantObject = null;
 
+        /// <summary>
+        /// During initialization, converts filter component names to indexes.
+        /// Otherwise, if the component indexes changed after editing this view, the indexes would mismatch.
+        /// </summary>
         protected override void Initialize()
         {
             if (m_OccupantObject != null)
@@ -29,7 +33,13 @@ namespace Finegamedesign.Entitas
                 m_Component.occupantId = occupantEntity.id.value;
             }
 
+            if (m_FilterComponentNames != null)
+                ToComponentIndexes(m_FilterComponentNames, ref m_Component.filterComponentIndexes);
+
             base.Initialize();
+
+            GameEntity receiverEntity = GameLinkUtils.GetEntity(gameObject);
+            receiverEntity.AddReceiverListener(this);
         }
 
         private void OnValidate()
@@ -56,6 +66,11 @@ namespace Finegamedesign.Entitas
 
                 componentIndexes.Add(componentIndex);
             }
+        }
+
+        public void OnReceiver(GameEntity receiver, HashSet<int> newFilterComponentIndexes, int occupantId)
+        {
+            GameLinkUtils.TryAddChild(receiver.id.value, occupantId);
         }
     }
 }

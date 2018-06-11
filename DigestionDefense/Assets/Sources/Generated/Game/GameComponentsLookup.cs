@@ -11,15 +11,17 @@ public static class GameComponentsLookup {
     public const int Consumable = 0;
     public const int Id = 1;
     public const int Receiver = 2;
-    public const int Selected = 3;
-    public const int Transmitter = 4;
+    public const int ReceiverListener = 3;
+    public const int Selected = 4;
+    public const int Transmitter = 5;
 
-    public const int TotalComponents = 5;
+    public const int TotalComponents = 6;
 
     public static readonly string[] componentNames = {
         "Consumable",
         "Id",
         "Receiver",
+        "ReceiverListener",
         "Selected",
         "Transmitter"
     };
@@ -28,6 +30,7 @@ public static class GameComponentsLookup {
         typeof(ConsumableComponent),
         typeof(IdComponent),
         typeof(ReceiverComponent),
+        typeof(ReceiverListenerComponent),
         typeof(SelectedComponent),
         typeof(TransmitterComponent)
     };

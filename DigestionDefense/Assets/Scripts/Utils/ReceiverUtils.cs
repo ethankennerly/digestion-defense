@@ -72,7 +72,9 @@ namespace Finegamedesign.Entitas
         }
 
         /// <remarks>
-        /// Iterating would scale better if filter names were an array instead of a hash set.
+        /// Iterating would scale better if filter names were:
+        ///     (A) a bitfield instead of a hash set.  Or,
+        ///     (B) an array instead of a hash set.
         /// </remarks>
         /// <returns>
         /// If receiver is empty and candidate has any of the receiver's filter components.
@@ -117,6 +119,16 @@ namespace Finegamedesign.Entitas
             );
         }
 
+        public static void Transfer(GameEntity giver, GameEntity receiver)
+        {
+            receiver.ReplaceReceiver(
+                receiver.receiver.filterComponentIndexes,
+                giver.receiver.occupantId
+            );
+
+            SetEmpty(giver);
+        }
+
         public static void SetEmpty(GameEntity receiver)
         {
             receiver.ReplaceReceiver(
@@ -134,10 +146,10 @@ namespace Finegamedesign.Entitas
             }
         }
 
-        /// <param name="preferredIds">
-        /// Selects one of these first if acceptable.  Sets that preferred ID to empty if selected.
+        /// <param name="giverIds">
+        /// Selects first acceptable giver or gift in that giver's receiver.  Sets that giver ID to empty if selected.
         /// </param>
-        public static void OccupyIfEmpty(GameContext context, int[] receiverIds, int[] preferredIds)
+        public static void OccupyIfEmpty(GameContext context, int[] receiverIds, int[] giverIds)
         {
             foreach (int receiverId in receiverIds)
             {
@@ -145,31 +157,39 @@ namespace Finegamedesign.Entitas
                 if (!IsEmpty(receiver.receiver))
                     continue;
 
-                GameEntity occupant = null;
-                for (int preferredIndex = 0, numPreferred = preferredIds.Length; preferredIndex < numPreferred; ++ preferredIndex)
+                GameEntity[] giverEntities = GameLinkUtils.GetEntitiesWithIds(context, giverIds);
+                foreach (GameEntity giverEntity in giverEntities)
                 {
-                    int preferredId = preferredIds[preferredIndex];
-                    GameEntity preferred = context.GetEntityWithId(preferredId);
-                    if (preferred == null)
+                    if (Filter(receiver.receiver, giverEntity))
+                    {
+                        ReplaceOccupant(receiver, giverEntity);
+                        return;
+                    }
+
+                    int giftId = giverEntity.receiver.occupantId;
+                    if (giftId == kEmpty)
                         continue;
 
-                    if (!Filter(receiver.receiver, preferred))
+                    GameEntity gift = context.GetEntityWithId(giftId);
+                    if (gift == null)
+                    {
+                        DebugUtil.Assert(gift != null,
+                            "ReceiverUtils.OccupyIfEmpty: Expected gift was not null. Gift ID=" + giftId);
                         continue;
+                    }
 
-                    occupant = preferred;
+                    if (Filter(receiver.receiver, gift))
+                    {
+                        Transfer(giverEntity, receiver);
+                        return;
+                    }
                 }
 
-                if (occupant == null)
-                {
-                    DebugUtil.Assert(false,
-                        "ReceiverUtils.OccupyIfEmpty: Expected some filter to match. " +
-                        " preferredIds=" + DataUtil.ToString(preferredIds) +
-                        " receiver=" + receiver
-                    );
-                    return;
-                }
-
-                ReplaceOccupant(receiver, occupant);
+                DebugUtil.Assert(false,
+                    "ReceiverUtils.OccupyIfEmpty: Expected some filter to match. " +
+                    "giverEntities=" + DataUtil.ToString(giverEntities) + " " +
+                    "receiver=" + receiver
+                );
             }
         }
 

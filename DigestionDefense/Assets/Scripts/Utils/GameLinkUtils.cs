@@ -1,10 +1,14 @@
 using Entitas.Unity;
+using Finegamedesign.Utils;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Finegamedesign.Entitas
 {
     public static class GameLinkUtils
     {
+        private static readonly Dictionary<int, GameObject> s_EntityIdToObjects = new Dictionary<int, GameObject>();
+
         /// <returns>
         /// Null if not linked.
         /// </returns>
@@ -36,6 +40,19 @@ namespace Finegamedesign.Entitas
             return entity.id.value;
         }
 
+        public static GameEntity[] GetEntitiesWithIds(GameContext context, int[] entityIds)
+        {
+            int numEntities = entityIds.Length;
+            GameEntity[] entities = new GameEntity[numEntities];
+            for (int index = 0; index < numEntities; ++index)
+            {
+                entities[index] = context.GetEntityWithId(entityIds[index]);
+                DebugUtil.Assert(entities[index] != null,
+                    "GameLinkUtils.GetEntitiesWithIds: Expected to find entity ID " + entityIds[index]);
+            }
+            return entities;
+        }
+
         /// <returns>
         /// Null if game object doesn't exist or was destroyed.
         /// Returns previous entity if still linked.
@@ -51,7 +68,51 @@ namespace Finegamedesign.Entitas
                 return entity;
 
             var context = Contexts.sharedInstance.game;
-            return (GameEntity)linkedObject.Link(context.CreateEntity(), context).entity;
+            entity = (GameEntity)linkedObject.Link(context.CreateEntity(), context).entity;
+            s_EntityIdToObjects[entity.id.value] = linkedObject;
+            return entity;
+        }
+
+        public static GameObject GetObject(int entityId)
+        {
+            GameObject linkedObject = null;
+            s_EntityIdToObjects.TryGetValue(entityId, out linkedObject);
+            return linkedObject;
+        }
+
+        public static GameObject GetObject(GameEntity entity)
+        {
+            return GetObject(entity.id.value);
+        }
+
+        /// <summary>
+        /// Parents child object to parent objects if they are both linked.
+        /// </summary>
+        /// <returns>
+        /// If both were linked.
+        /// </returns>
+        public static bool TryAddChild(int parentEntityId, int childEntityId, bool silentNull = false)
+        {
+            GameObject parentObject = GetObject(parentEntityId);
+            if (parentObject == null)
+            {
+                if (!silentNull && childEntityId != ReceiverComponent.kNone)
+                    DebugUtil.Log("ReceiverComponentView.OnReceiver: Did you expect parent ID " + parentEntityId +
+                        " to be linked to a game object? Child ID " + childEntityId);
+                return false;
+            }
+
+            GameObject childObject = GetObject(childEntityId);
+            if (childObject == null)
+            {
+                if (!silentNull && childEntityId != ReceiverComponent.kNone)
+                    DebugUtil.Log("ReceiverComponentView.OnReceiver: Did you expect child ID " + childEntityId +
+                        " to be linked to a game object? Parent ID " + parentEntityId);
+                return false;
+            }
+
+            SceneNodeView.AddChild(parentObject, childObject);
+            return true;
         }
 
         /// <summary>

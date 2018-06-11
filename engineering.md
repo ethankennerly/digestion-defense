@@ -115,7 +115,8 @@ Player flow:
 1. [ ] Three consumable deployment receivers.
 1. [ ] Three consumables transmit:  Grape, Cod, Oil.
 1. [x] Player taps collider of selected receiver in node hierarchy containing grape.
-1. [ ] Transmitter transforms selected and grape to transmit grape to connected entrance that receives consumable.
+1. [x] Transmitter transforms selected and grape to transmit grape to connected entrance that receives consumable.
+    1. [x] A view listening to this event reparents the game object to the new receiver.
 1. [ ] consumable receiver at end of tunnel has trigger region covering all caves.
 1. [ ] Nav agent in grape finds path to end of tunnel, and begins moving.
 1. [ ] Grape moves in trigger region of white teeth.

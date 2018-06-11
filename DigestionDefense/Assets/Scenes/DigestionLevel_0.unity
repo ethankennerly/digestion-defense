@@ -1277,7 +1277,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_FilterComponentNames:
-  - Receiver
+  - Consumable
   m_OccupantObject: {fileID: 0}
 --- !u!1001 &112423022
 Prefab:
