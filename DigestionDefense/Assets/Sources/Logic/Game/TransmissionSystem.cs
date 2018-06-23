@@ -3,7 +3,6 @@ using System.Collections.Generic;
 
 namespace Finegamedesign.Entitas
 {
-    // TODO
     public sealed class TransmissionSystem : ReactiveSystem<GameEntity>
     {
         private readonly GameContext m_Context;

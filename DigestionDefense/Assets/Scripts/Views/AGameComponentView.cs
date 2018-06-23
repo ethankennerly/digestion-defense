@@ -6,10 +6,10 @@ using UnityEngine;
 namespace Finegamedesign.Entitas
 {
     public abstract class AGameComponentView<TComponent> : MonoBehaviour
-        where TComponent : ACloneable, IComponent, new()
+        where TComponent : IComponent, new()
     {
         [SerializeField]
-        protected TComponent m_Component;
+        protected TComponent m_Component = new TComponent();
 
         protected GameEntity m_Entity;
 
@@ -46,6 +46,11 @@ namespace Finegamedesign.Entitas
             gameObject.Unlink();
         }
 
+        /// <summary>
+        /// If component is not cloneable, then it is the component's responsibility to refresh
+        /// values that depend on entity ID.
+        /// Otherwise a recycled entity or view may associate stale values from a previous incarnation.
+        /// </summary>
         protected void ReplaceComponent()
         {
             Debug.Assert(m_Component != null,
@@ -55,7 +60,7 @@ namespace Finegamedesign.Entitas
             TComponent clone;
             if (m_Component is ICloneable)
             {
-                clone = (TComponent)m_Component.Clone();
+                clone = (TComponent)((ICloneable)m_Component).Clone();
             }
             else
             {

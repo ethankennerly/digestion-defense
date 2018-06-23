@@ -157,7 +157,7 @@ Player flow:
         - String for simple and stable serialization.
     - Occupant
         - Entity ID
-- [ ] Transmitter (similar to what a Petri Net calls a Transition)
+- [x] Transmitter (similar to what a Petri Net calls a Transition)
     - Input IDs
         - Input is a receiver with an occupant.
     - Output IDs
