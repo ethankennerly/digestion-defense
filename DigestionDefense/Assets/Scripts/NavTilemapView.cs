@@ -55,6 +55,7 @@ public sealed class NavTilemapView : MonoBehaviour
         Vector3 position = transform.position;
         position.x = worldPoint.x;
         position.y = worldPoint.y;
+        position.z += passableNode.transform.localPosition.z;
         passableNode.transform.position = position;
         passableNode.name += worldPoint.ToString();
     }

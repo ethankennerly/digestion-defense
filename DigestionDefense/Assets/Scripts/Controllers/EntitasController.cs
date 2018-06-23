@@ -3,35 +3,43 @@ using UnityEngine;
 
 namespace Finegamedesign.Entitas
 {
+    /// <remarks>
+    /// In preferences, set script execution order before default.
+    /// Otherwise, a dependent script might race on enable.
+    /// </remarks>
     public sealed class EntitasController : MonoBehaviour
     {
-        private Systems m_Systems;
+        private static Systems s_Systems;
 
-        private void Awake()
+        private static Contexts s_Contexts;
+
+        private void OnEnable()
         {
-            // get a reference to the contexts
-            var contexts = Contexts.sharedInstance;
+            if (s_Contexts == null)
+            {
+                s_Contexts = Contexts.sharedInstance;
+                ContextUtils.Subscribe(s_Contexts, true);
+            }
 
-            ContextUtils.Subscribe(contexts, true);
+            if (s_Systems == null)
+                s_Systems = new PetriGameSystems(s_Contexts);
 
-            // create the systems by creating individual features
-            m_Systems = new PetriGameSystems(contexts);
-                // .Add(new ClickPointInputSystem(contexts));
+            s_Systems.Initialize();
+        }
 
-            // call Initialize() on all of the IInitializeSystems
-            m_Systems.Initialize();
+        private void OnDisable()
+        {
+            if (s_Systems != null)
+                s_Systems.TearDown();
         }
 
         private void Update()
         {
-            if (m_Systems == null)
+            if (s_Systems == null)
                 return;
 
-            // call Execute() on all the IExecuteSystems and
-            // ReactiveSystems that were triggered last frame
-            m_Systems.Execute();
-            // call cleanup() on all the ICleanupSystems
-            m_Systems.Cleanup();
+            s_Systems.Execute();
+            s_Systems.Cleanup();
         }
     }
 }

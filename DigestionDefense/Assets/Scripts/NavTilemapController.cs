@@ -6,6 +6,8 @@ public sealed class NavTilemapController
 {
     public event Action<Vector2> onPassableCreated;
 
+    private int m_TilemapLayerMask;
+
     private Tilemap m_Tilemap;
 
     public Tilemap tilemap
@@ -21,6 +23,9 @@ public sealed class NavTilemapController
                 return;
             }
             m_Tilemap = value;
+
+            m_TilemapLayerMask = 1 << value.gameObject.layer;
+
             Setup();
         }
     }
@@ -79,7 +84,17 @@ public sealed class NavTilemapController
     private bool IsCollision(int gridX, int gridY)
     {
         Vector2 point = GridToWorld2D(gridX, gridY);
-        return Physics2D.OverlapPoint(point) != null;
+        Collider2D collider = Physics2D.OverlapPoint(point, m_TilemapLayerMask);
+        if (collider == null)
+            return false;
+
+        if (collider is TilemapCollider2D)
+            return true;
+
+        if (collider.isTrigger)
+            return false;
+
+        return true;
     }
 
     private void Setup()
