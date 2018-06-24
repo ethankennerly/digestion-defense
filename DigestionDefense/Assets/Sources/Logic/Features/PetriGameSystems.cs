@@ -8,6 +8,7 @@ namespace Finegamedesign.Entitas
         public PetriGameSystems(Contexts contexts)
         {
             Add(new TransmissionSystem(contexts));
+            Add(new TriggerNavTargetSystem(contexts));
             Add(new GameEventSystems(contexts));
         }
     }

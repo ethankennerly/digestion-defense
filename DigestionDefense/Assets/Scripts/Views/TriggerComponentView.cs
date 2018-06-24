@@ -28,7 +28,6 @@ namespace Finegamedesign.Entitas
                 return;
 
             ReplaceComponent();
-            DebugUtil.Assert(false, this + ".OnTriggerEnter2D: TODO: Publish trigger with target=" + other);
         }
     }
 }
