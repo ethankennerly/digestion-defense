@@ -39,10 +39,13 @@ namespace Finegamedesign.Entitas
 
                 if (!traveler.hasNavAgent)
                 {
-                    traveler.AddNavAgent(new NavTilemapAgent());
-                    var travelerPosition = GameLinkUtils.GetObject(traveler).transform.position;
-                    traveler.navAgent.agent.position = travelerPosition;
-                    traveler.navAgent.agent.nav = attractor.navAgent.agent.nav;
+                    var nav = attractor.navAgent.agent.nav;
+                    var travelerObject = GameLinkUtils.GetObject(traveler);
+                    var navAgentView = travelerObject.AddComponent<NavAgentComponentView>();
+                    navAgentView.Initialize();
+                    var navComponent = navAgentView.Component;
+                    var navAgent = navComponent.agent;
+                    navAgent.nav = nav;
                 }
 
                 SetDestinationIfIsCloser(traveler.navAgent.agent,
@@ -56,7 +59,6 @@ namespace Finegamedesign.Entitas
                 return;
 
             agent.destination = attractorPosition;
-            DebugUtil.LogError("TriggerNavTargetSystem.SetDestinationIfIsCloser: TODO: nav agent listener snaps transform to nav agent position=" + agent.position + " on path to destionation=" + agent.destination);
         }
 
         private static bool IsCloser(NavTilemapAgent agent, Vector3 attractorPosition)

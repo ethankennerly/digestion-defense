@@ -1,5 +1,5 @@
-using UnityEngine;
 using Finegamedesign.Nav;
+using UnityEngine;
 
 namespace Finegamedesign.Entitas
 {
@@ -8,12 +8,39 @@ namespace Finegamedesign.Entitas
         [SerializeField]
         private NavTilemapView m_NavTilemapView = null;
 
-        protected override void Initialize()
+        public override void Initialize()
         {
-            m_Component.agent = new NavTilemapAgent();
-            m_Component.agent.nav = m_NavTilemapView.controller;
+            var agent = m_Component.agent;
+            if (agent == null)
+            {
+                agent = new NavTilemapAgent();
+                m_Component.agent = agent;
+            }
+            if (m_NavTilemapView != null && agent.nav == null)
+                agent.nav = m_NavTilemapView.controller;
+
+            agent.position = transform.position;
 
             base.Initialize();
+        }
+
+        protected override void OnEnable()
+        {
+            base.OnEnable();
+
+            m_Component.agent.onPositionChanged += UpdatePosition;
+        }
+
+        protected override void OnDisable()
+        {
+            m_Component.agent.onPositionChanged -= UpdatePosition;
+
+            base.OnDisable();
+        }
+
+        private void UpdatePosition(Vector3 position)
+        {
+            transform.position = position;
         }
     }
 }

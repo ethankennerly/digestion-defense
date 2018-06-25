@@ -9,7 +9,7 @@ namespace Finegamedesign.Entitas
         [SerializeField]
         private GameObject[] m_OutputObjects = null;
 
-        protected override void Initialize()
+        public override void Initialize()
         {
             if (m_InputObjects != null)
                 m_Component.inputIds = GameLinkUtils.TryLinkIds(m_InputObjects);

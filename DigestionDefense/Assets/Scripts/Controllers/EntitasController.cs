@@ -1,45 +1,54 @@
 using Entitas;
-using UnityEngine;
 
 namespace Finegamedesign.Entitas
 {
-    /// <remarks>
-    /// In preferences, set script execution order before default.
-    /// Otherwise, a dependent script might race on enable.
-    /// </remarks>
-    public sealed class EntitasController : MonoBehaviour
+    public sealed class EntitasController
     {
-        private static Systems s_Systems;
+        private readonly Contexts m_Contexts;
 
-        private static Contexts s_Contexts;
-
-        private void OnEnable()
+        public Contexts contexts
         {
-            if (s_Contexts == null)
-            {
-                s_Contexts = Contexts.sharedInstance;
-                ContextUtils.Subscribe(s_Contexts, true);
-            }
-
-            if (s_Systems == null)
-                s_Systems = new PetriGameSystems(s_Contexts);
-
-            s_Systems.Initialize();
+            get { return m_Contexts; }
         }
 
-        private void OnDisable()
+        private readonly Systems m_Systems;
+
+        public Systems systems
         {
-            if (s_Systems != null)
-                s_Systems.TearDown();
+            get { return m_Systems; }
         }
 
-        private void Update()
+        public EntitasController(Contexts contexts, Systems systems)
         {
-            if (s_Systems == null)
+            m_Contexts = contexts;
+            ContextUtils.Subscribe(m_Contexts, true);
+
+            m_Systems = systems;
+        }
+
+        ~EntitasController()
+        {
+            ContextUtils.Subscribe(m_Contexts, false);
+        }
+
+        public void Initialize()
+        {
+            m_Systems.Initialize();
+        }
+
+        public void TearDown()
+        {
+            if (m_Systems != null)
+                m_Systems.TearDown();
+        }
+
+        public void Update()
+        {
+            if (m_Systems == null)
                 return;
 
-            s_Systems.Execute();
-            s_Systems.Cleanup();
+            m_Systems.Execute();
+            m_Systems.Cleanup();
         }
     }
 }

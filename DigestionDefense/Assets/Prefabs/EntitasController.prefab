@@ -19,8 +19,8 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4110546622180230}
-  - component: {fileID: 114509641661456134}
   - component: {fileID: 114101438761801252}
+  - component: {fileID: 114344769405602396}
   m_Layer: 0
   m_Name: EntitasController
   m_TagString: Untagged
@@ -52,7 +52,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2296e7186d0a013439f717211e36270f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114509641661456134
+--- !u!114 &114344769405602396
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -60,6 +60,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 1513519860120648}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc56cf4e15da2d940bb04da2568fb45b, type: 3}
+  m_Script: {fileID: 11500000, guid: 505ae4b773ccef441a67e2b4b7236a17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

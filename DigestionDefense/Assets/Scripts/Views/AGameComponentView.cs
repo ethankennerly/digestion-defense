@@ -11,23 +11,31 @@ namespace Finegamedesign.Entitas
         [SerializeField]
         protected TComponent m_Component = new TComponent();
 
+        public TComponent Component
+        {
+            get { return m_Component; }
+        }
+
         protected GameEntity m_Entity;
 
-        private void Start()
+        protected bool m_ReplaceComponentOnInitialize = true;
+
+        protected virtual void OnEnable()
         {
             Initialize();
         }
 
-        private void OnDestroy()
+        protected virtual void OnDisable()
         {
             TryUnlink();
         }
 
-        protected virtual void Initialize()
+        public virtual void Initialize()
         {
             TryLink();
 
-            ReplaceComponent();
+            if (m_ReplaceComponentOnInitialize)
+                ReplaceComponent();
         }
 
         protected void TryLink()

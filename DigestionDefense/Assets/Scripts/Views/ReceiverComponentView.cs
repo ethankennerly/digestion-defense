@@ -22,7 +22,7 @@ namespace Finegamedesign.Entitas
         /// During initialization, converts filter component names to indexes.
         /// Otherwise, if the component indexes changed after editing this view, the indexes would mismatch.
         /// </summary>
-        protected override void Initialize()
+        public override void Initialize()
         {
             if (m_OccupantObject != null)
             {

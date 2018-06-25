@@ -11,6 +11,11 @@ namespace Finegamedesign.Entitas
         [SerializeField]
         private Rigidbody2D m_KinematicBody = null;
 
+        public TriggerComponentView()
+        {
+            m_ReplaceComponentOnInitialize = false;
+        }
+
         private void OnValidate()
         {
             if (m_Trigger == null)
