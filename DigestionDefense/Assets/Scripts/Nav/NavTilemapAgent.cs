@@ -97,6 +97,25 @@ namespace Finegamedesign.Nav
 
         private IEnumerable<MyPathNode> m_Path;
 
+        public bool hasPath
+        {
+            get
+            {
+                return m_Path != null;
+            }
+        }
+
+        /// <summary>
+        /// Error of path does not exist.
+        /// </summary>
+        public int pathDistance
+        {
+            get
+            {
+                return GetNumSteps(m_Path);
+            }
+        }
+
         private float m_TweenTime = 0f;
         private float m_StepDuration = 0.25f;
         private Vector3 m_PreviousStep;
@@ -139,6 +158,28 @@ namespace Finegamedesign.Nav
             m_Solver.allowsDiagonals = m_AllowsDiagonals;
             m_PreviousStep = position;
             m_NextStep = position;
+        }
+
+        public static int GetNumSteps<T>(IEnumerable<T> path)
+        {
+            int numSteps = 0;
+            foreach (T step in path)
+            {
+                ++numSteps;
+            }
+            return numSteps;
+        }
+
+        public IEnumerable<MyPathNode> GetPath(Vector3 destination)
+        {
+            if (m_Solver == null)
+            {
+                CreateSolver();
+            }
+            return m_Solver.Search(
+                (Vector2)m_CurrentCell,
+                (Vector2)m_DestinationCell,
+                null);
         }
 
         private void FindPath()
