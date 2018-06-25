@@ -24,7 +24,25 @@ namespace Finegamedesign.Entitas
 
         protected override bool Filter(GameEntity entity)
         {
-            return true;
+            var trigger = entity.trigger;
+            GameEntity traveler = m_Context.GetEntityWithId(trigger.targetId);
+            if (traveler == null)
+                return false;
+
+            GameEntity attractor = m_Context.GetEntityWithId(trigger.sourceId);
+            DebugUtil.Assert(attractor != null,
+                "Filter expected trigger source was defined. " +
+                "Trigger source ID=" + trigger.sourceId + " traveler=" + traveler);
+            if (attractor == null)
+                return false;
+
+            DebugUtil.Assert(attractor.hasReceiver,
+                "Filter expected trigger source has receiver. " +
+                "Trigger source ID=" + attractor + " traveler=" + traveler);
+            if (!attractor.hasReceiver)
+                return false;
+
+            return ReceiverUtils.Filter(attractor.receiver, traveler);
         }
 
         protected override void Execute(List<GameEntity> entities)
@@ -34,23 +52,25 @@ namespace Finegamedesign.Entitas
                 var trigger = triggerEntity.trigger;
                 GameEntity attractor = m_Context.GetEntityWithId(trigger.sourceId);
                 GameEntity traveler = m_Context.GetEntityWithId(trigger.targetId);
-                if (traveler == null)
-                    continue;
 
                 if (!traveler.hasNavAgent)
                 {
-                    var nav = attractor.navAgent.agent.nav;
-                    var travelerObject = GameLinkUtils.GetObject(traveler);
-                    var navAgentView = travelerObject.AddComponent<NavAgentComponentView>();
-                    navAgentView.Initialize();
-                    var navComponent = navAgentView.Component;
-                    var navAgent = navComponent.agent;
-                    navAgent.nav = nav;
+                    InitializeNavAgentView(traveler, attractor.navAgent.agent.nav);
                 }
 
                 SetDestinationIfIsCloser(traveler.navAgent.agent,
                     GameLinkUtils.GetObject(attractor).transform.position);
             }
+        }
+
+        private static void InitializeNavAgentView(GameEntity traveler, NavTilemapController navController)
+        {
+            var travelerObject = GameLinkUtils.GetObject(traveler);
+            var navAgentView = travelerObject.AddComponent<NavAgentComponentView>();
+            navAgentView.Initialize();
+            var navComponent = navAgentView.Component;
+            var navAgent = navComponent.agent;
+            navAgent.nav = navController;
         }
 
         private static void SetDestinationIfIsCloser(NavTilemapAgent agent, Vector3 attractorPosition)
@@ -59,6 +79,7 @@ namespace Finegamedesign.Entitas
                 return;
 
             agent.destination = attractorPosition;
+            DebugUtil.Log("TriggerNavTargetSystem.SetDestinationIfIsCloser: agent=" + agent + " attractorPosition=" + attractorPosition);
         }
 
         private static bool IsCloser(NavTilemapAgent agent, Vector3 attractorPosition)

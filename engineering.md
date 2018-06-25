@@ -180,20 +180,19 @@ Player flow:
     - Children entity IDs
 
 Navigation components:
-- [ ] nav agent
+- [x] nav agent
     - nav tilemap agent
-- [ ] nav target
 - [x] trigger region 2D
     - kinematic rigid body <https://docs.unity3d.com/Manual/CollidersOverview.html>
     - collider 2D as trigger
         - mono behaviour listens to on trigger enter 2D.
     - event connects source entity ID and target entity ID of trigger.
 Navigation system:
-    - [ ] reacts to trigger.
+    - [x] reacts to trigger.
         - [ ] filters matching receiver.
-            - [ ] if no nav agent, adds nav agent.
-            - [ ] nav agent targets receiver, if nearer than current target.
-            - [ ] nav agent listener updates position.
+            - [x] if no nav agent, adds nav agent.
+            - [x] nav agent targets receiver, if nearer than current target.
+            - [x] nav agent listener updates position.
 ## Reference: Machinations by Joris Dormans
 
 Node types:

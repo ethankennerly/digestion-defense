@@ -51,6 +51,12 @@ namespace Finegamedesign.Entitas
             if (m_Entity == null)
                 return;
 
+            m_Entity = null;
+
+            var link = gameObject.GetEntityLink();
+            if (link == null || link.entity == null)
+                return;
+
             gameObject.Unlink();
         }
 
