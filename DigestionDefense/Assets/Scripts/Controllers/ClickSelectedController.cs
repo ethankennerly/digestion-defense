@@ -68,7 +68,7 @@ namespace Finegamedesign.Entitas
 
             GameEntity selectedEntity = m_Context.CreateEntity();
             selectedEntity.isSelected = true;
-            ReceiverUtils.ReplaceOccupant(entity, selectedEntity);
+            ReceiverUtils.AddOccupant(entity, selectedEntity.id.value);
         }
     }
 }

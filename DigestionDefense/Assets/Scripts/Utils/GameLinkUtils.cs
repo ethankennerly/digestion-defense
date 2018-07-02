@@ -7,6 +7,8 @@ namespace Finegamedesign.Entitas
 {
     public static class GameLinkUtils
     {
+        public const int kNone = -1;
+
         private static readonly Dictionary<int, GameObject> s_EntityIdToObjects = new Dictionary<int, GameObject>();
 
         /// <returns>
@@ -31,11 +33,11 @@ namespace Finegamedesign.Entitas
         public static int GetId(GameObject entityObject)
         {
             if (entityObject == null)
-                return -1;
+                return kNone;
 
             GameEntity entity = GetEntity(entityObject);
             if (entity == null)
-                return -1;
+                return kNone;
 
             return entity.id.value;
         }
@@ -86,33 +88,53 @@ namespace Finegamedesign.Entitas
         }
 
         /// <summary>
-        /// Parents child object to parent objects if they are both linked.
+        /// Parents child object to parent objects if both entities are linked to game objects.
         /// </summary>
         /// <returns>
-        /// If both were linked.
+        /// If parent and child are linked to game objects.
         /// </returns>
-        public static bool TryAddChild(int parentEntityId, int childEntityId, bool silentNull = false)
+        public static bool TryAddChild(int parentEntityId, int childEntityId,
+            bool silentIfChildIsUnlinked = false)
         {
             GameObject parentObject = GetObject(parentEntityId);
+            DebugUtil.Assert(parentObject != null,
+                "GameLinkUtils.TryAddChild: Did you expect parent ID " + parentEntityId +
+                " to be linked to a game object? Child ID " + childEntityId);
             if (parentObject == null)
-            {
-                if (!silentNull && childEntityId != ReceiverComponent.kNone)
-                    DebugUtil.Log("ReceiverComponentView.OnReceiver: Did you expect parent ID " + parentEntityId +
-                        " to be linked to a game object? Child ID " + childEntityId);
                 return false;
-            }
 
             GameObject childObject = GetObject(childEntityId);
+            if (!silentIfChildIsUnlinked)
+                DebugUtil.Assert(childObject != null,
+                    "GameLinkUtils.TryAddChild: Did you expect child ID " + childEntityId +
+                    " to be linked to a game object? Parent ID " + parentEntityId);
             if (childObject == null)
-            {
-                if (!silentNull && childEntityId != ReceiverComponent.kNone)
-                    DebugUtil.Log("ReceiverComponentView.OnReceiver: Did you expect child ID " + childEntityId +
-                        " to be linked to a game object? Parent ID " + parentEntityId);
                 return false;
-            }
 
             SceneNodeView.AddChild(parentObject, childObject);
             return true;
+        }
+
+        /// <summary>
+        /// Parents each child object to the parent object if the parent and child are linked to game objects.
+        /// </summary>
+        /// <returns>
+        /// If parent and all children are linked to game objects.
+        /// </returns>
+        public static bool TryAddChildren(int parentEntityId, int[] childEntityIds,
+            bool silentIfChildIsUnlinked = false)
+        {
+            bool areAllLinked = true;
+            foreach (int childEntityId in childEntityIds)
+            {
+                if (childEntityId == kNone)
+                    continue;
+
+                if (!TryAddChild(parentEntityId, childEntityId, silentIfChildIsUnlinked))
+                    areAllLinked = false;
+            }
+
+            return areAllLinked;
         }
 
         /// <summary>
@@ -128,7 +150,7 @@ namespace Finegamedesign.Entitas
         {
             GameEntity entity = TryLink(linkedObject);
             if (entity == null)
-                return -1;
+                return kNone;
 
             return entity.id.value;
         }
@@ -140,7 +162,7 @@ namespace Finegamedesign.Entitas
         ///
         /// <returns>
         /// Entity ID of each linked object.
-        /// -1 if the object was destroyed.
+        /// -1 instead of entity ID if the object was destroyed.
         /// </returns>
         public static int[] TryLinkIds(GameObject[] linkedObjects)
         {

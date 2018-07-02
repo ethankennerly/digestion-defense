@@ -7,5 +7,5 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 public interface IReceiverListener {
-    void OnReceiver(GameEntity entity, System.Collections.Generic.HashSet<int> filterComponentIndexes, int occupantId);
+    void OnReceiver(GameEntity entity, System.Collections.Generic.HashSet<int> filterComponentIndexes, int[] occupantIds, int availableIndex);
 }

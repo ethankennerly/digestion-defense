@@ -1,27 +1,43 @@
+// Uncomment to log some function calls.
+// #define LOG_RECEIVER
+
 using Finegamedesign.Utils;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace Finegamedesign.Entitas
 {
     public static class ReceiverUtils
     {
-        private const int kEmpty = -1;
+        public const int kEmpty = -1;
 
         public static bool IsEmpty(ReceiverComponent receiver)
         {
-            return receiver.occupantId == kEmpty;
+            foreach (int occupantId in receiver.occupantIds)
+                if (occupantId != kEmpty)
+                    return false;
+
+            return true;
         }
 
-        public static bool AllFull(GameContext context, int[] receiverIds)
+        public static bool IsFull(ReceiverComponent receiver)
         {
+            return receiver.availableIndex < 0;
+        }
+
+        public static bool AnyEmpty(GameContext context, int[] receiverIds)
+        {
+            Log("AnyEmpty");
+
             foreach (int receiverId in receiverIds)
             {
                 GameEntity receiver = context.GetEntityWithId(receiverId);
-                if (ReceiverUtils.IsEmpty(receiver.receiver))
-                    return false;
+                if (IsEmpty(receiver.receiver))
+                    return true;
             }
-            return true;
+
+            return false;
         }
 
         /// <returns>
@@ -34,7 +50,7 @@ namespace Finegamedesign.Entitas
                 " is in range of game component names " +
                 DataUtil.ToString(GameComponentsLookup.componentNames));
 
-            if (!IsEmpty(receiver))
+            if (IsFull(receiver))
                 return false;
 
             HashSet<int> filterIndexes = receiver.filterComponentIndexes;
@@ -54,7 +70,7 @@ namespace Finegamedesign.Entitas
         /// </returns>
         public static bool Filter(ReceiverComponent receiver, string componentName)
         {
-            if (!IsEmpty(receiver))
+            if (IsFull(receiver))
                 return false;
 
             HashSet<int> filterIndexes = receiver.filterComponentIndexes;
@@ -81,7 +97,7 @@ namespace Finegamedesign.Entitas
         /// </returns>
         public static bool Filter(ReceiverComponent receiver, GameEntity candidate)
         {
-            if (!IsEmpty(receiver))
+            if (IsFull(receiver))
                 return false;
 
             HashSet<int> filterIndexes = receiver.filterComponentIndexes;
@@ -111,30 +127,60 @@ namespace Finegamedesign.Entitas
             return componentIndex;
         }
 
-        public static void ReplaceOccupant(GameEntity receiver, GameEntity occupant)
+        public static void AddOccupant(GameEntity receiver, int occupantId)
         {
-            receiver.ReplaceReceiver(
-                receiver.receiver.filterComponentIndexes,
-                occupant.id.value
-            );
+            Log("AddOccupant");
+
+            ReceiverComponent component = receiver.receiver;
+            component.occupantIds[component.availableIndex] = occupantId;
+            component.availableIndex = GetNextAvailableIndex(component);
+            receiver.ReplaceComponent(GameComponentsLookup.Receiver, component);
         }
 
-        public static void Transfer(GameEntity giver, GameEntity receiver)
+        public static int GetNextAvailableIndex(ReceiverComponent component)
         {
-            receiver.ReplaceReceiver(
-                receiver.receiver.filterComponentIndexes,
-                giver.receiver.occupantId
-            );
+            int availableIndex = component.availableIndex;
+            int maxOccupants = component.occupantIds.Length;
+            for (int offset = 0; offset < maxOccupants; ++offset)
+            {
+                int occupantIndex = (offset + availableIndex) % maxOccupants;
+                if (component.occupantIds[occupantIndex] == kEmpty)
+                    return occupantIndex;
+            }
+            return -1;
+        }
 
-            SetEmpty(giver);
+        private static int GetNextOccupantId(ReceiverComponent component)
+        {
+            foreach (int occupantId in component.occupantIds)
+                if (occupantId != kEmpty)
+                    return occupantId;
+
+            return -1;
+        }
+
+        public static void RemoveOccupant(GameEntity receiver, int occupantId)
+        {
+            ReceiverComponent component = receiver.receiver;
+            int[] occupantIds = component.occupantIds;
+            int occupantIndex = Array.IndexOf(occupantIds, occupantId);
+            DebugUtil.Assert(occupantIndex != -1,
+                "RemoveOccupant: Expected occupant ID=" + occupantId +
+                " found in occupant IDs=" + DataUtil.ToString(occupantIds) +
+                ". So an array out of bounds error will occur."
+            );
+            component.occupantIds[occupantIndex] = kEmpty;
+            component.availableIndex = GetNextAvailableIndex(component);
+            receiver.ReplaceComponent(GameComponentsLookup.Receiver, component);
         }
 
         public static void SetEmpty(GameEntity receiver)
         {
-            receiver.ReplaceReceiver(
-                receiver.receiver.filterComponentIndexes,
-                kEmpty
-            );
+            ReceiverComponent component = receiver.receiver;
+            for (int occupantIndex = component.occupantIds.Length - 1; occupantIndex >= 0; --occupantIndex)
+                component.occupantIds[occupantIndex] = kEmpty;
+
+            receiver.ReplaceComponent(GameComponentsLookup.Receiver, component);
         }
 
         public static void SetEmpty(GameContext context, int[] receiverIds)
@@ -146,72 +192,76 @@ namespace Finegamedesign.Entitas
             }
         }
 
+        /// <summary>
+        /// Receiver might be an input or an output of a transmitter.
+        /// As in a Petri Net, only transmits if all receivers are occupied.
+        /// Unlike a Petri Net, only transmits if to outputs with an empty occupant position.
+        /// Also unlike a Petri Net, preserves the input entity if it would be a suitable output.
+        ///
+        /// Expects each input and output has a receiver, or else Entitas throws an exception.
+        /// </summary>
+        ///
         /// <param name="giverIds">
         /// Selects first acceptable giver or gift in that giver's receiver.  Sets that giver ID to empty if selected.
         /// </param>
-        public static void OccupyIfEmpty(GameContext context, int[] receiverIds, int[] giverIds)
+        public static void TryOccupy(GameContext context, int[] receiverIds, int[] giverIds)
         {
-            foreach (int receiverId in receiverIds)
+            Log("TryOccupy");
+
+            GameEntity[] giverEntities = GameLinkUtils.GetEntitiesWithIds(context, giverIds);
+            foreach (GameEntity giverEntity in giverEntities)
             {
-                GameEntity receiver = context.GetEntityWithId(receiverId);
-                if (!IsEmpty(receiver.receiver))
+                int giftId = GetNextOccupantId(giverEntity.receiver);
+                if (giftId == kEmpty)
                     continue;
 
-                GameEntity[] giverEntities = GameLinkUtils.GetEntitiesWithIds(context, giverIds);
-                foreach (GameEntity giverEntity in giverEntities)
+                RemoveOccupant(giverEntity, giftId);
+
+                GameEntity gift = context.GetEntityWithId(giftId);
+                DebugUtil.Assert(gift != null,
+                    "ReceiverUtils.TryOccupy: Expected gift was not null. Gift ID=" + giftId);
+                if (gift == null)
+                    continue;
+
+                foreach (int receiverId in receiverIds)
                 {
-                    if (Filter(receiver.receiver, giverEntity))
-                    {
-                        ReplaceOccupant(receiver, giverEntity);
-                        return;
-                    }
-
-                    int giftId = giverEntity.receiver.occupantId;
-                    if (giftId == kEmpty)
+                    GameEntity receiver = context.GetEntityWithId(receiverId);
+                    ReceiverComponent component = receiver.receiver;
+                    if (IsFull(component))
                         continue;
 
-                    GameEntity gift = context.GetEntityWithId(giftId);
-                    if (gift == null)
+                    if (Filter(component, giverEntity))
                     {
-                        DebugUtil.Assert(gift != null,
-                            "ReceiverUtils.OccupyIfEmpty: Expected gift was not null. Gift ID=" + giftId);
-                        continue;
+                        AddOccupant(receiver, giverEntity.id.value);
+                        break;
                     }
 
-                    if (Filter(receiver.receiver, gift))
+                    if (Filter(component, gift))
                     {
-                        Transfer(giverEntity, receiver);
-                        return;
+                        AddOccupant(receiver, giftId);
+                        break;
                     }
                 }
-
-                DebugUtil.Assert(false,
-                    "ReceiverUtils.OccupyIfEmpty: Expected some filter to match. " +
-                    "giverEntities=" + DataUtil.ToString(giverEntities) + " " +
-                    "receiver=" + receiver
-                );
             }
         }
 
         /// <summary>
-        /// TODO
-        /// Receiver might be an input or an output of a transmitter.
         /// As in a Petri Net, only transmits if all receivers are occupied.
-        /// Unlike a Petri Net, only transmits if to empty outputs.
-        /// Also unlike a Petri Net, preserves the input entity if it would be a suitable output.
-        ///
-        /// To deposit into one of many alternatives, output to a receiver selector.
-        ///
-        /// Expects each input and output has a receiver, or else Entitas throws an exception.
+        /// Unlike a Petri Net, arcs do not (yet) support quantity other than one.
         /// </summary>
-        public static void TryTransmit(GameContext context, GameEntity receiver, int[] inputIds, int[] outputIds)
+        public static void TryTransmit(GameContext context, GameEntity receiver,
+            int[] inputIds, int[] outputIds)
         {
-            if (!AllFull(context, inputIds))
+            if (AnyEmpty(context, inputIds))
                 return;
 
-            OccupyIfEmpty(context, outputIds, inputIds);
+            TryOccupy(context, outputIds, inputIds);
+        }
 
-            SetEmpty(context, inputIds);
+        [Conditional("LOG_RECEIVER")]
+        private static void Log(string message)
+        {
+            DebugUtil.Log(message);
         }
     }
 }

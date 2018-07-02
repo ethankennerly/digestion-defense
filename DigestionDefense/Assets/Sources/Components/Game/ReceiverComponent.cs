@@ -7,9 +7,9 @@ using System.Collections.Generic;
 [Event(bindToEntity: true)]
 public sealed class ReceiverComponent : IComponent
 {
-    public const int kNone = -1;
-
     public HashSet<int> filterComponentIndexes = new HashSet<int>();
 
-    public int occupantId = kNone;
+    public int[] occupantIds = new int[1]{ReceiverUtils.kEmpty};
+
+    public int availableIndex = 0;
 }

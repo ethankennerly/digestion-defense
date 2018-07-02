@@ -16,7 +16,7 @@ namespace Finegamedesign.Entitas
 
         [Header("If not null, overwrites occupant ID when initializing.")]
         [SerializeField]
-        private GameObject m_OccupantObject = null;
+        private GameObject[] m_OccupantObjects = new GameObject[1];
 
         /// <summary>
         /// During initialization, converts filter component names to indexes.
@@ -24,14 +24,7 @@ namespace Finegamedesign.Entitas
         /// </summary>
         public override void Initialize()
         {
-            if (m_OccupantObject != null)
-            {
-                GameEntity occupantEntity = GameLinkUtils.TryLink(m_OccupantObject);
-                DebugUtil.Assert(occupantEntity != null, "ReceiverComponentView.Initialize: Expected "
-                    + m_OccupantObject + " was linked to an entity.");
-
-                m_Component.occupantId = occupantEntity.id.value;
-            }
+            InitializeOccupants();
 
             if (m_FilterComponentNames != null)
                 ToComponentIndexes(m_FilterComponentNames, ref m_Component.filterComponentIndexes);
@@ -42,10 +35,34 @@ namespace Finegamedesign.Entitas
             receiverEntity.AddReceiverListener(this);
         }
 
+        private void InitializeOccupants()
+        {
+            Debug.Assert(m_OccupantObjects != null,
+                "Expected Unity Editor serializes occupant objects as an empty collection.");
+
+            if (m_OccupantObjects == null)
+                return;
+
+            Array.Resize(ref m_Component.occupantIds, m_OccupantObjects.Length);
+            int index = -1;
+            foreach (GameObject occupantObject in m_OccupantObjects)
+            {
+                GameEntity occupantEntity = GameLinkUtils.TryLink(occupantObject);
+                m_Component.occupantIds[++index] = occupantEntity == null ? ReceiverUtils.kEmpty :
+                    occupantEntity.id.value;
+            }
+
+            m_Component.availableIndex = ReceiverUtils.GetNextAvailableIndex(m_Component);
+        }
+
         private void OnValidate()
         {
             if (m_FilterComponentNames != null)
                 ToComponentIndexes(m_FilterComponentNames, ref m_Component.filterComponentIndexes);
+
+            DebugUtil.Assert(m_OccupantObjects.Length >= 1,
+                this + ".OnValidate: Occupant objects length=" + m_OccupantObjects.Length +
+                " is less than 1, so it will never be occupiable.");
         }
 
         private static void ToComponentIndexes(string[] componentNames, ref HashSet<int> componentIndexes)
@@ -68,9 +85,10 @@ namespace Finegamedesign.Entitas
             }
         }
 
-        public void OnReceiver(GameEntity receiver, HashSet<int> newFilterComponentIndexes, int occupantId)
+        public void OnReceiver(GameEntity receiver, HashSet<int> newFilterComponentIndexes,
+            int[] newOccupantIds, int newAvailableIndex)
         {
-            GameLinkUtils.TryAddChild(receiver.id.value, occupantId);
+            GameLinkUtils.TryAddChildren(receiver.id.value, newOccupantIds, silentIfChildIsUnlinked: true);
         }
     }
 }

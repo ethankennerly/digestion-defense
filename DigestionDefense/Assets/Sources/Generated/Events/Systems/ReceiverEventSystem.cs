@@ -25,7 +25,7 @@ public sealed class ReceiverEventSystem : Entitas.ReactiveSystem<GameEntity> {
         foreach (var e in entities) {
             var component = e.receiver;
             foreach (var listener in e.receiverListener.value) {
-                listener.OnReceiver(e, component.filterComponentIndexes, component.occupantId);
+                listener.OnReceiver(e, component.filterComponentIndexes, component.occupantIds, component.availableIndex);
             }
         }
     }

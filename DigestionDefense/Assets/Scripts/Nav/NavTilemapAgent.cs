@@ -112,7 +112,7 @@ namespace Finegamedesign.Nav
         private Vector3 m_PreviousStep;
         private Vector3 m_NextStep;
 
-        private bool m_IsVerbose = true;
+        private bool m_IsVerbose = false;
 
         private void SetCurrentCell(Vector3 positionInWorld)
         {
@@ -139,7 +139,7 @@ namespace Finegamedesign.Nav
         private void FindPathInWorld()
         {
             if (m_IsVerbose)
-                Debug.Log("NavTilemapAgent.FindPath: From "
+                DebugUtil.Log("NavTilemapAgent.FindPath: From "
                     + m_Position + " to " + m_Destination);
 
             SetCurrentCell(m_Position);

@@ -1275,7 +1275,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_FilterComponentNames:
   - Consumable
-  m_OccupantObject: {fileID: 0}
+  m_OccupantObjects:
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1001 &112423022
 Prefab:
   m_ObjectHideFlags: 0
@@ -1484,7 +1486,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_FilterComponentNames:
   - Consumable
-  m_OccupantObject: {fileID: 0}
+  m_OccupantObjects:
+  - {fileID: 0}
 --- !u!1 &233294575
 GameObject:
   m_ObjectHideFlags: 0
@@ -1639,6 +1642,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 1064803689}
     m_Modifications:
+    - target: {fileID: 114350311395525856, guid: 6f09dbe139c6dce499bace85013ce9d8,
+        type: 2}
+      propertyPath: m_OccupantObjects.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4740396835293218, guid: 6f09dbe139c6dce499bace85013ce9d8, type: 2}
       propertyPath: m_LocalPosition.x
       value: -0.5
@@ -1671,15 +1679,15 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 1520901128074434, guid: 6f09dbe139c6dce499bace85013ce9d8, type: 2}
+      propertyPath: m_Name
+      value: SelectableCard (1)
+      objectReference: {fileID: 0}
     - target: {fileID: 114573969489268260, guid: 6f09dbe139c6dce499bace85013ce9d8,
         type: 2}
       propertyPath: m_OutputObjects.Array.data[0]
       value: 
       objectReference: {fileID: 97217513}
-    - target: {fileID: 1520901128074434, guid: 6f09dbe139c6dce499bace85013ce9d8, type: 2}
-      propertyPath: m_Name
-      value: SelectableCard (1)
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6f09dbe139c6dce499bace85013ce9d8, type: 2}
   m_IsPrefabParent: 0
@@ -1724,6 +1732,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 1064803689}
     m_Modifications:
+    - target: {fileID: 114350311395525856, guid: 6f09dbe139c6dce499bace85013ce9d8,
+        type: 2}
+      propertyPath: m_OccupantObjects.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4740396835293218, guid: 6f09dbe139c6dce499bace85013ce9d8, type: 2}
       propertyPath: m_LocalPosition.x
       value: 1.5
@@ -1988,6 +2001,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 1064803689}
     m_Modifications:
+    - target: {fileID: 114350311395525856, guid: 6f09dbe139c6dce499bace85013ce9d8,
+        type: 2}
+      propertyPath: m_OccupantObjects.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4740396835293218, guid: 6f09dbe139c6dce499bace85013ce9d8, type: 2}
       propertyPath: m_LocalPosition.x
       value: 3.5

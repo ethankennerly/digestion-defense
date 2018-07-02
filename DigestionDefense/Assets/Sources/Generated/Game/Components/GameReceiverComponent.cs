@@ -11,19 +11,21 @@ public partial class GameEntity {
     public ReceiverComponent receiver { get { return (ReceiverComponent)GetComponent(GameComponentsLookup.Receiver); } }
     public bool hasReceiver { get { return HasComponent(GameComponentsLookup.Receiver); } }
 
-    public void AddReceiver(System.Collections.Generic.HashSet<int> newFilterComponentIndexes, int newOccupantId) {
+    public void AddReceiver(System.Collections.Generic.HashSet<int> newFilterComponentIndexes, int[] newOccupantIds, int newAvailableIndex) {
         var index = GameComponentsLookup.Receiver;
         var component = CreateComponent<ReceiverComponent>(index);
         component.filterComponentIndexes = newFilterComponentIndexes;
-        component.occupantId = newOccupantId;
+        component.occupantIds = newOccupantIds;
+        component.availableIndex = newAvailableIndex;
         AddComponent(index, component);
     }
 
-    public void ReplaceReceiver(System.Collections.Generic.HashSet<int> newFilterComponentIndexes, int newOccupantId) {
+    public void ReplaceReceiver(System.Collections.Generic.HashSet<int> newFilterComponentIndexes, int[] newOccupantIds, int newAvailableIndex) {
         var index = GameComponentsLookup.Receiver;
         var component = CreateComponent<ReceiverComponent>(index);
         component.filterComponentIndexes = newFilterComponentIndexes;
-        component.occupantId = newOccupantId;
+        component.occupantIds = newOccupantIds;
+        component.availableIndex = newAvailableIndex;
         ReplaceComponent(index, component);
     }
 

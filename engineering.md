@@ -117,8 +117,8 @@ Player flow:
 1. [x] Player taps collider of selected receiver in node hierarchy containing grape.
 1. [x] Transmitter transforms selected and grape to transmit grape to connected entrance that receives consumable.
     1. [x] A view listening to this event reparents the game object to the new receiver.
-1. [ ] consumable receiver at end of tunnel has trigger region covering all caves.
-1. [ ] Nav agent in grape finds path to end of tunnel, and begins moving.
+1. [x] consumable receiver at end of tunnel has trigger region covering all caves.
+1. [x] Nav agent in grape finds path to end of tunnel, and begins moving.
 1. [ ] Grape moves in trigger region of white teeth.
 1. [ ] Bottom white teeth change to closing.
 1. [ ] Bottom white closing teeth find path to receiver in top white teeth.
@@ -149,6 +149,23 @@ Player flow:
 1. [ ] White fuel receiver accepts white fuel.
 1. [ ] White fuel receiver transmits some red fuel.
 1. [ ] red fuel receiver increases.
+1. [ ] Player taps collider of selected receiver in node hierarchy containing oil.
+1. [ ] Transmitter transforms selected and oil to transmit oil to connected entrance that receives consumable.
+    1. [x] Develop one of the following for selectable card receiver:
+        1. [x] Receiver configured to accept multiple entities; stored in a collection.
+            1. [x] List of occupant IDs.  View sets element in list.
+            1. [x] Maximum occupants sets capacity of list.  Filters not full instead of is empty.
+        1. [ ] Receiver configured to accept infinite occupants.
+        1. [ ] Component on selectable card receiver clears occupant ID after teleported.
+        1. [ ] On time to spawn, receiver clears previous occupant ID.
+        1. [ ] On distance, receiver has clears previous occupant ID.
+        1. [ ] Spawn a new receiver for each selected card.
+        1. [ ] Do not receive. Just teleport.
+        1. [ ] Each tile receives occupant as the occupant passes through.
+        1. [ ] Nav target clears occupant from selectable card receiver.
+        1. [ ] Nav target takes occupant from selectable card receiver.
+        1. [ ] Separate receiver for each transmitter.
+        1. [ ] Each cell in nav grid has consumable receiver. Each cell adopts when consumable passes.
 
 ## Components
 
@@ -193,6 +210,7 @@ Navigation system:
             - [x] if no nav agent, adds nav agent.
             - [x] nav agent targets receiver, if nearer than current target.
             - [x] nav agent listener updates position.
+
 ## Reference: Machinations by Joris Dormans
 
 Node types:
@@ -214,6 +232,9 @@ Node types:
 - Inhibitor arc
 - Transition
 - Token
+
+Introduction:
+<https://en.wikipedia.org/wiki/Petri_net>
 
 Examples:
 <https://www.techfak.uni-bielefeld.de/~mchen/BioPNML/Intro/pnfaq.html>
