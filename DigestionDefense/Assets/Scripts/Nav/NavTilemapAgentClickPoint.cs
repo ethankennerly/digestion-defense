@@ -26,7 +26,7 @@ namespace Finegamedesign.Nav
 
         private Vector3 m_ClickPoint;
 
-        private void Setup()
+        private void Initialize()
         {
             if (m_Agent.nav != null)
             {
@@ -38,7 +38,7 @@ namespace Finegamedesign.Nav
 
         private void OnEnable()
         {
-            Setup();
+            Initialize();
             UpdatePosition(m_Agent.position);
             m_Agent.onPositionChanged += UpdatePosition;
             ClickSystem.instance.onWorld += UpdateDestination;

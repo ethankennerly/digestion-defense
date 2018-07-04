@@ -1879,6 +1879,10 @@ MonoBehaviour:
   m_NavTilemapView: {fileID: 12881079}
   m_Agent:
     m_AllowsDiagonals: 1
+    m_PotentialDestinations:
+    - {x: -1.5, y: 5.5, z: 0}
+    - {x: 3.5, y: 2.5, z: 0}
+    m_IsLoopingPotentialDestinations: 1
 --- !u!1001 &1908315815
 Prefab:
   m_ObjectHideFlags: 0

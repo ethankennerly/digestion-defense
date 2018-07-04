@@ -8,7 +8,7 @@ namespace Finegamedesign.Entitas
 {
     public sealed class TriggerNavTargetSystem : ReactiveSystem<GameEntity>
     {
-        private static s_IsVerbose = false;
+        private static bool s_IsVerbose = false;
 
         private readonly GameContext m_Context;
 

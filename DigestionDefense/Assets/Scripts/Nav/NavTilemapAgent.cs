@@ -54,6 +54,28 @@ namespace Finegamedesign.Nav
             }
         }
 
+        [SerializeField]
+        private Vector3[] m_PotentialDestinations;
+
+        [SerializeField]
+        private bool m_IsLoopingPotentialDestinations;
+
+        public bool isLoopingPotentialDestinations
+        {
+            get
+            {
+                return m_PotentialDestinations != null &&
+                    m_PotentialDestinations == m_DestinationLoop;
+            }
+            set
+            {
+                DebugUtil.Assert(m_PotentialDestinations != null,
+                    this + ".isLoopingPotentialDestinations: potential destinations are undefined.");
+
+                destinationLoop = value ? m_PotentialDestinations : null;
+            }
+        }
+
         private Vector3[] m_DestinationLoop;
         private int m_DestinationIndex;
 
@@ -62,19 +84,34 @@ namespace Finegamedesign.Nav
             get { return m_DestinationLoop; }
             set
             {
-                if (m_DestinationLoop == value)
-                    return;
-
                 m_DestinationLoop = value;
+                m_IsLoopingPotentialDestinations = isLoopingPotentialDestinations;
                 if (value == null || value.Length == 0)
                 {
                     m_DestinationIndex = -1;
                     return;
                 }
 
+                DebugUtil.Assert(AllDifferent(value),
+                    this + ".destinationLoop: Expected some destination to be different. loop=" +
+                        DataUtil.ToString(value));
+
                 m_DestinationIndex = 0;
                 destination = m_DestinationLoop[m_DestinationIndex];
             }
+        }
+
+        private static bool AllDifferent(Vector3[] positions)
+        {
+            int lastPosition = positions.Length - 1;
+            if (lastPosition <= 0)
+                return false;
+
+            for (int index = 0; index < lastPosition; )
+                if (positions[index] == positions[++index])
+                    return false;
+
+            return true;
         }
 
         public bool hasDestinationLoop
@@ -84,7 +121,7 @@ namespace Finegamedesign.Nav
 
         private void SetNextDestinationInLoop()
         {
-            if (++m_DestinationIndex > m_DestinationLoop.Length)
+            if (++m_DestinationIndex >= m_DestinationLoop.Length)
                 m_DestinationIndex = 0;
 
             destination = m_DestinationLoop[m_DestinationIndex];
@@ -147,7 +184,7 @@ namespace Finegamedesign.Nav
         private Vector3 m_PreviousStep;
         private Vector3 m_NextStep;
 
-        private bool m_IsVerbose = false;
+        private bool m_IsVerbose = true;
 
         private void SetCurrentCell(Vector3 positionInWorld)
         {
@@ -229,6 +266,9 @@ namespace Finegamedesign.Nav
 
         public void Update(float deltaTime)
         {
+            if (isLoopingPotentialDestinations != m_IsLoopingPotentialDestinations)
+                isLoopingPotentialDestinations = m_IsLoopingPotentialDestinations;
+
             if (!m_HasDestination)
                 return;
 
