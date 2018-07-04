@@ -120,11 +120,16 @@ Player flow:
 1. [x] consumable receiver at end of tunnel has trigger region covering all caves.
 1. [x] Nav agent in grape finds path to end of tunnel, and begins moving.
 1. [ ] Grape moves in trigger region of white teeth.
-1. [ ] Bottom white teeth change to closing.
-1. [ ] Bottom white closing teeth find path to receiver in top white teeth.
-1. [ ] White teeth contact grape. They transmit negative health to grape.
-1. [ ] Bottom white teeth change to opening.
-1. [ ] Bottom white opening teeth find path to receiver below.
+    1. [ ] One of the following:
+        1. [ ] Transmitter / receiver:
+            1. [ ] Bottom white teeth change to closing.
+            1. [ ] Bottom white closing teeth find path to receiver in top white teeth.
+            1. [ ] White teeth contact grape. They transmit negative health to grape.
+            1. [ ] Bottom white teeth change to opening.
+            1. [ ] Bottom white opening teeth find path to receiver below.
+        1. [ ] Patrol:
+            1. [ ] Bottom white teeth patrol between top and bottom.
+            1. [ ] White teeth contact grape. They transmit negative health to grape.
 1. [ ] Grape has a receiver for negative health and the health is depleted.
 1. [ ] Health is destroyed.
 1. [ ] Health was inhibiting Pair of white hexagon transmitter.
@@ -251,3 +256,12 @@ Transmitter and Receiver as a PetriNet
 When an A-token is delivered to the first place, it transitions to the second place.
 
 One way to represent receiver that cannot be occupied if already occupied, is for the receiver place to have an arc that inhibits the transition that the transmitter is pointing toward.
+
+Modeling production with Petri Nets
+<http://faculty.econ.ucdavis.edu/faculty/bonanno/PDF/petri>
+
+Modeling Games with Petri Nets
+<http://www.digra.org/wp-content/uploads/digital-library/09287.37256.pdf>
+
+Petri Nets for Game Plot
+<https://artemis.ms.mff.cuni.cz/main/papers/IVE-dramamanager-2006.pdf>

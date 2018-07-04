@@ -48,9 +48,8 @@ namespace Finegamedesign.Nav
                 m_Destination = value;
                 SetDestinationCell(m_Destination);
                 if (m_Path != null)
-                {
                     return;
-                }
+
                 FindPathInWorld();
             }
         }
@@ -112,7 +111,7 @@ namespace Finegamedesign.Nav
         private Vector3 m_PreviousStep;
         private Vector3 m_NextStep;
 
-        private bool m_IsVerbose = false;
+        private bool m_IsVerbose = true;
 
         private void SetCurrentCell(Vector3 positionInWorld)
         {
@@ -139,8 +138,8 @@ namespace Finegamedesign.Nav
         private void FindPathInWorld()
         {
             if (m_IsVerbose)
-                DebugUtil.Log("NavTilemapAgent.FindPath: From "
-                    + m_Position + " to " + m_Destination);
+                DebugUtil.Log(this + ".FindPathInWorld: From position="
+                    + m_Position + " to destination=" + m_Destination);
 
             SetCurrentCell(m_Position);
             FindPath();
@@ -188,8 +187,8 @@ namespace Finegamedesign.Nav
 
             SetNextStep();
             if (m_IsVerbose)
-                Debug.Log("NavTilemapAgent.FindPath: From "
-                    + m_CurrentCell + " to " + m_DestinationCell);
+                Debug.Log("NavTilemapAgent.FindPath: From currentCell="
+                    + m_CurrentCell + " to destinationCell=" + m_DestinationCell);
         }
 
         public void Update(float deltaTime)
@@ -239,6 +238,9 @@ namespace Finegamedesign.Nav
             }
             if (nextNode == null)
             {
+                if (m_IsVerbose)
+                    DebugUtil.Log(this + ".SetNextStep: Arrived at destination=" + m_NextStep);
+
                 position = m_NextStep;
                 m_Path = null;
                 m_HasDestination = false;
