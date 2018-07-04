@@ -20,31 +20,17 @@ namespace Finegamedesign.Entitas
         protected override ICollector<GameEntity> GetTrigger(IContext<GameEntity> context)
         {
             return context.CreateCollector(
-                GameMatcher.Trigger
+                GameMatcher.Reaction
             );
         }
 
         protected override bool Filter(GameEntity entity)
         {
-            var trigger = entity.trigger;
-            GameEntity traveler = m_Context.GetEntityWithId(trigger.targetId);
-            if (traveler == null)
+            if (!entity.hasTrigger)
                 return false;
 
-            GameEntity attractor = m_Context.GetEntityWithId(trigger.sourceId);
-            DebugUtil.Assert(attractor != null,
-                "Filter expected trigger source was defined. " +
-                "Trigger source ID=" + trigger.sourceId + " traveler=" + traveler);
-            if (attractor == null)
-                return false;
-
-            DebugUtil.Assert(attractor.hasReceiver,
-                "Filter expected trigger source has receiver. " +
-                "Trigger source ID=" + attractor + " traveler=" + traveler);
-            if (!attractor.hasReceiver)
-                return false;
-
-            return ReceiverUtils.Filter(attractor.receiver, traveler);
+            GameEntity attractor = m_Context.GetEntityWithId(entity.trigger.sourceId);
+            return attractor.isNavAttractive;
         }
 
         protected override void Execute(List<GameEntity> entities)

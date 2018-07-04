@@ -69,7 +69,7 @@ namespace Finegamedesign.Nav
             }
             set
             {
-                DebugUtil.Assert(m_PotentialDestinations != null,
+                DebugUtil.Assert(!value || m_PotentialDestinations != null,
                     this + ".isLoopingPotentialDestinations: potential destinations are undefined.");
 
                 destinationLoop = value ? m_PotentialDestinations : null;

@@ -6,6 +6,7 @@ namespace Finegamedesign.Entitas
     {
         public DigestionDefenseSystems(Contexts contexts)
         {
+            Add(new TriggerReactionSystem(contexts));
             Add(new PetriGameSystems(contexts));
             Add(new NavSystems(contexts));
         }
