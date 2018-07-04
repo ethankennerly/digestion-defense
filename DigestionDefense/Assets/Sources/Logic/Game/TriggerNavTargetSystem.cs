@@ -20,7 +20,7 @@ namespace Finegamedesign.Entitas
         protected override ICollector<GameEntity> GetTrigger(IContext<GameEntity> context)
         {
             return context.CreateCollector(
-                GameMatcher.Reaction
+                GameMatcher.Reaction.Added()
             );
         }
 

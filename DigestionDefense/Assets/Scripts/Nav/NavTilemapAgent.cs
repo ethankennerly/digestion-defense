@@ -58,6 +58,9 @@ namespace Finegamedesign.Nav
         private Vector3[] m_PotentialDestinations;
 
         [SerializeField]
+        private bool m_DestinationsAreRelative;
+
+        [SerializeField]
         private bool m_IsLoopingPotentialDestinations;
 
         public bool isLoopingPotentialDestinations
@@ -86,18 +89,15 @@ namespace Finegamedesign.Nav
             {
                 m_DestinationLoop = value;
                 m_IsLoopingPotentialDestinations = isLoopingPotentialDestinations;
+                m_DestinationIndex = -1;
                 if (value == null || value.Length == 0)
-                {
-                    m_DestinationIndex = -1;
                     return;
-                }
 
                 DebugUtil.Assert(AllDifferent(value),
                     this + ".destinationLoop: Expected some destination to be different. loop=" +
                         DataUtil.ToString(value));
 
-                m_DestinationIndex = 0;
-                destination = m_DestinationLoop[m_DestinationIndex];
+                SetNextDestinationInLoop();
             }
         }
 
@@ -124,7 +124,11 @@ namespace Finegamedesign.Nav
             if (++m_DestinationIndex >= m_DestinationLoop.Length)
                 m_DestinationIndex = 0;
 
-            destination = m_DestinationLoop[m_DestinationIndex];
+            Vector3 nextDestination = m_DestinationLoop[m_DestinationIndex];
+            if (m_DestinationsAreRelative)
+                nextDestination += position;
+
+            destination = nextDestination;
         }
 
         public event Action<Vector3> onPositionChanged;
@@ -184,7 +188,7 @@ namespace Finegamedesign.Nav
         private Vector3 m_PreviousStep;
         private Vector3 m_NextStep;
 
-        private bool m_IsVerbose = true;
+        private bool m_IsVerbose = false;
 
         private void SetCurrentCell(Vector3 positionInWorld)
         {

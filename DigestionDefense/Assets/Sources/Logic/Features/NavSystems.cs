@@ -7,6 +7,7 @@ namespace Finegamedesign.Entitas
         public NavSystems(Contexts contexts)
         {
             Add(new TriggerNavTargetSystem(contexts));
+            Add(new TriggerDestinationLoopSystem(contexts));
             Add(new UpdateNavAgentSystem(contexts));
         }
     }

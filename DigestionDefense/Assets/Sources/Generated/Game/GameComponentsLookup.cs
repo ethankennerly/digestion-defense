@@ -9,20 +9,22 @@
 public static class GameComponentsLookup {
 
     public const int Consumable = 0;
-    public const int Id = 1;
-    public const int NavAgent = 2;
-    public const int NavAttractive = 3;
-    public const int Reaction = 4;
-    public const int Receiver = 5;
-    public const int ReceiverListener = 6;
-    public const int Selected = 7;
-    public const int Transmitter = 8;
-    public const int Trigger = 9;
+    public const int DestinationLoopable = 1;
+    public const int Id = 2;
+    public const int NavAgent = 3;
+    public const int NavAttractive = 4;
+    public const int Reaction = 5;
+    public const int Receiver = 6;
+    public const int ReceiverListener = 7;
+    public const int Selected = 8;
+    public const int Transmitter = 9;
+    public const int Trigger = 10;
 
-    public const int TotalComponents = 10;
+    public const int TotalComponents = 11;
 
     public static readonly string[] componentNames = {
         "Consumable",
+        "DestinationLoopable",
         "Id",
         "NavAgent",
         "NavAttractive",
@@ -36,6 +38,7 @@ public static class GameComponentsLookup {
 
     public static readonly System.Type[] componentTypes = {
         typeof(ConsumableComponent),
+        typeof(DestinationLoopableComponent),
         typeof(IdComponent),
         typeof(NavAgentComponent),
         typeof(NavAttractiveComponent),

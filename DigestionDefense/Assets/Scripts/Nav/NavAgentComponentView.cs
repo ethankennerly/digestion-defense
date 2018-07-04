@@ -1,4 +1,5 @@
 using Finegamedesign.Nav;
+using Finegamedesign.Utils;
 using UnityEngine;
 
 namespace Finegamedesign.Entitas
@@ -8,18 +9,19 @@ namespace Finegamedesign.Entitas
         [SerializeField]
         private NavTilemapView m_NavTilemapView = null;
 
+        [SerializeField]
+        private NavTilemapAgent m_Agent = new NavTilemapAgent();
+
         public override void Initialize()
         {
-            var agent = m_Component.agent;
-            if (agent == null)
-            {
-                agent = new NavTilemapAgent();
-                m_Component.agent = agent;
-            }
-            if (m_NavTilemapView != null && agent.nav == null)
-                agent.nav = m_NavTilemapView.controller;
+            DebugUtil.Assert(m_Agent != null,
+                this + ".Initialize: Expected agent exists.");
 
-            agent.position = transform.position;
+            m_Component.agent = m_Agent;
+            if (m_NavTilemapView != null && m_Agent.nav == null)
+                m_Agent.nav = m_NavTilemapView.controller;
+
+            m_Agent.position = transform.position;
 
             base.Initialize();
         }
