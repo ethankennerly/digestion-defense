@@ -5,6 +5,11 @@ using UnityEngine;
 
 namespace Finegamedesign.Entitas
 {
+    /// <remarks>
+    /// Abstract game component view is convenient to wire properties in the Unity editor.
+    /// The tradeoff is that during runtime, like any MonoBehaviour,
+    /// this behaviour adds loading overhead per object.
+    /// </remarks>
     public abstract class AGameComponentView<TComponent> : MonoBehaviour
         where TComponent : IComponent, new()
     {

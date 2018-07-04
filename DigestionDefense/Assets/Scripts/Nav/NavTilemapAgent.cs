@@ -54,6 +54,42 @@ namespace Finegamedesign.Nav
             }
         }
 
+        private Vector3[] m_DestinationLoop;
+        private int m_DestinationIndex;
+
+        public Vector3[] destinationLoop
+        {
+            get { return m_DestinationLoop; }
+            set
+            {
+                if (m_DestinationLoop == value)
+                    return;
+
+                m_DestinationLoop = value;
+                if (value == null || value.Length == 0)
+                {
+                    m_DestinationIndex = -1;
+                    return;
+                }
+
+                m_DestinationIndex = 0;
+                destination = m_DestinationLoop[m_DestinationIndex];
+            }
+        }
+
+        public bool hasDestinationLoop
+        {
+            get { return m_DestinationLoop != null && m_DestinationLoop.Length > 0; }
+        }
+
+        private void SetNextDestinationInLoop()
+        {
+            if (++m_DestinationIndex > m_DestinationLoop.Length)
+                m_DestinationIndex = 0;
+
+            destination = m_DestinationLoop[m_DestinationIndex];
+        }
+
         public event Action<Vector3> onPositionChanged;
 
         private Vector3 m_Position;
@@ -111,7 +147,7 @@ namespace Finegamedesign.Nav
         private Vector3 m_PreviousStep;
         private Vector3 m_NextStep;
 
-        private bool m_IsVerbose = true;
+        private bool m_IsVerbose = false;
 
         private void SetCurrentCell(Vector3 positionInWorld)
         {
@@ -244,6 +280,8 @@ namespace Finegamedesign.Nav
                 position = m_NextStep;
                 m_Path = null;
                 m_HasDestination = false;
+                if (hasDestinationLoop)
+                    SetNextDestinationInLoop();
                 return;
             }
             Vector2Int cell = new Vector2Int(nextNode.X, nextNode.Y);

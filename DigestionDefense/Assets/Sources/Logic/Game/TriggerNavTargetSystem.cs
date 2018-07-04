@@ -8,6 +8,8 @@ namespace Finegamedesign.Entitas
 {
     public sealed class TriggerNavTargetSystem : ReactiveSystem<GameEntity>
     {
+        private static s_IsVerbose = false;
+
         private readonly GameContext m_Context;
 
         public TriggerNavTargetSystem(Contexts contexts) : base(contexts.game)
@@ -79,8 +81,10 @@ namespace Finegamedesign.Entitas
                 return;
 
             agent.destination = attractorPosition;
-            DebugUtil.Log("TriggerNavTargetSystem.SetDestinationIfIsCloser: agent=" + agent +
-                " attractorPosition=" + attractorPosition);
+
+            if (s_IsVerbose)
+                DebugUtil.Log("TriggerNavTargetSystem.SetDestinationIfIsCloser: agent=" + agent +
+                    " attractorPosition=" + attractorPosition);
         }
 
         private static bool IsCloser(NavTilemapAgent agent, Vector3 attractorPosition)
