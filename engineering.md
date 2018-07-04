@@ -121,15 +121,25 @@ Player flow:
 1. [x] Nav agent in grape finds path to end of tunnel, and begins moving.
 1. [ ] Grape moves in trigger region of white teeth.
     1. [ ] One of the following:
+        1. [ ] Patrol:
+            1. [ ] Bottom white teeth loop potential destinations of top and bottom.
+        1. [ ] Animation:
+            1. [ ] Bottom white teeth animate in a loop.
         1. [ ] Transmitter / receiver:
             1. [ ] Bottom white teeth change to closing.
             1. [ ] Bottom white closing teeth find path to receiver in top white teeth.
-            1. [ ] White teeth contact grape. They transmit negative health to grape.
             1. [ ] Bottom white teeth change to opening.
             1. [ ] Bottom white opening teeth find path to receiver below.
-        1. [ ] Patrol:
-            1. [ ] Bottom white teeth patrol between top and bottom.
-            1. [ ] White teeth contact grape. They transmit negative health to grape.
+    1. [ ] One of the following:
+        1. [ ] Separate systems:
+            1. [ ] Trigger reaction system filters reaction to add to trigger.
+            1. [ ] Attraction reaction system
+            1. [ ] Loop destinations reaction system
+        1. [ ] Utility to filter two systems:
+            1. [ ] Trigger nav target system
+            1. [ ] Trigger loop destinations system
+    1. [ ] After grape exits trigger, loop stops.
+1. [ ] White teeth contact grape. They transmit negative health to grape.
 1. [ ] Grape has a receiver for negative health and the health is depleted.
 1. [ ] Health is destroyed.
 1. [ ] Health was inhibiting Pair of white hexagon transmitter.
