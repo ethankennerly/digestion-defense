@@ -8,6 +8,7 @@ namespace Finegamedesign.Entitas
         {
             Add(new TriggerNavTargetSystem(contexts));
             Add(new TriggerDestinationLoopSystem(contexts));
+            Add(new TriggerExitLoopingDisabledSystem(contexts));
             Add(new UpdateNavAgentSystem(contexts));
         }
     }

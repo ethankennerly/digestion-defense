@@ -119,7 +119,7 @@ Player flow:
     1. [x] A view listening to this event reparents the game object to the new receiver.
 1. [x] consumable receiver at end of tunnel has trigger region covering all caves.
 1. [x] Nav agent in grape finds path to end of tunnel, and begins moving.
-1. [ ] Grape moves in trigger region of white teeth.
+1. [x] Grape moves in trigger region of white teeth.
     1. [x] One of the following:
         1. [x] Patrol:
             1. [x] Bottom white teeth loop potential destinations of top and bottom.
@@ -138,7 +138,7 @@ Player flow:
         1. [ ] Utility to filter two systems:
             1. [ ] Trigger nav target system
             1. [ ] Trigger loop destinations system
-    1. [ ] After grape exits trigger, loop stops.
+    1. [x] After grape exits trigger, loop stops at beginning.
 1. [ ] White teeth contact grape. They transmit negative health to grape.
 1. [ ] Grape has a receiver for negative health and the health is depleted.
 1. [ ] Health is destroyed.

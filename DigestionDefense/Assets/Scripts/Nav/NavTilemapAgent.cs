@@ -101,12 +101,12 @@ namespace Finegamedesign.Nav
             }
         }
 
-        private bool m_IsLoopingEnabled = true;
+        private bool m_LoopingEnabled = true;
 
-        public bool isLoopingEnabled
+        public bool loopingEnabled
         {
-            get { return m_IsLoopingEnabled; }
-            set { m_IsLoopingEnabled = value; }
+            get { return m_LoopingEnabled; }
+            set { m_LoopingEnabled = value; }
         }
 
         private static bool EachChange(Vector3[] positions)
@@ -135,7 +135,7 @@ namespace Finegamedesign.Nav
             bool wouldLoop = m_DestinationIndex >= m_DestinationLoop.Length - 1;
             if (wouldLoop)
             {
-                if (!m_IsLoopingEnabled)
+                if (!m_LoopingEnabled)
                     return;
 
                 m_DestinationIndex = 0;

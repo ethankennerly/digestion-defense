@@ -3,11 +3,11 @@ using System.Collections.Generic;
 
 namespace Finegamedesign.Entitas
 {
-    public sealed class TriggerDestinationLoopSystem : ReactiveSystem<GameEntity>
+    public sealed class TriggerExitLoopingDisabledSystem : ReactiveSystem<GameEntity>
     {
         private readonly GameContext m_Context;
 
-        public TriggerDestinationLoopSystem(Contexts contexts) : base(contexts.game)
+        public TriggerExitLoopingDisabledSystem(Contexts contexts) : base(contexts.game)
         {
             m_Context = contexts.game;
         }
@@ -15,7 +15,7 @@ namespace Finegamedesign.Entitas
         protected override ICollector<GameEntity> GetTrigger(IContext<GameEntity> context)
         {
             return context.CreateCollector(
-                GameMatcher.Reaction.Added()
+                GameMatcher.TriggerExit.Added()
             );
         }
 
@@ -34,13 +34,8 @@ namespace Finegamedesign.Entitas
             {
                 var trigger = triggerEntity.trigger;
                 GameEntity looper = m_Context.GetEntityWithId(trigger.sourceId);
-                GameEntity target = m_Context.GetEntityWithId(trigger.targetId);
                 var agent = looper.navAgent.agent;
-                agent.loopingEnabled = target != null;
-                if (!agent.loopingEnabled)
-                    continue;
-
-                agent.isLoopingPotentialDestinations = true;
+                agent.loopingEnabled = false;
             }
         }
     }

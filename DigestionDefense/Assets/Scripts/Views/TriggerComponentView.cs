@@ -5,6 +5,8 @@ namespace Finegamedesign.Entitas
 {
     public sealed class TriggerComponentView : AGameComponentView<TriggerComponent>
     {
+        private const int kNoneId = -1;
+
         [SerializeField]
         private Collider2D m_Trigger = null;
 
@@ -28,8 +30,16 @@ namespace Finegamedesign.Entitas
         private void OnTriggerEnter2D(Collider2D other)
         {
             int targetId = GameLinkUtils.GetId(other.gameObject);
-            int sourceId = GameLinkUtils.GetId(gameObject);
-            if (targetId < 0 || sourceId < 0)
+            if (targetId < 0)
+                return;
+
+            Trigger(targetId);
+        }
+
+        private void Trigger(int targetId)
+        {
+            int sourceId = m_Entity.id.value;
+            if (sourceId < 0)
                 return;
 
             if (m_Entity.hasTrigger &&
@@ -45,7 +55,7 @@ namespace Finegamedesign.Entitas
 
         private void OnTriggerExit2D(Collider2D other)
         {
-            TryRemoveComponent();
+            m_Entity.isTriggerExit = true;
         }
     }
 }
