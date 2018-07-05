@@ -32,16 +32,20 @@ namespace Finegamedesign.Entitas
             if (targetId < 0 || sourceId < 0)
                 return;
 
-            GameEntity entity = GameLinkUtils.GetEntity(gameObject);
-            if (entity.hasTrigger &&
-                entity.trigger.sourceId == sourceId &&
-                entity.trigger.targetId == targetId
+            if (m_Entity.hasTrigger &&
+                m_Entity.trigger.sourceId == sourceId &&
+                m_Entity.trigger.targetId == targetId
             )
                 return;
 
             m_Component.targetId = targetId;
             m_Component.sourceId = sourceId;
             ReplaceComponent();
+        }
+
+        private void OnTriggerExit2D(Collider2D other)
+        {
+            TryRemoveComponent();
         }
     }
 }

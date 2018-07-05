@@ -101,6 +101,14 @@ namespace Finegamedesign.Nav
             }
         }
 
+        private bool m_IsLoopingEnabled = true;
+
+        public bool isLoopingEnabled
+        {
+            get { return m_IsLoopingEnabled; }
+            set { m_IsLoopingEnabled = value; }
+        }
+
         private static bool EachChange(Vector3[] positions)
         {
             int lastPosition = positions.Length - 1;
@@ -124,8 +132,16 @@ namespace Finegamedesign.Nav
 
         private void SetNextDestinationInLoop()
         {
-            if (++m_DestinationIndex >= m_DestinationLoop.Length)
+            bool wouldLoop = m_DestinationIndex >= m_DestinationLoop.Length - 1;
+            if (wouldLoop)
+            {
+                if (!m_IsLoopingEnabled)
+                    return;
+
                 m_DestinationIndex = 0;
+            }
+            else
+                ++m_DestinationIndex;
 
             Vector3 nextDestination = m_DestinationLoop[m_DestinationIndex];
             if (m_DestinationsAreRelative)

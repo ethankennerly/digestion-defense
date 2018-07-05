@@ -16,6 +16,8 @@ namespace Finegamedesign.Entitas
         [SerializeField]
         protected TComponent m_Component = new TComponent();
 
+        private int m_ComponentIndex = Array.IndexOf(GameComponentsLookup.componentTypes, typeof(TComponent));
+
         public TComponent Component
         {
             get { return m_Component; }
@@ -85,8 +87,15 @@ namespace Finegamedesign.Entitas
             {
                 clone = m_Component;
             }
-            int componentIndex = Array.IndexOf(GameComponentsLookup.componentTypes, typeof(TComponent));
-            m_Entity.ReplaceComponent(componentIndex, clone);
+            m_Entity.ReplaceComponent(m_ComponentIndex, clone);
+        }
+
+        protected void TryRemoveComponent()
+        {
+            if (!m_Entity.HasComponent(m_ComponentIndex))
+                return;
+
+            m_Entity.RemoveComponent(m_ComponentIndex);
         }
     }
 }
