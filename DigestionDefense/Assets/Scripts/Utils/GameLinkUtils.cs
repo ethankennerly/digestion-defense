@@ -60,6 +60,10 @@ namespace Finegamedesign.Entitas
         /// Returns previous entity if still linked.
         /// Otherwise, creates a new entity and links it.
         /// </returns>
+        /// <remarks>
+        /// MonoBehaviours are slow to get/add/destroy.
+        /// So if many objects are linked, a faster approach is a dictionary of game objects to entities.
+        /// </remarks>
         public static GameEntity TryLink(GameObject linkedObject)
         {
             if (linkedObject == null)

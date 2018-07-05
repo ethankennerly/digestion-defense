@@ -93,7 +93,7 @@ namespace Finegamedesign.Nav
                 if (value == null || value.Length == 0)
                     return;
 
-                DebugUtil.Assert(AllDifferent(value),
+                DebugUtil.Assert(EachChange(value),
                     this + ".destinationLoop: Expected some destination to be different. loop=" +
                         DataUtil.ToString(value));
 
@@ -101,7 +101,7 @@ namespace Finegamedesign.Nav
             }
         }
 
-        private static bool AllDifferent(Vector3[] positions)
+        private static bool EachChange(Vector3[] positions)
         {
             int lastPosition = positions.Length - 1;
             if (lastPosition <= 0)
@@ -110,6 +110,9 @@ namespace Finegamedesign.Nav
             for (int index = 0; index < lastPosition; )
                 if (positions[index] == positions[++index])
                     return false;
+
+            if (positions[0] == positions[lastPosition])
+                return false;
 
             return true;
         }
@@ -188,6 +191,7 @@ namespace Finegamedesign.Nav
         private Vector3 m_PreviousStep;
         private Vector3 m_NextStep;
 
+        [SerializeField]
         private bool m_IsVerbose = false;
 
         private void SetCurrentCell(Vector3 positionInWorld)

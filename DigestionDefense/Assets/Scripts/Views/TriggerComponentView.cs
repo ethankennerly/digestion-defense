@@ -18,20 +18,29 @@ namespace Finegamedesign.Entitas
 
         private void OnValidate()
         {
-            if (m_Trigger == null)
-                DebugUtil.LogWarning(this + ".OnValidate: Has no Trigger.");
+            DebugUtil.Assert(m_Trigger != null,
+                this + ".OnValidate: Has no Trigger.");
 
-            if (m_KinematicBody == null)
-                DebugUtil.LogWarning(this + ".OnValidate: Has no Kinematic Body.");
+            DebugUtil.Assert(m_KinematicBody != null,
+                this + ".OnValidate: Has no Kinematic Body.");
         }
 
         private void OnTriggerEnter2D(Collider2D other)
         {
-            m_Component.targetId = GameLinkUtils.GetId(other.gameObject);
-            m_Component.sourceId = GameLinkUtils.GetId(gameObject);
-            if (m_Component.targetId < 0 || m_Component.sourceId < 0)
+            int targetId = GameLinkUtils.GetId(other.gameObject);
+            int sourceId = GameLinkUtils.GetId(gameObject);
+            if (targetId < 0 || sourceId < 0)
                 return;
 
+            GameEntity entity = GameLinkUtils.GetEntity(gameObject);
+            if (entity.hasTrigger &&
+                entity.trigger.sourceId == sourceId &&
+                entity.trigger.targetId == targetId
+            )
+                return;
+
+            m_Component.targetId = targetId;
+            m_Component.sourceId = sourceId;
             ReplaceComponent();
         }
     }

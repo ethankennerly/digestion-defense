@@ -120,9 +120,9 @@ Player flow:
 1. [x] consumable receiver at end of tunnel has trigger region covering all caves.
 1. [x] Nav agent in grape finds path to end of tunnel, and begins moving.
 1. [ ] Grape moves in trigger region of white teeth.
-    1. [ ] One of the following:
-        1. [ ] Patrol:
-            1. [ ] Bottom white teeth loop potential destinations of top and bottom.
+    1. [x] One of the following:
+        1. [x] Patrol:
+            1. [x] Bottom white teeth loop potential destinations of top and bottom.
         1. [ ] Animation:
             1. [ ] Bottom white teeth animate in a loop.
         1. [ ] Transmitter / receiver:
@@ -130,11 +130,11 @@ Player flow:
             1. [ ] Bottom white closing teeth find path to receiver in top white teeth.
             1. [ ] Bottom white teeth change to opening.
             1. [ ] Bottom white opening teeth find path to receiver below.
-    1. [ ] One of the following:
-        1. [ ] Separate systems:
-            1. [ ] Trigger reaction system filters reaction to add to trigger.
-            1. [ ] Attraction reaction system
-            1. [ ] Loop destinations reaction system
+    1. [x] One of the following:
+        1. [x] Separate systems:
+            1. [x] Trigger reaction system filters reaction to add to trigger.
+            1. [x] Attraction reaction system
+            1. [x] Loop destinations reaction system
         1. [ ] Utility to filter two systems:
             1. [ ] Trigger nav target system
             1. [ ] Trigger loop destinations system

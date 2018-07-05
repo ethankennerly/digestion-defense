@@ -1479,6 +1479,7 @@ MonoBehaviour:
     m_PotentialDestinations: []
     m_DestinationsAreRelative: 0
     m_IsLoopingPotentialDestinations: 0
+    m_IsVerbose: 0
 --- !u!114 &167794276
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1888,6 +1889,7 @@ MonoBehaviour:
     - {x: 0, y: -2, z: 0}
     m_DestinationsAreRelative: 1
     m_IsLoopingPotentialDestinations: 0
+    m_IsVerbose: 1
 --- !u!50 &1482333842
 Rigidbody2D:
   serializedVersion: 4
@@ -2083,6 +2085,7 @@ MonoBehaviour:
     - {x: 3.5, y: 2.5, z: 0}
     m_DestinationsAreRelative: 0
     m_IsLoopingPotentialDestinations: 1
+    m_IsVerbose: 0
 --- !u!1001 &1908315815
 Prefab:
   m_ObjectHideFlags: 0
