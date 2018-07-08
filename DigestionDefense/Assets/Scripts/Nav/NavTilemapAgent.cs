@@ -185,9 +185,9 @@ namespace Finegamedesign.Nav
 
         private Vector2Int m_DestinationCell = new Vector2Int();
 
-        private SpatialAStar<MyPathNode, object> m_Solver;
+        private SpatialAStar<WalkableNode, object> m_Solver;
 
-        private IEnumerable<MyPathNode> m_Path;
+        private IEnumerable<WalkableNode> m_Path;
 
         public bool hasPath
         {
@@ -244,7 +244,7 @@ namespace Finegamedesign.Nav
 
         private void CreateSolver()
         {
-            m_Solver = new SpatialAStar<MyPathNode, object>(m_Nav.grid);
+            m_Solver = new SpatialAStar<WalkableNode, object>(m_Nav.grid);
             m_Solver.allowsDiagonals = m_AllowsDiagonals;
             m_PreviousStep = position;
             m_NextStep = position;
@@ -259,7 +259,7 @@ namespace Finegamedesign.Nav
             return numSteps;
         }
 
-        public IEnumerable<MyPathNode> GetPath(Vector3 destination)
+        public IEnumerable<WalkableNode> GetPath(Vector3 destination)
         {
             if (m_Solver == null)
                 CreateSolver();
@@ -325,9 +325,9 @@ namespace Finegamedesign.Nav
         private void SetNextStep()
         {
             int index = 0;
-            MyPathNode nextNode = null;
+            WalkableNode nextNode = null;
             // XXX It would be more efficient if path were a list or an array rather than IEnumerable.
-            foreach (MyPathNode node in m_Path)
+            foreach (WalkableNode node in m_Path)
             {
                 if (index == 1)
                 {

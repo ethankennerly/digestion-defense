@@ -1,3 +1,4 @@
+using SettlersEngine;
 using System;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -32,9 +33,9 @@ namespace Finegamedesign.Nav
             }
         }
 
-        private MyPathNode[,] m_Grid;
+        private WalkableNode[,] m_Grid;
 
-        public MyPathNode[,] grid
+        public WalkableNode[,] grid
         {
             get
             {
@@ -104,17 +105,17 @@ namespace Finegamedesign.Nav
             m_Grid = ParseGrid(m_Tilemap);
         }
 
-        private MyPathNode[,] ParseGrid(Tilemap wallTilemap)
+        private WalkableNode[,] ParseGrid(Tilemap wallTilemap)
         {
             int width = wallTilemap.size.x;
             int height = wallTilemap.size.y;
-            MyPathNode[,] grid = new MyPathNode[width, height];
+            WalkableNode[,] grid = new WalkableNode[width, height];
             for (int x = 0; x < width; ++x)
             {
                 for (int y = 0; y < height; ++y)
                 {
                     bool isWall = IsCollision(x, y);
-                    grid[x, y] = new MyPathNode()
+                    grid[x, y] = new WalkableNode()
                     {
                         IsWall = isWall,
                         X = x,

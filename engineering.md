@@ -103,15 +103,16 @@ Status:
 - [-] In-progress
 - [x] Done
 - Context
----
 
-Designer flow:
+## Designer flow
+
 1. [ ] Select transmitter.
 1. [ ] Connect receiver.
 1. [ ] See debug line showing connection.  Deselect transmitter. Debug line disappears.
 1. [x] Select filter component names from dropdown list of components.
 
-Player flow:
+## Player flow
+
 1. [ ] Three consumable deployment receivers.
 1. [ ] Three consumables transmit:  Grape, Cod, Oil.
 1. [x] Player taps collider of selected receiver in node hierarchy containing grape.
@@ -181,6 +182,11 @@ Player flow:
         1. [ ] Nav target takes occupant from selectable card receiver.
         1. [ ] Separate receiver for each transmitter.
         1. [ ] Each cell in nav grid has consumable receiver. Each cell adopts when consumable passes.
+
+## Programmer flow
+
+1. [x] Read relevant pathfinding classes.
+1. [x] Read clear pathfinding variable name `WalkableNode` instead of `MyPathNode`.
 
 ## Components
 
