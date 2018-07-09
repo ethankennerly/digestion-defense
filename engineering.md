@@ -141,10 +141,30 @@ Status:
             1. [ ] Trigger loop destinations system
     1. [x] After grape exits trigger, loop stops at beginning.
 1. [ ] White teeth contact grape. They transmit negative health to grape.
-1. [ ] Grape has a receiver for negative health and the health is depleted.
+    1. [ ] Grape has a quantity receiver for negative health and the health is depleted.
+        1. [ ] Health with quantity occupies health receiver.
+        1. [ ] Health with quantity entity has a trigger and an acceptor.
+        1. [ ] Teeth have a collider.
+        1. [ ] Teeth has transmitter of negative health.
+        1. [ ] One of the following:
+            1. [ ] Teeth have a timer to recharge negative health, analogous to attack speed in Clash Royale.
+                1. [ ] One of the following:
+                    1. [ ] Petri Net:
+                        1. [ ] Timer inhibits transition to negative health.
+                        1. [ ] Negative health inhibits timer.
+                        1. [ ] Delta time transitions negative time into timer.
+                        1. [ ] Collision is an input to transmitter.
+                    1. [ ] Petri Transmission:
+                        1. [ ] Timer inhibits negative health spawner.
+                        1. [ ] Negative health inhibits timer.
+                        1. [ ] Delta time transmits negative time into timer.
+                        1. [ ] Collision is an input to transmitter.
+                    - Petri Net and Petri Transmission are similar. Transmission needs explicit receiver to transmit from.
+            1. [ ] Collision transmits negative health only if vectors of travel are incoming.
+            1. [ ] Teeth inhibit negative health transmitter, until loop destination.
 1. [ ] Health is destroyed.
-1. [ ] Health was inhibiting Pair of white hexagon transmitter.
-1. [ ] Pair of white hexagon transmitter transmits.
+1. [ ] Health was inhibiting pair of white hexagon transmitter.
+1. [ ] Pair of white hexagon transmitter transmits two pair.
 1. [ ] Pair of white hexagon is a consumable.
 1. [ ] consumable receiver in tree that had received the destroyed grape receives consumable.
 1. [ ] Nav agent in pair of white hexagon finds path to end of tunnel.
@@ -187,6 +207,9 @@ Status:
 
 1. [x] Read relevant pathfinding classes.
 1. [x] Read clear pathfinding variable name `WalkableNode` instead of `MyPathNode`.
+1. [ ] Read more conventional static class suffix `Utils` instead of `Util`.
+1. [ ] Bind net from editor to code.
+1. [ ] Bind net from code to editor.
 
 ## Components
 
@@ -281,3 +304,9 @@ Modeling Games with Petri Nets
 
 Petri Nets for Game Plot
 <https://artemis.ms.mff.cuni.cz/main/papers/IVE-dramamanager-2006.pdf>
+
+Petri Net Programming
+<https://johncarlosbaez.wordpress.com/2012/10/01/petri-net-programming/>
+
+Petri Nets Tools Database Quick Overview
+<http://www.informatik.uni-hamburg.de/TGI/PetriNets/tools/quick.html>
