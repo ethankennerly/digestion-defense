@@ -142,11 +142,48 @@ Status:
     1. [x] After grape exits trigger, loop stops at beginning.
 1. [ ] White teeth contact grape. They transmit negative health to grape.
     1. [ ] Grape has a quantity receiver for negative health and the health is depleted.
-        1. [ ] Health with quantity occupies health receiver.
-        1. [ ] Health with quantity entity has a trigger and an acceptor.
-        1. [ ] Teeth have a collider.
-        1. [ ] Teeth has transmitter of negative health.
-        1. [ ] One of the following:
+        1. [ ] Damage. One of the following:
+            1. [ ] Entity-component-system pattern:
+                1. [ ] Grape has health component with a positive value.
+                1. [ ] Tooth has health changer component with a negative value.
+                1. [ ] Trigger component view publishes trigger enter component.
+                1. [ ] Health system reacts to trigger enter filtered to targets that have health and sources that have health changer.
+                1. [ ] Example test steps:
+                    1. [ ] Source has health changer -2.
+                    1. [ ] Target has health 1.
+                    1. [ ] Publish trigger of source and target.
+                    1. [ ] Execute health system.
+                    1. [ ] Expect target health -1.
+                    1. [ ] Reverse source and target, and publish.
+                    1. [ ] Execute health system.
+                    1. [ ] Expect target health 1.
+            1. [ ] Transmitter/receiver pattern:
+                1. [ ] Health with quantity occupies health receiver.
+                1. [ ] Health with quantity entity has a trigger and an acceptor.
+                1. [ ] Teeth have a collider.
+                1. [ ] Teeth has transmitter of negative health.
+                1. [ ] Example test steps:
+                    1. [ ] Receiver accepts health.
+                    1. [ ] Occupant has health and quantity 1.
+                    1. [ ] Target has receiver.
+                    1. [ ] Target has trigger and acceptor.
+                    1. [ ] Source has receiver with health and quantity -2.
+                    1. [ ] Expect target receiver occupant has health and quantity -1.
+            1. [ ] Petri Net pattern:
+                1. [ ] Grape health petri net.
+                    1. [ ] Petri net tree view.
+                    1. [ ] Negative health transitions to white hexagon spawner.
+                    1. [ ] Find health place in tree.
+                1. [ ] Teeth collider places negative health in network.
+                1. [ ] Example test steps:
+                    1. [ ] Place has health type and quantity 1.
+                    1. [ ] Petri net has place.
+                    1. [ ] Target has petri net.
+                    1. [ ] Source has changer with health type and quantity -2.
+                    1. [ ] Trigger source and target.
+                    1. [ ] Execute feature.
+                    1. [ ] Expect target place health quantity -1.
+        1. [ ] Only attack once in a period.  One of the following:
             1. [ ] Teeth have a timer to recharge negative health, analogous to attack speed in Clash Royale.
                 1. [ ] One of the following:
                     1. [ ] Petri Net:
@@ -272,9 +309,13 @@ Node types:
 ## Reference: Petri Net
 
 - Place
+    - Quantity
 - Arc
-- Inhibitor arc
+    - Inhibitor arc
+    - Quantity
 - Transition
+    - Inputs
+    - Outputs
 - Token
 
 Introduction:
