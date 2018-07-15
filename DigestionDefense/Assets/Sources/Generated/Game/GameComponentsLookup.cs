@@ -8,27 +8,33 @@
 //------------------------------------------------------------------------------
 public static class GameComponentsLookup {
 
-    public const int Consumable = 0;
-    public const int DestinationLoopable = 1;
-    public const int Id = 2;
-    public const int NavAgent = 3;
-    public const int NavAttractive = 4;
-    public const int Reaction = 5;
-    public const int Receiver = 6;
-    public const int ReceiverListener = 7;
-    public const int Selected = 8;
-    public const int Transmitter = 9;
-    public const int Trigger = 10;
-    public const int TriggerExit = 11;
+    public const int Accepter = 0;
+    public const int Consumable = 1;
+    public const int DestinationLoopable = 2;
+    public const int Health = 3;
+    public const int Id = 4;
+    public const int NavAgent = 5;
+    public const int NavAttractive = 6;
+    public const int Quantity = 7;
+    public const int Reaction = 8;
+    public const int Receiver = 9;
+    public const int ReceiverListener = 10;
+    public const int Selected = 11;
+    public const int Transmitter = 12;
+    public const int Trigger = 13;
+    public const int TriggerExit = 14;
 
-    public const int TotalComponents = 12;
+    public const int TotalComponents = 15;
 
     public static readonly string[] componentNames = {
+        "Accepter",
         "Consumable",
         "DestinationLoopable",
+        "Health",
         "Id",
         "NavAgent",
         "NavAttractive",
+        "Quantity",
         "Reaction",
         "Receiver",
         "ReceiverListener",
@@ -39,11 +45,14 @@ public static class GameComponentsLookup {
     };
 
     public static readonly System.Type[] componentTypes = {
+        typeof(AccepterComponent),
         typeof(ConsumableComponent),
         typeof(DestinationLoopableComponent),
+        typeof(HealthComponent),
         typeof(IdComponent),
         typeof(NavAgentComponent),
         typeof(NavAttractiveComponent),
+        typeof(QuantityComponent),
         typeof(ReactionComponent),
         typeof(ReceiverComponent),
         typeof(ReceiverListenerComponent),

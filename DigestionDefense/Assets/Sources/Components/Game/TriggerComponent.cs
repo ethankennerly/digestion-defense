@@ -1,5 +1,4 @@
 using Entitas;
-using Finegamedesign.Entitas;
 
 [Game]
 public sealed class TriggerComponent : IComponent
