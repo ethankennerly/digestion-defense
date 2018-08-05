@@ -42,12 +42,10 @@ namespace Finegamedesign.Entitas
             GameEntity[] transmitters = m_TransmitterGroup.GetEntities();
             foreach (GameEntity transmitter in transmitters)
             {
-                foreach (GameEntity receiver in entities)
-                {
-                    ReceiverUtils.TryTransmit(m_Context, receiver,
-                        transmitter.transmitter.inputIds,
-                        transmitter.transmitter.outputIds);
-                }
+                var trans = transmitter.transmitter;
+                ReceiverUtils.TryTransmit(m_Context,
+                    trans.inputIds,
+                    trans.outputIds);
             }
         }
     }

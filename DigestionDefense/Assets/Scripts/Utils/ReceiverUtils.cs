@@ -21,6 +21,7 @@ namespace Finegamedesign.Entitas
             return true;
         }
 
+        // TODO: Gets quantity of each occupant.
         public static bool IsFull(ReceiverComponent receiver)
         {
             return receiver.availableIndex < 0;
@@ -249,13 +250,59 @@ namespace Finegamedesign.Entitas
         /// As in a Petri Net, only transmits if all receivers are occupied.
         /// Unlike a Petri Net, arcs do not (yet) support quantity other than one.
         /// </summary>
-        public static void TryTransmit(GameContext context, GameEntity receiver,
+        public static void TryTransmit(GameContext context,
             int[] inputIds, int[] outputIds)
         {
             if (AnyEmpty(context, inputIds))
                 return;
 
+            if (TryGiveQuantity(context, outputIds, inputIds))
+                return;
+
             TryOccupy(context, outputIds, inputIds);
+        }
+
+        /// <summary>
+        /// Gives quantity from giver to receiver without exchanging the entities.
+        /// </summary>
+        public static bool TryGiveQuantity(GameContext context, int[] receiverIds, int[] giverIds)
+        {
+            Log("TryGiveQuantity");
+
+            bool gaveAnything = false;
+            GameEntity[] giverEntities = GameLinkUtils.GetEntitiesWithIds(context, giverIds);
+            foreach (GameEntity giverEntity in giverEntities)
+            {
+                int giftId = GetNextOccupantId(giverEntity.receiver);
+                if (giftId == kEmpty)
+                    continue;
+
+                GameEntity gift = context.GetEntityWithId(giftId);
+                DebugUtil.Assert(gift != null,
+                    "ReceiverUtils.TryOccupy: Expected gift was not null. Gift ID=" + giftId);
+                if (gift == null)
+                    continue;
+
+                if (!gift.hasQuantity || gift.quantity.value == 0)
+                    continue;
+
+                foreach (int receiverId in receiverIds)
+                {
+                    GameEntity receiver = context.GetEntityWithId(receiverId);
+                    ReceiverComponent component = receiver.receiver;
+                    if (!Filter(component, gift))
+                        continue;
+
+                    if (!receiver.hasQuantity)
+                        continue;
+
+                    receiver.ReplaceQuantity(receiver.quantity.value + gift.quantity.value);
+                    gift.ReplaceQuantity(0);
+                    gaveAnything = true;
+                    break;
+                }
+            }
+            return gaveAnything;
         }
 
         [Conditional("LOG_RECEIVER")]

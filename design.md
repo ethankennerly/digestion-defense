@@ -59,6 +59,13 @@ Macronutrients:
 	Protein	4		Purple circle
 	Fat	9		Yellow stalk and branch
 
+## Future directions
+
+- Chew combo. Tap to chew. Upgrade to auto chew.
+- Failure case: Farting.
+- Failure case: Diarrhea.
+- Failure case: Vomiting.
+
 ### Placeholder tilemap art
 
 <https://opengameart.org>
@@ -92,6 +99,10 @@ Silvia Helena Zem-Mascarenhas
 <http://www.scielo.br/scielo.php?script=sci_arttext&pid=S0104-11692016000100382>
 Download
 <http://www.loa.sead.ufscar.br/digestower.php>
+
+Digestive System
+> Digestion is a complex process, involving a wide variety of organs and chemicals that work together to break down food, absorb nutrients, and eliminate wastes. But have you ever wondered what would happen if some of those organs were eliminated, or if the sequence was changed? Can the digestive system be improved? Find out by designing your own digestive system with the Digestive System Gizmo.
+<https://www.explorelearning.com/index.cfm?method=cResource.dspView&ResourceID=1050>
 
 #### Playtest
 
@@ -135,3 +146,13 @@ Inhibition: Blocks active site.
 
 Reference pixel size 128x128 fits to 1x1 grid nicely.
 
+## Reference toys
+
+Power Up - Garden Heroes
+<https://www.learningzonexpress.com/garden-heroesr-fruit-veggie-vinyl-banner-w-stand-lunch-tray-dry-erase-menu-board.html>
+
+<https://www.learningzonexpress.com/veggie-garden-heroes-set-of-6.html>
+
+<https://www.amazon.com/Learning-Resources-Inflatable-Digestion-System/dp/B0012OGEVW>
+
+<https://www.amazon.com/Digestive-Maze-Digestion-Study-Guide/dp/B00IUZ8QEO>
