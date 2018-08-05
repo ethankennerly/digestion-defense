@@ -144,6 +144,9 @@ Status:
     1. [ ] Grape has a quantity receiver for negative health and the health is depleted.
         1. [ ] Damage. One of the following:
             1. [ ] Entity-component-system pattern:
+                1. [ ] Clean.
+                    1. [ ] On trigger component, remove source ID and rename target ID to other ID.
+                    1. [ ] Rename trigger to trigger enter.
                 1. [ ] Grape has health component with a positive value.
                 1. [ ] Tooth has health changer component with a negative value.
                 1. [ ] Trigger component view publishes trigger enter component.
