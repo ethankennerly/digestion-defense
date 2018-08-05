@@ -9,7 +9,11 @@ namespace Finegamedesign.Entitas
             Add(new TriggerReactionSystem(contexts));
             Add(new PetriGameSystems(contexts));
             Add(new NavSystems(contexts));
-            Add(new HealthTriggerSystem(contexts));
+            Add(new HealthSystems(contexts));
+
+            // Last, to publish to external listeners.
+            // Otherwise, destroying game object in the middle might be unexpected.
+            Add(new GameEventSystems(contexts));
         }
     }
 }

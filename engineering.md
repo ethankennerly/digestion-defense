@@ -209,9 +209,10 @@ Status:
         1. [ ] Entity-component-system:
             1. [x] Abstract Game Component View:
                 1. [x] Listens to on destroy.
-            1. [ ] Spawn On Destroy Component View:
-                1. [ ] Prefab: Sucrose.
-                1. [x] Listens to on destroy.
+            1. [x] Spawn Before Destroy Component View:
+                1. [x] Prefab: Sucrose.
+            1. [x] Spawn Listener:
+                1. [ ] Spawns prefab at same transform as entity's linked object.
             1. [ ] Health Destroy System:
                 1. [ ] Health passes threshold.
                 1. [ ] Health passes threshold 0. Will destroy grape entity.
