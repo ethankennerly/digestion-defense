@@ -11,25 +11,28 @@ public static class GameComponentsLookup {
     public const int Accepter = 0;
     public const int Consumable = 1;
     public const int DestinationLoopable = 2;
-    public const int Health = 3;
-    public const int Id = 4;
-    public const int NavAgent = 5;
-    public const int NavAttractive = 6;
-    public const int Quantity = 7;
-    public const int Reaction = 8;
-    public const int Receiver = 9;
-    public const int ReceiverListener = 10;
-    public const int Selected = 11;
-    public const int Transmitter = 12;
-    public const int Trigger = 13;
-    public const int TriggerExit = 14;
+    public const int HealthChanger = 3;
+    public const int Health = 4;
+    public const int Id = 5;
+    public const int NavAgent = 6;
+    public const int NavAttractive = 7;
+    public const int Quantity = 8;
+    public const int Reaction = 9;
+    public const int Receiver = 10;
+    public const int ReceiverListener = 11;
+    public const int Selected = 12;
+    public const int Transmitter = 13;
+    public const int Trigger = 14;
+    public const int TriggerEnter = 15;
+    public const int TriggerExit = 16;
 
-    public const int TotalComponents = 15;
+    public const int TotalComponents = 17;
 
     public static readonly string[] componentNames = {
         "Accepter",
         "Consumable",
         "DestinationLoopable",
+        "HealthChanger",
         "Health",
         "Id",
         "NavAgent",
@@ -41,6 +44,7 @@ public static class GameComponentsLookup {
         "Selected",
         "Transmitter",
         "Trigger",
+        "TriggerEnter",
         "TriggerExit"
     };
 
@@ -48,6 +52,7 @@ public static class GameComponentsLookup {
         typeof(AccepterComponent),
         typeof(ConsumableComponent),
         typeof(DestinationLoopableComponent),
+        typeof(HealthChangerComponent),
         typeof(HealthComponent),
         typeof(IdComponent),
         typeof(NavAgentComponent),
@@ -59,6 +64,7 @@ public static class GameComponentsLookup {
         typeof(SelectedComponent),
         typeof(TransmitterComponent),
         typeof(TriggerComponent),
+        typeof(TriggerEnterComponent),
         typeof(TriggerExitComponent)
     };
 }
