@@ -3,10 +3,10 @@ using NUnit.Framework;
 
 namespace Finegamedesign.Entitas
 {
-    public sealed class TestHealthChangerSystem : TestGameContextWithId
+    public sealed class TestHealthTriggerSystem : TestGameContextWithId
     {
         [Test]
-        public void Execute_NegativeHealth()
+        public void Execute_NegativeHealthChanger()
         {
             var system = new HealthTriggerSystem(m_Contexts);
 

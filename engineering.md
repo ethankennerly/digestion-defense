@@ -207,15 +207,15 @@ Status:
 1. [ ] Health is destroyed.
     1. [ ] One of the following:
         1. [ ] Entity-component-system:
-            1. [ ] Abstract Game Component View:
-                1. [ ] Listens to on destroy.
-            1. [ ] Health Spawner Component:
-                1. [ ] Health Threshold: 0.
+            1. [x] Abstract Game Component View:
+                1. [x] Listens to on destroy.
+            1. [ ] Destroy Spawner Component View:
                 1. [ ] Prefab: Sucrose.
-            1. [ ] Health Changer System:
+                1. [x] Listens to on destroy.
+            1. [ ] Health Destroy System:
                 1. [ ] Health passes threshold.
-                1. [ ] Spawn prefab.
                 1. [ ] Health passes threshold 0. Will destroy grape entity.
+                1. [ ] Sucrose spawns.
                 1. [ ] Abstract game component view reacts:
                     1. [ ] Grape prefab disappears.
         1. [ ] Petri transmission:
