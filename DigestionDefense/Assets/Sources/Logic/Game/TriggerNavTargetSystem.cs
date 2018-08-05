@@ -26,20 +26,18 @@ namespace Finegamedesign.Entitas
 
         protected override bool Filter(GameEntity entity)
         {
-            if (!entity.hasTrigger)
+            if (!entity.hasTriggerEnter)
                 return false;
 
-            GameEntity attractor = m_Context.GetEntityWithId(entity.trigger.sourceId);
-            return attractor.isNavAttractive;
+            return entity.isNavAttractive;
         }
 
         protected override void Execute(List<GameEntity> entities)
         {
-            foreach (GameEntity triggerEntity in entities)
+            foreach (GameEntity attractor in entities)
             {
-                var trigger = triggerEntity.trigger;
-                GameEntity attractor = m_Context.GetEntityWithId(trigger.sourceId);
-                GameEntity traveler = m_Context.GetEntityWithId(trigger.targetId);
+                var trigger = attractor.triggerEnter;
+                GameEntity traveler = m_Context.GetEntityWithId(trigger.otherId);
 
                 if (!traveler.hasNavAgent)
                 {

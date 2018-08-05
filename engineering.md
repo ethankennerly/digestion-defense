@@ -144,23 +144,19 @@ Status:
     1. [ ] Grape has a quantity receiver for negative health and the health is depleted.
         1. [ ] Damage. One of the following:
             1. [ ] Entity-component-system pattern:
-                1. [ ] Clean.
-                    1. [ ] On trigger component, remove source ID and rename target ID to other ID.
-                    1. [ ] Rename trigger to trigger enter.
+                1. [x] Clean.
+                    1. [x] On trigger component, remove source ID and rename target ID to other ID.
+                    1. [x] Rename trigger to trigger enter.
                 1. [ ] Grape has health component with a positive value.
                 1. [ ] Tooth has health changer component with a negative value.
                 1. [ ] Trigger component view publishes trigger enter component.
                 1. [ ] Health system reacts to trigger enter filtered to targets that have health and sources that have health changer.
-                1. [ ] Example test steps:
-                    1. [ ] Source has health changer -2.
-                    1. [ ] Target has health 1.
-                    1. [ ] Publish trigger of source and target.
-                    1. [ ] Execute health system.
-                    1. [ ] Expect target health -1.
-                1. [ ] Test reverse steps.
-                    1. [ ] Setup. Reverse source and target, and publish.
-                    1. [ ] Execute health system.
-                    1. [ ] Expect target health 1.
+                1. [x] Example test steps:
+                    1. [x] Source has health changer -2.
+                    1. [x] Target has health 1.
+                    1. [x] Publish trigger of source and target.
+                    1. [x] Execute health system.
+                    1. [x] Expect target health -1.
             1. [ ] Petri Net pattern:
                 1. [ ] Grape health petri net.
                     1. [ ] Petri net tree view.

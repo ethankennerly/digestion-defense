@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Finegamedesign.Entitas
 {
-    public sealed class TriggerComponentView : AGameComponentView<TriggerComponent>
+    public sealed class TriggerComponentView : AGameComponentView<TriggerEnterComponent>
     {
         private const int kNoneId = -1;
 
@@ -29,27 +29,21 @@ namespace Finegamedesign.Entitas
 
         private void OnTriggerEnter2D(Collider2D other)
         {
-            int targetId = GameLinkUtils.GetId(other.gameObject);
-            if (targetId < 0)
+            int otherId = GameLinkUtils.GetId(other.gameObject);
+            if (otherId < 0)
                 return;
 
-            Trigger(targetId);
+            TriggerEnter(otherId);
         }
 
-        private void Trigger(int targetId)
+        private void TriggerEnter(int otherId)
         {
-            int sourceId = m_Entity.id.value;
-            if (sourceId < 0)
-                return;
-
-            if (m_Entity.hasTrigger &&
-                m_Entity.trigger.sourceId == sourceId &&
-                m_Entity.trigger.targetId == targetId
+            if (m_Entity.hasTriggerEnter &&
+                m_Entity.triggerEnter.otherId == otherId
             )
                 return;
 
-            m_Component.targetId = targetId;
-            m_Component.sourceId = sourceId;
+            m_Component.otherId = otherId;
             ReplaceComponent();
         }
 

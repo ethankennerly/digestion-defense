@@ -21,19 +21,13 @@ namespace Finegamedesign.Entitas
 
         protected override bool Filter(GameEntity entity)
         {
-            if (!entity.hasTrigger)
-                return false;
-
-            GameEntity looper = m_Context.GetEntityWithId(entity.trigger.sourceId);
-            return looper.isDestinationLoopable;
+            return entity.isDestinationLoopable;
         }
 
         protected override void Execute(List<GameEntity> entities)
         {
-            foreach (GameEntity triggerEntity in entities)
+            foreach (GameEntity looper in entities)
             {
-                var trigger = triggerEntity.trigger;
-                GameEntity looper = m_Context.GetEntityWithId(trigger.sourceId);
                 var agent = looper.navAgent.agent;
                 agent.loopingEnabled = false;
             }
