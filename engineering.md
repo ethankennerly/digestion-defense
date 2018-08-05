@@ -209,7 +209,7 @@ Status:
         1. [ ] Entity-component-system:
             1. [x] Abstract Game Component View:
                 1. [x] Listens to on destroy.
-            1. [ ] Destroy Spawner Component View:
+            1. [ ] Spawn On Destroy Component View:
                 1. [ ] Prefab: Sucrose.
                 1. [x] Listens to on destroy.
             1. [ ] Health Destroy System:
