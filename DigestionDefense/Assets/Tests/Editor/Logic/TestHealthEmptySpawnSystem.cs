@@ -6,7 +6,7 @@ namespace Finegamedesign.Entitas
     public sealed class TestHealthEmptyDestroySystem : TestGameContextWithId
     {
         [Test]
-        public void TODO_Execute_BeforeDestroy()
+        public void Execute_BeforeDestroy()
         {
             var system = new HealthEmptyDestroySystem(m_Contexts);
 

@@ -7,7 +7,7 @@ namespace Finegamedesign.Entitas
     public sealed class TestSpawnBeforeDestroySystem : TestGameContextWithId
     {
         [Test]
-        public void TODO_Execute_SpawnPrefab()
+        public void Execute_SpawnPrefab()
         {
             var system = new SpawnBeforeDestroySystem(m_Contexts);
 

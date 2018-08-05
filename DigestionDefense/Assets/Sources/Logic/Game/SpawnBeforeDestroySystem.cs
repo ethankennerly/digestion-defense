@@ -5,30 +5,27 @@ namespace Finegamedesign.Entitas
 {
     public sealed class SpawnBeforeDestroySystem : ReactiveSystem<GameEntity>
     {
-        private readonly GameContext m_Context;
-
         public SpawnBeforeDestroySystem(Contexts contexts) : base(contexts.game)
         {
-            m_Context = contexts.game;
         }
 
         protected override ICollector<GameEntity> GetTrigger(IContext<GameEntity> context)
         {
             return context.CreateCollector(
-                GameMatcher.Id.Added()
+                GameMatcher.BeforeDestroy.Added()
             );
         }
 
         protected override bool Filter(GameEntity entity)
         {
-            return true;
+            return entity.hasSpawnBeforeDestroy;
         }
 
         protected override void Execute(List<GameEntity> entities)
         {
             foreach (GameEntity entity in entities)
             {
-                m_Context.CreateEntity();
+                entity.ReplaceSpawn(entity.spawnBeforeDestroy.prefab);
             }
         }
     }

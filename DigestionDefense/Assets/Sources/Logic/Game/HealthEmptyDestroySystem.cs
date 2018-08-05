@@ -5,30 +5,28 @@ namespace Finegamedesign.Entitas
 {
     public sealed class HealthEmptyDestroySystem : ReactiveSystem<GameEntity>
     {
-        private readonly GameContext m_Context;
-
         public HealthEmptyDestroySystem(Contexts contexts) : base(contexts.game)
         {
-            m_Context = contexts.game;
         }
 
         protected override ICollector<GameEntity> GetTrigger(IContext<GameEntity> context)
         {
             return context.CreateCollector(
-                GameMatcher.Id.Added()
+                GameMatcher.Health.Added()
             );
         }
 
         protected override bool Filter(GameEntity entity)
         {
-            return true;
+            return entity.health.value <= 0 &&
+                !entity.isBeforeDestroy;
         }
 
         protected override void Execute(List<GameEntity> entities)
         {
             foreach (GameEntity entity in entities)
             {
-                m_Context.CreateEntity();
+                entity.isBeforeDestroy = true;
             }
         }
     }
