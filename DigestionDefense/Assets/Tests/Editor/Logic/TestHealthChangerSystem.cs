@@ -6,7 +6,7 @@ namespace Finegamedesign.Entitas
     public sealed class TestHealthChangerSystem : TestGameContextWithId
     {
         [Test]
-        public void TODO_Execute_NegativeHealth()
+        public void Execute_NegativeHealth()
         {
             var system = new HealthTriggerSystem(m_Contexts);
 

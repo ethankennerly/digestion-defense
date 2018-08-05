@@ -36,9 +36,20 @@ namespace Finegamedesign.Entitas
 
         protected override void Execute(List<GameEntity> entities)
         {
-            foreach (GameEntity entity in entities)
+            foreach (GameEntity self in entities)
             {
+                GameEntity other = m_Context.GetEntityWithId(self.triggerEnter.otherId);
+                TryReplaceHealth(self, other);
+                TryReplaceHealth(other, self);
             }
+        }
+
+        private static void TryReplaceHealth(GameEntity self, GameEntity other)
+        {
+            if (!self.hasHealth || !other.hasHealthChanger)
+                return;
+
+            self.ReplaceHealth(self.health.value + other.healthChanger.value);
         }
     }
 }
