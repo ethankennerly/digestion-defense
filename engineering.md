@@ -142,15 +142,15 @@ Status:
     1. [x] After grape exits trigger, loop stops at beginning.
 1. [ ] White teeth contact grape. They transmit negative health to grape.
     1. [ ] Grape has a quantity receiver for negative health and the health is depleted.
-        1. [ ] Damage. One of the following:
-            1. [ ] Entity-component-system pattern:
+        1. [x] Damage. One of the following:
+            1. [x] Entity-component-system pattern:
                 1. [x] Clean.
                     1. [x] On trigger component, remove source ID and rename target ID to other ID.
                     1. [x] Rename trigger to trigger enter.
-                1. [ ] Grape has health component with a positive value.
-                1. [ ] Tooth has health changer component with a negative value.
-                1. [ ] Trigger component view publishes trigger enter component.
-                1. [ ] Health system reacts to trigger enter filtered to targets that have health and sources that have health changer.
+                1. [x] Grape has health component with a positive value.
+                1. [x] Tooth has health changer component with a negative value.
+                1. [x] Trigger component view publishes trigger enter component.
+                1. [x] Health system reacts to trigger enter filtered to targets that have health and sources that have health changer.
                 1. [x] Example test steps:
                     1. [x] Source has health changer -2.
                     1. [x] Target has health 1.
@@ -205,8 +205,22 @@ Status:
             1. [ ] Collision transmits negative health only if vectors of travel are incoming.
             1. [ ] Teeth inhibit negative health transmitter, until loop destination.
 1. [ ] Health is destroyed.
-1. [ ] Health was inhibiting pair of white hexagon transmitter.
-1. [ ] Pair of white hexagon transmitter transmits two pair.
+    1. [ ] One of the following:
+        1. [ ] Entity-component-system:
+            1. [ ] Abstract Game Component View:
+                1. [ ] Listens to on destroy.
+            1. [ ] Health Spawner Component:
+                1. [ ] Health Threshold: 0.
+                1. [ ] Prefab: Sucrose.
+            1. [ ] Health Changer System:
+                1. [ ] Health passes threshold.
+                1. [ ] Spawn prefab.
+                1. [ ] Health passes threshold 0. Will destroy grape entity.
+                1. [ ] Abstract game component view reacts:
+                    1. [ ] Grape prefab disappears.
+        1. [ ] Petri transmission:
+            1. [ ] Health was inhibiting pair of white hexagon transmitter.
+            1. [ ] Pair of white hexagon transmitter transmits two pair.
 1. [ ] Pair of white hexagon is a consumable.
 1. [ ] consumable receiver in tree that had received the destroyed grape receives consumable.
 1. [ ] Nav agent in pair of white hexagon finds path to end of tunnel.

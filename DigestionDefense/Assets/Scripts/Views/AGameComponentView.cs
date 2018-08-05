@@ -27,6 +27,8 @@ namespace Finegamedesign.Entitas
 
         protected bool m_ReplaceComponentOnInitialize = true;
 
+        private EntityEvent m_OnDestroyEntity;
+
         protected virtual void OnEnable()
         {
             Initialize();
@@ -51,6 +53,12 @@ namespace Finegamedesign.Entitas
                 return;
 
             m_Entity = GameLinkUtils.TryLink(gameObject);
+
+            if (m_OnDestroyEntity == null)
+                m_OnDestroyEntity = DestroyObject;
+
+            m_Entity.OnDestroyEntity -= m_OnDestroyEntity;
+            m_Entity.OnDestroyEntity += m_OnDestroyEntity;
         }
 
         protected void TryUnlink()
@@ -58,6 +66,7 @@ namespace Finegamedesign.Entitas
             if (m_Entity == null)
                 return;
 
+            m_Entity.OnDestroyEntity -= m_OnDestroyEntity;
             m_Entity = null;
 
             var link = gameObject.GetEntityLink();
@@ -65,6 +74,14 @@ namespace Finegamedesign.Entitas
                 return;
 
             gameObject.Unlink();
+        }
+
+        protected virtual void DestroyObject(IEntity entity)
+        {
+            if (gameObject == null)
+                return;
+
+            UnityEngine.Object.Destroy(gameObject);
         }
 
         /// <summary>

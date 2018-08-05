@@ -5,11 +5,8 @@ namespace Finegamedesign.Entitas
 {
     public sealed class TriggerExitLoopingDisabledSystem : ReactiveSystem<GameEntity>
     {
-        private readonly GameContext m_Context;
-
         public TriggerExitLoopingDisabledSystem(Contexts contexts) : base(contexts.game)
         {
-            m_Context = contexts.game;
         }
 
         protected override ICollector<GameEntity> GetTrigger(IContext<GameEntity> context)
