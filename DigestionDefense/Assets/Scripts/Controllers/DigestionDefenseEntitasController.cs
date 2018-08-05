@@ -1,6 +1,7 @@
+using Finegamedesign.Entitas;
 using UnityEngine;
 
-namespace Finegamedesign.Entitas
+namespace Finegamedesign.DigestionDefense
 {
     /// <remarks>
     /// In preferences, set script execution order before default.
@@ -10,19 +11,29 @@ namespace Finegamedesign.Entitas
     {
         private static EntitasController s_Entitas;
 
+        private static Contexts s_Contexts;
+
+        private static SpawnListener s_SpawnListener;
+
         private void OnEnable()
         {
             if (s_Entitas == null)
             {
-                s_Entitas = new EntitasController(Contexts.sharedInstance,
-                    new DigestionDefenseSystems(Contexts.sharedInstance));
+                s_Contexts = Contexts.sharedInstance;
+                s_SpawnListener = new SpawnListener(s_Contexts.game);
+                s_Entitas = new EntitasController(s_Contexts,
+                    new DigestionDefenseSystems(s_Contexts));
             }
 
             s_Entitas.Initialize();
+
+            s_SpawnListener.AddListener();
         }
 
         private void OnDisable()
         {
+            s_SpawnListener.RemoveListener();
+
             s_Entitas.TearDown();
         }
 

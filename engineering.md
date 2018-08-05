@@ -222,7 +222,8 @@ Status:
         1. [ ] Petri transmission:
             1. [ ] Health was inhibiting pair of white hexagon transmitter.
             1. [ ] Pair of white hexagon transmitter transmits two pair.
-1. [ ] Pair of white hexagon is a consumable.
+1. [ ] Path following is smooth and does not stutter.
+1. [x] Pair of white hexagon is a consumable.
 1. [ ] consumable receiver in tree that had received the destroyed grape receives consumable.
 1. [ ] Nav agent in pair of white hexagon finds path to end of tunnel.
     - For path finding simplicity, small pair fits into one cell of the nav grid.

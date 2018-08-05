@@ -24,11 +24,12 @@ public static class GameComponentsLookup {
     public const int Selected = 13;
     public const int SpawnBeforeDestroy = 14;
     public const int Spawn = 15;
-    public const int Transmitter = 16;
-    public const int TriggerEnter = 17;
-    public const int TriggerExit = 18;
+    public const int SpawnListener = 16;
+    public const int Transmitter = 17;
+    public const int TriggerEnter = 18;
+    public const int TriggerExit = 19;
 
-    public const int TotalComponents = 19;
+    public const int TotalComponents = 20;
 
     public static readonly string[] componentNames = {
         "Accepter",
@@ -47,6 +48,7 @@ public static class GameComponentsLookup {
         "Selected",
         "SpawnBeforeDestroy",
         "Spawn",
+        "SpawnListener",
         "Transmitter",
         "TriggerEnter",
         "TriggerExit"
@@ -69,6 +71,7 @@ public static class GameComponentsLookup {
         typeof(SelectedComponent),
         typeof(SpawnBeforeDestroyComponent),
         typeof(SpawnComponent),
+        typeof(SpawnListenerComponent),
         typeof(TransmitterComponent),
         typeof(TriggerEnterComponent),
         typeof(TriggerExitComponent)
