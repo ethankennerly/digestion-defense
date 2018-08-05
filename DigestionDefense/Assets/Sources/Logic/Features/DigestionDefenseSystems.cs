@@ -9,6 +9,7 @@ namespace Finegamedesign.Entitas
             Add(new TriggerReactionSystem(contexts));
             Add(new PetriGameSystems(contexts));
             Add(new NavSystems(contexts));
+            Add(new HealthTriggerSystem(contexts));
         }
     }
 }

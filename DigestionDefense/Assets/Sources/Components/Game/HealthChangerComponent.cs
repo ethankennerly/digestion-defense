@@ -1,7 +1,10 @@
 using Entitas;
+using Finegamedesign.Entitas;
+using System;
 
 [Game]
-public sealed class HealthChangerComponent : IComponent
+[Serializable]
+public sealed class HealthChangerComponent : ACloneable, IComponent
 {
     public int value;
 }

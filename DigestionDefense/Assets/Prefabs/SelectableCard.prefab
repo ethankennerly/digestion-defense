@@ -102,6 +102,7 @@ GameObject:
   - component: {fileID: 4582483533742274}
   - component: {fileID: 114901896020647204}
   - component: {fileID: 58828152000703184}
+  - component: {fileID: 114144565014781420}
   m_Layer: 0
   m_Name: Grape
   m_TagString: Untagged
@@ -232,6 +233,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.5, y: 1.5}
   m_EdgeRadius: 0
+--- !u!114 &114144565014781420
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1870512937960356}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f0427004e5f53f4d8cb5e2c165a9c20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Component:
+    value: 1
 --- !u!114 &114350311395525856
 MonoBehaviour:
   m_ObjectHideFlags: 1
