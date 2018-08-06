@@ -10,30 +10,32 @@ public static class GameComponentsLookup {
 
     public const int Accepter = 0;
     public const int BeforeDestroy = 1;
-    public const int Consumable = 2;
-    public const int DestinationLoopable = 3;
-    public const int HealthChanger = 4;
-    public const int Health = 5;
-    public const int Id = 6;
-    public const int NavAgent = 7;
-    public const int NavAttractive = 8;
-    public const int Quantity = 9;
-    public const int Reaction = 10;
-    public const int Receiver = 11;
-    public const int ReceiverListener = 12;
-    public const int Selected = 13;
-    public const int SpawnBeforeDestroy = 14;
-    public const int Spawn = 15;
-    public const int SpawnListener = 16;
-    public const int Transmitter = 17;
-    public const int TriggerEnter = 18;
-    public const int TriggerExit = 19;
+    public const int BeforeDestroyListener = 2;
+    public const int Consumable = 3;
+    public const int DestinationLoopable = 4;
+    public const int HealthChanger = 5;
+    public const int Health = 6;
+    public const int Id = 7;
+    public const int NavAgent = 8;
+    public const int NavAttractive = 9;
+    public const int Quantity = 10;
+    public const int Reaction = 11;
+    public const int Receiver = 12;
+    public const int ReceiverListener = 13;
+    public const int Selected = 14;
+    public const int SpawnBeforeDestroy = 15;
+    public const int Spawn = 16;
+    public const int SpawnListener = 17;
+    public const int Transmitter = 18;
+    public const int TriggerEnter = 19;
+    public const int TriggerExit = 20;
 
-    public const int TotalComponents = 20;
+    public const int TotalComponents = 21;
 
     public static readonly string[] componentNames = {
         "Accepter",
         "BeforeDestroy",
+        "BeforeDestroyListener",
         "Consumable",
         "DestinationLoopable",
         "HealthChanger",
@@ -57,6 +59,7 @@ public static class GameComponentsLookup {
     public static readonly System.Type[] componentTypes = {
         typeof(AccepterComponent),
         typeof(BeforeDestroyComponent),
+        typeof(BeforeDestroyListenerComponent),
         typeof(ConsumableComponent),
         typeof(DestinationLoopableComponent),
         typeof(HealthChangerComponent),

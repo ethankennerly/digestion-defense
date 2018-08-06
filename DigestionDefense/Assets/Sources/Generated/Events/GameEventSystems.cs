@@ -9,6 +9,7 @@
 public sealed class GameEventSystems : Feature {
 
     public GameEventSystems(Contexts contexts) {
+        Add(new BeforeDestroyEventSystem(contexts)); // priority: 0
         Add(new ReceiverEventSystem(contexts)); // priority: 0
         Add(new SpawnEventSystem(contexts)); // priority: 0
     }
