@@ -212,11 +212,10 @@ Status:
             1. [x] Spawn Before Destroy Component View:
                 1. [x] Prefab: Sucrose.
             1. [x] Spawn Listener:
-                1. [ ] Spawns prefab at same transform as entity's linked object.
-            1. [ ] Health Destroy System:
-                1. [ ] Health passes threshold.
-                1. [ ] Health passes threshold 0. Will destroy grape entity.
-                1. [ ] Sucrose spawns.
+                1. [x] Spawns prefab at same transform as entity's linked object.
+            1. [x] Health Destroy System:
+                1. [x] Health passes threshold 0. Will destroy grape entity.
+                1. [x] Sucrose spawns.
                 1. [ ] Abstract game component view reacts:
                     1. [ ] Grape prefab disappears.
         1. [ ] Petri transmission:

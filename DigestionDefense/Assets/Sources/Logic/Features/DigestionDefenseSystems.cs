@@ -11,9 +11,13 @@ namespace Finegamedesign.Entitas
             Add(new NavSystems(contexts));
             Add(new HealthSystems(contexts));
 
-            // Last, to publish to external listeners.
+            // After game mechanics, to publish to external listeners.
             // Otherwise, destroying game object in the middle might be unexpected.
             Add(new GameEventSystems(contexts));
+
+            // After all effects. Equivalent to clean up phase.
+            // Otherwise, downstream system might expect entity was enabled.
+            Add(new DestroySystem(contexts));
         }
     }
 }
