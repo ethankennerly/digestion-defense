@@ -37,8 +37,14 @@ namespace Finegamedesign.Entitas
         {
             foreach (GameEntity triggerEntity in entities)
             {
-                triggerEntity.isReaction = true;
+                ReplaceReaction(triggerEntity, true);
             }
+        }
+
+        public static void ReplaceReaction(GameEntity entity, bool isReaction)
+        {
+            entity.isReaction = !isReaction;
+            entity.isReaction = isReaction;
         }
     }
 }
