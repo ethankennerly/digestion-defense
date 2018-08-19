@@ -14,14 +14,46 @@ namespace Finegamedesign.Entitas
             int consumableIndex = GameComponentsLookup.Consumable;
             consumableReceiver.filterComponentIndexes.Add(consumableIndex);
 
-            Assert.IsTrue(ReceiverUtils.Filter(consumableReceiver, grape),
-                "Consumable");
+            Assert.IsTrue(ReceiverUtils.Filter(consumableReceiver, grape));
         }
 
-        /// 1. [ ] Candidate: none. Receiver: consumable. Filter excludes.
+        [Test]
+        public void Filter_ExcludesNonConsumable()
+        {
+            GameEntity mountain = m_Context.CreateEntity();
 
-        /// 1. [ ] Candidate: consumable, glucose. Receiver: glucose. Filter includes.
+            ReceiverComponent consumableReceiver = new ReceiverComponent();
+            int consumableIndex = GameComponentsLookup.Consumable;
+            consumableReceiver.filterComponentIndexes.Add(consumableIndex);
 
-        /// 1. [ ] Candidate: consumable. Receiver: glucose. Filter excludes.
+            Assert.IsFalse(ReceiverUtils.Filter(consumableReceiver, mountain));
+        }
+
+        [Test]
+        public void Filter_IncludesGlucose()
+        {
+            GameEntity glucose = m_Context.CreateEntity();
+            glucose.AddConsumable("Glucose");
+            glucose.isGlucose = true;
+
+            ReceiverComponent glucoseReceiver = new ReceiverComponent();
+            int glucoseIndex = GameComponentsLookup.Glucose;
+            glucoseReceiver.filterComponentIndexes.Add(glucoseIndex);
+
+            Assert.IsTrue(ReceiverUtils.Filter(glucoseReceiver, glucose));
+        }
+
+        [Test]
+        public void Filter_ExcludesNonGlucoseConsumable()
+        {
+            GameEntity grape = m_Context.CreateEntity();
+            grape.AddConsumable("Grape");
+
+            ReceiverComponent glucoseReceiver = new ReceiverComponent();
+            int glucoseIndex = GameComponentsLookup.Glucose;
+            glucoseReceiver.filterComponentIndexes.Add(glucoseIndex);
+
+            Assert.IsFalse(ReceiverUtils.Filter(glucoseReceiver, grape));
+        }
     }
 }

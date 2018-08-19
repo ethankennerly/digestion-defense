@@ -13,24 +13,25 @@ public static class GameComponentsLookup {
     public const int BeforeDestroyListener = 2;
     public const int Consumable = 3;
     public const int DestinationLoopable = 4;
-    public const int HealthChanger = 5;
-    public const int Health = 6;
-    public const int Id = 7;
-    public const int NavAgent = 8;
-    public const int NavAttractive = 9;
-    public const int Quantity = 10;
-    public const int Reaction = 11;
-    public const int Receiver = 12;
-    public const int ReceiverListener = 13;
-    public const int Selected = 14;
-    public const int SpawnBeforeDestroy = 15;
-    public const int Spawn = 16;
-    public const int SpawnListener = 17;
-    public const int Transmitter = 18;
-    public const int TriggerEnter = 19;
-    public const int TriggerExit = 20;
+    public const int Glucose = 5;
+    public const int HealthChanger = 6;
+    public const int Health = 7;
+    public const int Id = 8;
+    public const int NavAgent = 9;
+    public const int NavAttractive = 10;
+    public const int Quantity = 11;
+    public const int Reaction = 12;
+    public const int Receiver = 13;
+    public const int ReceiverListener = 14;
+    public const int Selected = 15;
+    public const int SpawnBeforeDestroy = 16;
+    public const int Spawn = 17;
+    public const int SpawnListener = 18;
+    public const int Transmitter = 19;
+    public const int TriggerEnter = 20;
+    public const int TriggerExit = 21;
 
-    public const int TotalComponents = 21;
+    public const int TotalComponents = 22;
 
     public static readonly string[] componentNames = {
         "Accepter",
@@ -38,6 +39,7 @@ public static class GameComponentsLookup {
         "BeforeDestroyListener",
         "Consumable",
         "DestinationLoopable",
+        "Glucose",
         "HealthChanger",
         "Health",
         "Id",
@@ -62,6 +64,7 @@ public static class GameComponentsLookup {
         typeof(BeforeDestroyListenerComponent),
         typeof(ConsumableComponent),
         typeof(DestinationLoopableComponent),
+        typeof(GlucoseComponent),
         typeof(HealthChangerComponent),
         typeof(HealthComponent),
         typeof(IdComponent),
