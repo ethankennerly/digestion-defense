@@ -210,38 +210,49 @@ Status:
             1. [x] Abstract Game Component View:
                 1. [x] Listens to on destroy.
             1. [x] Spawn Before Destroy Component View:
-                1. [x] Prefab: Sucrose.
+                1. [x] Prefab: Glucose.
             1. [x] Spawn Listener:
                 1. [x] Spawns prefab at same transform as entity's linked object.
             1. [x] Health Destroy System:
                 1. [x] Health passes threshold 0. Will destroy grape entity.
-                1. [x] Sucrose spawns.
+                1. [x] Glucose spawns.
+                    1. [ ] Glucose scatters.
                 1. [x] Abstract game component view reacts:
                     1. [x] Grape prefab disappears.
         1. [ ] Petri transmission:
-            1. [ ] Health was inhibiting pair of white hexagon transmitter.
-            1. [ ] Pair of white hexagon transmitter transmits two pair.
+            1. [ ] Health was inhibiting glucose transmitter.
+            1. [ ] Glucose transmitter transmits two pair.
 1. [x] Path following is smooth and does not stutter.
-1. [x] Pair of white hexagon is a consumable.
+1. [x] glucose is a consumable.
 1. [x] consumable receiver in tree that had received the destroyed grape receives consumable.
-1. [x] Nav agent in pair of white hexagon finds path to end of tunnel.
+1. [x] Nav agent in glucose finds path to end of tunnel.
     - For path finding simplicity, small pair fits into one cell of the nav grid.
-1. [x] Nav agent in pair of white hexagon finds path to end of tunnel.
-1. [x] Pair of white hexagon flow out of purple cave.
-1. [ ] In white cave, pair of white hexagonal concavities detect pair of white hexagon in visible range.
-1. [ ] Concavities target pair of white hexagon.
+1. [x] Nav agent in glucose finds path to end of tunnel.
+1. [x] glucose flow out of purple cave.
+1. [ ] glucose flows out of through small tunnels.
+    1. [ ] White hexagon hole detect white hexagon.
+    1. [ ] White hexagon hole attract nav agent of white hexagon.
+    1. [ ] White hexagon contacts white hexagon hole.
+    1. [ ] White hexagon hole receives white hexagon and transmits white fuel.
+    1. [ ] White fuel receiver accepts white fuel.
+    1. [ ] White fuel receiver transmits some red fuel.
+    1. [ ] red fuel receiver increases.
+    1. [ ] One of the following:
+        1. [ ] Tunnel that accepts glucose.
+        1. [ ] Sodium-Glucose co transporter
+            1. [ ] <https://en.wikipedia.org/wiki/Sodium-glucose_transport_proteins>
+            1. [ ] <http://jpet.aspetjournals.org/content/358/1/94>
+        1. [ ] Transport protein.
+            1. [ ] How is glucose absorbed from the gastrointestinal tract? How are blood glucose levels maintained? <https://socratic.org/questions/how-is-glucose-absorbed-from-the-gastrointestinal-tract-how-are-blood-glucose-le>
+        1. [ ] tunnels accept small things.
+        1. [ ] maximum diameter.
+1. [ ] In white cave, sucrase concavities detect sucrose in visible range.
+1. [ ] Concavities target sucrose (white hexagon and white pentagon)
 1. [ ] Concavities attract nav agent in pair of white hexagon.
 1. [ ] Pair of white hexagons finds path to concavities.
 1. [ ] Concavities convert pair of white hexagons into two separate white hexagons.
     1. [ ] Separte first white hexagon a fraction of a second sooner, to visualize separation.
 1. [ ] White hexagons find path to end of tunnel.
-1. [ ] White hexagon hole detect white hexagon.
-1. [ ] White hexagon hole attract nav agent of white hexagon.
-1. [ ] White hexagon contacts white hexagon hole.
-1. [ ] White hexagon hole receives white hexagon and transmits white fuel.
-1. [ ] White fuel receiver accepts white fuel.
-1. [ ] White fuel receiver transmits some red fuel.
-1. [ ] red fuel receiver increases.
 1. [ ] Player taps collider of selected receiver in node hierarchy containing oil.
 1. [ ] Transmitter transforms selected and oil to transmit oil to connected entrance that receives consumable.
     1. [x] Develop one of the following for selectable card receiver:
@@ -267,6 +278,41 @@ Status:
 1. [ ] Read more conventional static class suffix `Utils` instead of `Util`.
 1. [ ] Bind net from editor to code.
 1. [ ] Bind net from code to editor.
+
+### Receiver filter
+
+1. [ ] One of the following:
+    1. [ ] Receiver component
+        1. [ ] Test cases:
+            1. [ ] Candidate: consumable. Receiver: consumable. Filter includes.
+            1. [ ] Candidate: none. Receiver: consumable. Filter excludes.
+            1. [ ] Candidate: consumable, glucose. Receiver: glucose. Filter includes.
+            1. [ ] Candidate: consumable. Receiver: glucose. Filter excludes.
+    1. [ ] Matcher
+        1. [ ] Reuses Entitas Matcher.
+            1. [ ] Component matching.  Sucrose.
+            1. [ ] View composes matcher:  Any Of, All Of, None Of.  Components.
+        1. [ ] Requires corresponding name (Sucrase: [Sucrose, Sucrase inhibitor]).
+            1. [ ] A New Sucrase Enzyme Inhibitor from Azadirachta indica <https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4971946/>
+    1. [ ] Consumable receiver filter component.
+        1. [ ] Requires matching component.
+            1. [ ] Requires equal name.
+            1. [ ] Requires one of equal component names.
+                1. [ ] Test cases:
+                    1. [ ] Does not have consumable component. Filter excludes.
+                    1. [ ] Has consumable component.
+                        1. [ ] Receiver has same consumable receiver filter name. Filter includes.
+                        1. [ ] Receiver has different consumable receiver filter name. Filter excludes.
+            1. [ ] Requires one of equal consumable components.
+                1. [ ] Components are equal if have equal names.
+    1. [ ] Consumable component with receiver filters by equal component.
+        - Prone to confusion between consumable and consumable receiver filter.
+            - Example, sucrose receiver might get attracted to general consumable receiver.
+    1. [ ] Shape filter.
+        1. [ ] What other shapes could fit?
+            1. [ ] Inhibitors.
+    1. [ ] Physics lock and key fitting test.
+        1. [ ] Fit and cut.
 
 ## Components
 
