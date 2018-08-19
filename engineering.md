@@ -204,9 +204,9 @@ Status:
                     - Petri Net and Petri Transmission are similar. Transmission needs explicit receiver to transmit from.
             1. [ ] Collision transmits negative health only if vectors of travel are incoming.
             1. [ ] Teeth inhibit negative health transmitter, until loop destination.
-1. [ ] Health is destroyed.
-    1. [ ] One of the following:
-        1. [ ] Entity-component-system:
+1. [x] Health is destroyed.
+    1. [x] One of the following:
+        1. [x] Entity-component-system:
             1. [x] Abstract Game Component View:
                 1. [x] Listens to on destroy.
             1. [x] Spawn Before Destroy Component View:
@@ -216,24 +216,24 @@ Status:
             1. [x] Health Destroy System:
                 1. [x] Health passes threshold 0. Will destroy grape entity.
                 1. [x] Sucrose spawns.
-                1. [ ] Abstract game component view reacts:
-                    1. [ ] Grape prefab disappears.
+                1. [x] Abstract game component view reacts:
+                    1. [x] Grape prefab disappears.
         1. [ ] Petri transmission:
             1. [ ] Health was inhibiting pair of white hexagon transmitter.
             1. [ ] Pair of white hexagon transmitter transmits two pair.
-1. [ ] Path following is smooth and does not stutter.
+1. [x] Path following is smooth and does not stutter.
 1. [x] Pair of white hexagon is a consumable.
-1. [ ] consumable receiver in tree that had received the destroyed grape receives consumable.
-1. [ ] Nav agent in pair of white hexagon finds path to end of tunnel.
+1. [x] consumable receiver in tree that had received the destroyed grape receives consumable.
+1. [x] Nav agent in pair of white hexagon finds path to end of tunnel.
     - For path finding simplicity, small pair fits into one cell of the nav grid.
-1. [ ] Pair of white hexagon flow out of purple cave.
-1. [ ] Nav agent in pair of white hexagon finds path to end of tunnel.
-1. [ ] Pair of white hexagon flow out of purple cave.
+1. [x] Nav agent in pair of white hexagon finds path to end of tunnel.
+1. [x] Pair of white hexagon flow out of purple cave.
 1. [ ] In white cave, pair of white hexagonal concavities detect pair of white hexagon in visible range.
 1. [ ] Concavities target pair of white hexagon.
 1. [ ] Concavities attract nav agent in pair of white hexagon.
 1. [ ] Pair of white hexagons finds path to concavities.
 1. [ ] Concavities convert pair of white hexagons into two separate white hexagons.
+    1. [ ] Separte first white hexagon a fraction of a second sooner, to visualize separation.
 1. [ ] White hexagons find path to end of tunnel.
 1. [ ] White hexagon hole detect white hexagon.
 1. [ ] White hexagon hole attract nav agent of white hexagon.
