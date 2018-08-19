@@ -230,15 +230,8 @@ Status:
 1. [x] Nav agent in glucose finds path to end of tunnel.
 1. [x] glucose flow out of purple cave.
 1. [ ] glucose flows out of through small tunnels.
-    1. [ ] White hexagon hole detect white hexagon.
-    1. [ ] White hexagon hole attract nav agent of white hexagon.
-    1. [ ] White hexagon contacts white hexagon hole.
-    1. [ ] White hexagon hole receives white hexagon and transmits white fuel.
-    1. [ ] White fuel receiver accepts white fuel.
-    1. [ ] White fuel receiver transmits some red fuel.
-    1. [ ] red fuel receiver increases.
-    1. [ ] One of the following:
-        1. [ ] Tunnel that accepts glucose.
+    1. [x] One of the following:
+        1. [x] Tunnel that accepts glucose.
         1. [ ] Sodium-Glucose co transporter
             1. [ ] <https://en.wikipedia.org/wiki/Sodium-glucose_transport_proteins>
             1. [ ] <http://jpet.aspetjournals.org/content/358/1/94>
@@ -246,6 +239,13 @@ Status:
             1. [ ] How is glucose absorbed from the gastrointestinal tract? How are blood glucose levels maintained? <https://socratic.org/questions/how-is-glucose-absorbed-from-the-gastrointestinal-tract-how-are-blood-glucose-le>
         1. [ ] tunnels accept small things.
         1. [ ] maximum diameter.
+    1. [x] White hexagon hole detect white hexagon.
+    1. [x] White hexagon hole attract nav agent of white hexagon.
+    1. [x] White hexagon contacts white hexagon hole.
+    1. [ ] White hexagon hole receives white hexagon and transmits white fuel.
+    1. [ ] White fuel receiver accepts white fuel.
+    1. [ ] White fuel receiver transmits some red fuel.
+    1. [ ] red fuel receiver increases.
 1. [ ] In white cave, sucrase concavities detect sucrose in visible range.
 1. [ ] Concavities target sucrose (white hexagon and white pentagon)
 1. [ ] Concavities attract nav agent in pair of white hexagon.
@@ -281,13 +281,13 @@ Status:
 
 ### Receiver filter
 
-1. [ ] One of the following:
-    1. [ ] Receiver component
-        1. [ ] Test cases:
-            1. [ ] Candidate: consumable. Receiver: consumable. Filter includes.
-            1. [ ] Candidate: none. Receiver: consumable. Filter excludes.
-            1. [ ] Candidate: consumable, glucose. Receiver: glucose. Filter includes.
-            1. [ ] Candidate: consumable. Receiver: glucose. Filter excludes.
+1. [x] One of the following:
+    1. [x] Receiver component
+        1. [x] Test cases:
+            1. [x] Candidate: consumable. Receiver: consumable. Filter includes.
+            1. [x] Candidate: none. Receiver: consumable. Filter excludes.
+            1. [x] Candidate: consumable, glucose. Receiver: glucose. Filter includes.
+            1. [x] Candidate: consumable. Receiver: glucose. Filter excludes.
     1. [ ] Matcher
         1. [ ] Reuses Entitas Matcher.
             1. [ ] Component matching.  Sucrose.
