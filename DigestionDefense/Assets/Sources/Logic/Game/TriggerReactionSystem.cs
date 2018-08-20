@@ -1,8 +1,8 @@
 using Entitas;
-using Finegamedesign.Utils;
+using FineGameDesign.Utils;
 using System.Collections.Generic;
 
-namespace Finegamedesign.Entitas
+namespace FineGameDesign.Entitas
 {
     public sealed class TriggerReactionSystem : ReactiveSystem<GameEntity>
     {

@@ -1,10 +1,10 @@
-using Finegamedesign.Utils;
+using FineGameDesign.Utils;
 using ProGM;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Finegamedesign.Entitas
+namespace FineGameDesign.Entitas
 {
     public sealed class ReceiverComponentView : AGameComponentView<ReceiverComponent>, IReceiverListener
     {

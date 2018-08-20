@@ -1,7 +1,7 @@
 using Entitas;
 using System.Collections.Generic;
 
-namespace Finegamedesign.Entitas
+namespace FineGameDesign.Entitas
 {
     public sealed class ReactiveSystemTemplate : ReactiveSystem<GameEntity>
     {

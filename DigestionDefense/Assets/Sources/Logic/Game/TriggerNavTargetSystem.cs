@@ -1,10 +1,10 @@
 using Entitas;
-using Finegamedesign.Nav;
-using Finegamedesign.Utils;
+using FineGameDesign.Nav;
+using FineGameDesign.Utils;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Finegamedesign.Entitas
+namespace FineGameDesign.Entitas
 {
     public sealed class TriggerNavTargetSystem : ReactiveSystem<GameEntity>
     {

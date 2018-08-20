@@ -228,7 +228,7 @@ Status:
 1. [x] Nav agent in glucose finds path to end of tunnel.
     - For path finding simplicity, small pair fits into one cell of the nav grid.
 1. [x] Nav agent in glucose finds path to end of tunnel.
-1. [x] glucose flow out of purple cave.
+1. [x] glucose (white hexagon) flows out of purple cave.
 1. [ ] glucose flows out of through small tunnels.
     1. [x] One of the following:
         1. [x] Tunnel that accepts glucose.
@@ -239,13 +239,17 @@ Status:
             1. [ ] How is glucose absorbed from the gastrointestinal tract? How are blood glucose levels maintained? <https://socratic.org/questions/how-is-glucose-absorbed-from-the-gastrointestinal-tract-how-are-blood-glucose-le>
         1. [ ] tunnels accept small things.
         1. [ ] maximum diameter.
-    1. [x] White hexagon hole detect white hexagon.
+    1. [x] Glucose Transport (white hexagon hole) detects glucose.
     1. [x] White hexagon hole attract nav agent of white hexagon.
     1. [x] White hexagon contacts white hexagon hole.
     1. [ ] White hexagon hole receives white hexagon and transmits white fuel.
+        1. [ ] White meter increases.
+        1. [ ] Trigger region excludes intestines.
     1. [ ] White fuel receiver accepts white fuel.
     1. [ ] White fuel receiver transmits some red fuel.
     1. [ ] red fuel receiver increases.
+1. [ ] Labyrinth sort of resembles digestive system schematic.
+1. [ ] Transmit all four cards.
 1. [ ] In white cave, sucrase concavities detect sucrose in visible range.
 1. [ ] Concavities target sucrose (white hexagon and white pentagon)
 1. [ ] Concavities attract nav agent in pair of white hexagon.
@@ -357,6 +361,11 @@ Navigation system:
             - [x] if no nav agent, adds nav agent.
             - [x] nav agent targets receiver, if nearer than current target.
             - [x] nav agent listener updates position.
+
+## Library experiments
+
+1. [ ] Test upgrading to latest Entitas.
+1. [ ] Test Unity ECS.
 
 ## Reference: Machinations by Joris Dormans
 

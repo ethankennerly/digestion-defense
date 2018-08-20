@@ -1,12 +1,12 @@
 // Uncomment to log some function calls.
 // #define LOG_RECEIVER
 
-using Finegamedesign.Utils;
+using FineGameDesign.Utils;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 
-namespace Finegamedesign.Entitas
+namespace FineGameDesign.Entitas
 {
     public static class ReceiverUtils
     {

@@ -1,7 +1,7 @@
-using Finegamedesign.Entitas;
+using FineGameDesign.Entitas;
 using UnityEngine;
 
-namespace Finegamedesign.DigestionDefense
+namespace FineGameDesign.DigestionDefense
 {
     /// <remarks>
     /// In preferences, set script execution order before default.

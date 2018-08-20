@@ -1,7 +1,7 @@
 using Entitas;
 using System;
 
-namespace Finegamedesign.Entitas
+namespace FineGameDesign.Entitas
 {
     public static class ContextUtils
     {

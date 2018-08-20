@@ -3,7 +3,7 @@ using System;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-namespace Finegamedesign.Nav
+namespace FineGameDesign.Nav
 {
     public sealed class NavTilemapController
     {

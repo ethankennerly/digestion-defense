@@ -1,7 +1,7 @@
 using Entitas;
 using UnityEngine;
 
-namespace Finegamedesign.Entitas
+namespace FineGameDesign.Entitas
 {
     public sealed class UpdateNavAgentSystem : IExecuteSystem
     {

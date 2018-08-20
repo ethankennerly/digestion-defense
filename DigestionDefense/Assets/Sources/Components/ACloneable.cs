@@ -1,6 +1,6 @@
 using System;
 
-namespace Finegamedesign.Entitas
+namespace FineGameDesign.Entitas
 {
     public abstract class ACloneable : ICloneable
     {

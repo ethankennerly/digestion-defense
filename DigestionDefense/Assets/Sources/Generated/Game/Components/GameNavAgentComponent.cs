@@ -11,14 +11,14 @@ public partial class GameEntity {
     public NavAgentComponent navAgent { get { return (NavAgentComponent)GetComponent(GameComponentsLookup.NavAgent); } }
     public bool hasNavAgent { get { return HasComponent(GameComponentsLookup.NavAgent); } }
 
-    public void AddNavAgent(Finegamedesign.Nav.NavTilemapAgent newAgent) {
+    public void AddNavAgent(FineGameDesign.Nav.NavTilemapAgent newAgent) {
         var index = GameComponentsLookup.NavAgent;
         var component = CreateComponent<NavAgentComponent>(index);
         component.agent = newAgent;
         AddComponent(index, component);
     }
 
-    public void ReplaceNavAgent(Finegamedesign.Nav.NavTilemapAgent newAgent) {
+    public void ReplaceNavAgent(FineGameDesign.Nav.NavTilemapAgent newAgent) {
         var index = GameComponentsLookup.NavAgent;
         var component = CreateComponent<NavAgentComponent>(index);
         component.agent = newAgent;

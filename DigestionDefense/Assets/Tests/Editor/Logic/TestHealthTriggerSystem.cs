@@ -1,7 +1,7 @@
 using Entitas;
 using NUnit.Framework;
 
-namespace Finegamedesign.Entitas
+namespace FineGameDesign.Entitas
 {
     public sealed class TestHealthTriggerSystem : TestGameContextWithId
     {

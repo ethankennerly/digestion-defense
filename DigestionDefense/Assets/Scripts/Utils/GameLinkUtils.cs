@@ -1,9 +1,9 @@
 using Entitas.Unity;
-using Finegamedesign.Utils;
+using FineGameDesign.Utils;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Finegamedesign.Entitas
+namespace FineGameDesign.Entitas
 {
     public static class GameLinkUtils
     {

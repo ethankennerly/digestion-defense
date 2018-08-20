@@ -1,6 +1,6 @@
 using Entitas;
 using Entitas.CodeGeneration.Attributes;
-using Finegamedesign.Entitas;
+using FineGameDesign.Entitas;
 using System.Collections.Generic;
 
 [Game]

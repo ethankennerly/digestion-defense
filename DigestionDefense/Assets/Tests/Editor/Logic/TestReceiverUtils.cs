@@ -1,6 +1,6 @@
 using NUnit.Framework;
 
-namespace Finegamedesign.Entitas
+namespace FineGameDesign.Entitas
 {
     public sealed class TestReceiverUtils : TestGameContextWithId
     {

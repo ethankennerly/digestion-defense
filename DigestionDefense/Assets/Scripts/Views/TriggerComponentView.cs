@@ -1,7 +1,7 @@
-using Finegamedesign.Utils;
+using FineGameDesign.Utils;
 using UnityEngine;
 
-namespace Finegamedesign.Entitas
+namespace FineGameDesign.Entitas
 {
     public sealed class TriggerComponentView : AGameComponentView<TriggerEnterComponent>
     {

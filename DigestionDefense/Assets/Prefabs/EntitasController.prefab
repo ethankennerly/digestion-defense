@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 114101438761801252}
   - component: {fileID: 114344769405602396}
   - component: {fileID: 114808343845945766}
+  - component: {fileID: 114754293974346860}
   m_Layer: 0
   m_Name: EntitasController
   m_TagString: Untagged
@@ -64,6 +65,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 505ae4b773ccef441a67e2b4b7236a17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114754293974346860
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1513519860120648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22c35943de85d8341a6c18e566eefca8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Controller:
+    m_DisabledDuration: 0.25
+    m_Camera: {fileID: 0}
+    m_IsVerbose: 1
 --- !u!114 &114808343845945766
 MonoBehaviour:
   m_ObjectHideFlags: 1

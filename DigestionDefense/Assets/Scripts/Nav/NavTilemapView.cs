@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-namespace Finegamedesign.Nav
+namespace FineGameDesign.Nav
 {
     [RequireComponent(typeof(Tilemap))]
     public sealed class NavTilemapView : MonoBehaviour

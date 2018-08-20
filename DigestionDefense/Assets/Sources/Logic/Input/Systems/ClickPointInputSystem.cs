@@ -1,4 +1,4 @@
-using Finegamedesign.Utils;
+using FineGameDesign.Utils;
 using Entitas;
 
 public sealed class ClickPointInputSystem : IInitializeSystem, ICleanupSystem, ITearDownSystem
@@ -24,12 +24,12 @@ public sealed class ClickPointInputSystem : IInitializeSystem, ICleanupSystem, I
 
     private void AddListeners()
     {
-        ClickSystem.instance.onWorldXY += AddInput;
+        ClickInputSystem.instance.onWorldXY += AddInput;
     }
 
     private void RemoveListeners()
     {
-        ClickSystem.instance.onWorldXY -= AddInput;
+        ClickInputSystem.instance.onWorldXY -= AddInput;
     }
 
     private void AddInput(float worldX, float worldY)

@@ -2,7 +2,7 @@ using Entitas;
 using NUnit.Framework;
 using UnityEngine;
 
-namespace Finegamedesign.Entitas
+namespace FineGameDesign.Entitas
 {
     public sealed class TestSpawnBeforeDestroySystem : TestGameContextWithId
     {

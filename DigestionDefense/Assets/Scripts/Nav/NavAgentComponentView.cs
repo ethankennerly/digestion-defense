@@ -1,8 +1,8 @@
-using Finegamedesign.Nav;
-using Finegamedesign.Utils;
+using FineGameDesign.Nav;
+using FineGameDesign.Utils;
 using UnityEngine;
 
-namespace Finegamedesign.Entitas
+namespace FineGameDesign.Entitas
 {
     public sealed class NavAgentComponentView : AGameComponentView<NavAgentComponent>
     {

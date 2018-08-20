@@ -1,10 +1,10 @@
 using Entitas.Unity;
-using Finegamedesign.Entitas;
-using Finegamedesign.Utils;
+using FineGameDesign.Entitas;
+using FineGameDesign.Utils;
 using System;
 using UnityEngine;
 
-namespace Finegamedesign.Entitas
+namespace FineGameDesign.Entitas
 {
     public sealed class ClickSelectedController : MonoBehaviour
     {
@@ -43,12 +43,12 @@ namespace Finegamedesign.Entitas
             if (m_OnCollisionEnter2D == null)
                 m_OnCollisionEnter2D = ReplaceSelectedIfReceiver;
 
-            ClickSystem.instance.onCollisionEnter2D += m_OnCollisionEnter2D;
+            ClickInputSystem.instance.onCollisionEnter2D += m_OnCollisionEnter2D;
         }
 
         private void RemoveListener()
         {
-            ClickSystem.instance.onCollisionEnter2D -= m_OnCollisionEnter2D;
+            ClickInputSystem.instance.onCollisionEnter2D -= m_OnCollisionEnter2D;
         }
 
         private void ReplaceSelectedIfReceiver(Collider2D collider)

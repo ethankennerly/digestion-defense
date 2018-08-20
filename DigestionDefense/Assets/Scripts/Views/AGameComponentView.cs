@@ -3,7 +3,7 @@ using Entitas.Unity;
 using System;
 using UnityEngine;
 
-namespace Finegamedesign.Entitas
+namespace FineGameDesign.Entitas
 {
     /// <remarks>
     /// Abstract game component view is convenient to wire properties in the Unity editor.

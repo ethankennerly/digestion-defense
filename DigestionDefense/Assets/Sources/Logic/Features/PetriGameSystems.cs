@@ -1,6 +1,6 @@
 using Entitas;
 
-namespace Finegamedesign.Entitas
+namespace FineGameDesign.Entitas
 {
     public sealed class PetriGameSystems : Feature
     {

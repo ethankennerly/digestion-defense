@@ -1,5 +1,5 @@
 using Entitas;
-using Finegamedesign.Nav;
+using FineGameDesign.Nav;
 
 [Game]
 public sealed class NavAgentComponent : IComponent

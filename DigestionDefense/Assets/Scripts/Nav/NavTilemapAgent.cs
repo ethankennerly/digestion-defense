@@ -1,10 +1,10 @@
-using Finegamedesign.Utils;
+using FineGameDesign.Utils;
 using SettlersEngine;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Finegamedesign.Nav
+namespace FineGameDesign.Nav
 {
     [Serializable]
     public sealed class NavTilemapAgent

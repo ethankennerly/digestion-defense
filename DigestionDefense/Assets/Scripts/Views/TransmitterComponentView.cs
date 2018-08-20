@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Finegamedesign.Entitas
+namespace FineGameDesign.Entitas
 {
     public sealed class TransmitterComponentView : AGameComponentView<TransmitterComponent>
     {

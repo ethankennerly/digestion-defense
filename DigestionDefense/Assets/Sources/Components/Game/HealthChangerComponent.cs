@@ -1,5 +1,5 @@
 using Entitas;
-using Finegamedesign.Entitas;
+using FineGameDesign.Entitas;
 using System;
 
 [Game]
